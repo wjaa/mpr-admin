@@ -1,0 +1,13 @@
+.content{
+  padding: 10px;
+  width : 85%;
+  margin: 0px auto;
+}
+
+.btn-right{
+  float:right;
+}
+
+.btn-novo{
+  margin: 10px 0 10px 10px;
+}

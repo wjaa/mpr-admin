@@ -1,20 +1,33 @@
 package br.com.mpr.admin.controllers;
 
+import br.com.mpr.admin.service.AdminService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@RequestMapping("/admin")
 public class AdminController {
 
-    @GetMapping("/fornecedor/")
-    public String fornecedor(){
-        return "fornecedor/list";
+
+    @Autowired
+    private AdminService adminService;
+
+    @GetMapping("/fornecedor")
+    public ModelAndView fornecedor(){
+        ModelAndView mav = new ModelAndView("fornecedor/list");
+        mav.addObject("list",adminService.getAllFornecedor());
+        return mav;
     }
 
     @GetMapping("/fornecedor/{id}")
-    public String fornecedor(@PathVariable Long id){
-        return "fornecedor/view";
+    public ModelAndView fornecedor(@PathVariable Long id){
+        ModelAndView mav = new ModelAndView("fornecedor/view");
+        mav.addObject("vo", adminService.getFornecedorById(id));
+        return mav;
     }
 
 }
