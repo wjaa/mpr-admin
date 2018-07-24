@@ -1,5 +1,6 @@
 package br.com.mpr.admin.controllers;
 
+import br.com.mpr.admin.exception.RestException;
 import br.com.mpr.admin.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,20 +14,29 @@ import org.springframework.web.servlet.ModelAndView;
 public class AdminController {
 
 
+    public static final String ERROR_MESSAGE = "errorMessage";
     @Autowired
     private AdminService adminService;
 
     @GetMapping("/fornecedor")
     public ModelAndView fornecedor(){
         ModelAndView mav = new ModelAndView("fornecedor/list");
-        mav.addObject("list",adminService.getAllFornecedor());
+        try {
+            mav.addObject("list",adminService.getAllFornecedor());
+        } catch (RestException e) {
+            mav.addObject(ERROR_MESSAGE,e.getErrorMessageVo());
+        }
         return mav;
     }
 
     @GetMapping("/fornecedor/{id}")
     public ModelAndView fornecedor(@PathVariable Long id){
         ModelAndView mav = new ModelAndView("fornecedor/view");
-        mav.addObject("vo", adminService.getFornecedorById(id));
+        try {
+            mav.addObject("vo",adminService.getFornecedorById(id));
+        } catch (RestException e) {
+            mav.addObject(ERROR_MESSAGE,e.getErrorMessageVo());
+        }
         return mav;
     }
 
