@@ -15,4 +15,12 @@ public class RestException extends Throwable {
     public RestException(int errorCode, String errorMessage) {
         this.errorMessageVo = new ErrorMessageVo(errorCode,errorMessage);
     }
+
+    public ErrorMessageVo getErrorMessageVo() {
+        return errorMessageVo;
+    }
+
+    public void setErrorMessageVo(ErrorMessageVo errorMessageVo) {
+        this.errorMessageVo = errorMessageVo;
+    }
 }
