@@ -15,6 +15,7 @@ public class EstoqueVo {
     private Double precoCompra;
     private Boolean invalido;
     private String observacao;
+    private Integer quantidade;
 
     public Long getId() {
         return id;
@@ -79,4 +80,13 @@ public class EstoqueVo {
     public void setObservacao(String observacao) {
         this.observacao = observacao;
     }
+
+    public Integer getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(Integer quantidade) {
+        this.quantidade = quantidade;
+    }
 }
+
