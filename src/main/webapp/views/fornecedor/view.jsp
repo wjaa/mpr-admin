@@ -11,11 +11,12 @@
     <div class="content">
         <h4 class="text-center"> CADASTRO DE FORNECEDOR </h4>
         <hr/>
-        <form>
+        <wjaa:feedback/>
+        <form action="/admin/fornecedor/save" method="POST">
           <div class="form-row">
              <div class="form-group col-md-3">
                <label for="id" class="label-primary">#ID</label>
-               <input type="number" class="form-control" name="id" id="id" disabled="disabled" value="${vo.id}">
+               <input type="number" class="form-control" name="id" id="id" readonly="readonly" value="${vo.id}">
              </div>
              <div class="form-group col-md-6">
                <label for="cnpj">CNPJ</label>

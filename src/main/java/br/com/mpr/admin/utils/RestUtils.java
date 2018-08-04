@@ -42,12 +42,12 @@ public class RestUtils {
             response = httpclient.execute(httpGet);
             int statusCode = response.getStatusLine().getStatusCode();
 
-            if ( statusCode >= 400 && statusCode < 500){
+            if ( statusCode > 400 && statusCode < 500){
                 LOG.error("Error code:" + statusCode + " response: " + response);
                 throw new RestException(statusCode,"Servico está fora do ar ou a requisição falhou.");
             }
 
-            if (statusCode >= 500 && statusCode < 600){
+            if (statusCode == 400 || (statusCode >= 500 && statusCode < 600)){
                 throw new RestException(mapper.readValue(EntityUtils.toString(response.getEntity()), ErrorMessageVo.class));
             }
 
@@ -83,12 +83,12 @@ public class RestUtils {
             response = httpclient.execute(httpPost);
             int statusCode = response.getStatusLine().getStatusCode();
 
-            if ( statusCode >= 400 && statusCode < 500){
+            if ( statusCode > 400 && statusCode < 500){
                 LOG.error("Error code:" + statusCode + " response: " + response);
                 throw new RestException(statusCode,"Servico está fora do ar ou a requisição falhou.");
             }
 
-            if (statusCode >= 500 && statusCode < 600){
+            if (statusCode == 400 || (statusCode >= 500 && statusCode < 600)){
                 throw new RestException(mapper.readValue(EntityUtils.toString(response.getEntity()), ErrorMessageVo.class));
             }
 
@@ -139,12 +139,12 @@ public class RestUtils {
             response = httpclient.execute(httpPost);
             int statusCode = response.getStatusLine().getStatusCode();
 
-            if ( statusCode >= 400 && statusCode < 500){
+            if ( statusCode > 400 && statusCode < 500){
                 LOG.error("Error code:" + statusCode + " response: " + response);
                 throw new RestException(statusCode,"Servico está fora do ar ou a requisição falhou.");
             }
 
-            if (statusCode >= 500 && statusCode < 600){
+            if (statusCode == 400 || (statusCode >= 500 && statusCode < 600)){
                 throw new RestException(mapper.readValue(EntityUtils.toString(response.getEntity()), ErrorMessageVo.class));
             }
 

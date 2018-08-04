@@ -12,7 +12,7 @@
         <h4 class="text-center"> LISTA DE FORNECEDORES </h4>
         <hr/>
         <div class="text-center btn-novo">
-          <button type="button" class="btn btn-primary">NOVO FORNECEDORs</button>
+          <a href="/admin/fornecedor/0" class="btn btn-primary" >NOVO FORNECEDOR</a>
         </div>
         <table class="table">
           <thead class="thead-dark">
