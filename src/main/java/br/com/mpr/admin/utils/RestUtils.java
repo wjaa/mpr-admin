@@ -9,13 +9,19 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.http.Consts;
 import org.apache.http.NameValuePair;
+import org.apache.http.auth.AuthScope;
+import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.client.CredentialsProvider;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
@@ -28,7 +34,18 @@ import java.util.ArrayList;
 public class RestUtils {
 
     private static final Log LOG = LogFactory.getLog(RestUtils.class);
-    private static final CloseableHttpClient httpclient = HttpClients.createDefault();
+    //private static final CloseableHttpClient httpclient = HttpClients.createDefault();
+    private static CloseableHttpClient httpclient = null;//HttpClientBuilder.create().setde.createDefault();
+    static{
+        CredentialsProvider provider = new BasicCredentialsProvider();
+        UsernamePasswordCredentials credentials
+                = new UsernamePasswordCredentials("cliente.admin@meuportaretrato.com", "admin@*753951*");
+        provider.setCredentials(AuthScope.ANY, credentials);
+
+        httpclient = HttpClientBuilder.create()
+                .setDefaultCredentialsProvider(provider)
+                .build();
+    }
     private static final ObjectMapper mapper = new ObjectMapper();
 
 
@@ -39,6 +56,7 @@ public class RestUtils {
         CloseableHttpResponse response = null;
         try {
             HttpGet httpGet = new HttpGet("http://" + targetUrl + "/" + RestUtils.createParamsPath(params));
+
             response = httpclient.execute(httpGet);
             int statusCode = response.getStatusLine().getStatusCode();
 
