@@ -12,7 +12,7 @@
         <h4 class="text-center"> LISTA DE FORNECEDORES </h4>
         <hr/>
         <div class="text-center btn-novo">
-          <a href="/admin/fornecedor/0" class="btn btn-primary" >NOVO FORNECEDOR</a>
+          <a href="/admin/FornecedorEntity/0" class="btn btn-primary" >NOVO FORNECEDOR</a>
         </div>
         <table class="table">
           <thead class="thead-dark">
@@ -30,8 +30,8 @@
           <tbody>
             <c:forEach var="f" items="${list}">
             <tr>
-              <th scope="row"><a href="/admin/fornecedor/${f.id}" >${f.id}</a></th>
-              <td><a href="/admin/fornecedor/${f.id}">${f.nome}</a></td>
+              <th scope="row"><a href="/admin/FornecedorEntity/${f.id}" >${f.id}</a></th>
+              <td><a href="/admin/FornecedorEntity/${f.id}">${f.nome}</a></td>
               <td>${f.email}</td>
               <td>${f.cnpj}</td>
               <td>${f.endereco}</td>

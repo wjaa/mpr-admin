@@ -1,11 +1,12 @@
 package br.com.mpr.admin.vo;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by wagner on 13/06/18.
  */
-public class EstoqueVo {
+public class EstoqueVo implements Serializable {
 
     private Long id;
     private Long idProduto;

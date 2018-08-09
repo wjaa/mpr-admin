@@ -8,4 +8,6 @@ spring:
 
 mpr:
   wsApi: api.meuportaretrato.com
+  wsUser: cliente.admin@meuportaretrato.com
+  wsPass: admin@*753951*
 

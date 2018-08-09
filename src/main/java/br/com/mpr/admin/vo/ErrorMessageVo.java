@@ -1,11 +1,12 @@
 package br.com.mpr.admin.vo;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by wagner on 18/06/15.
  */
-public class ErrorMessageVo {
+public class ErrorMessageVo implements Serializable {
 
     private Integer errorCode;
     private String [] errorMessage;

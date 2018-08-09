@@ -1,11 +1,12 @@
 package br.com.mpr.admin.vo;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by wagner on 04/06/18.
  */
-public class CupomVo {
+public class CupomVo implements Serializable {
 
     private Long id;
     private String descricao;

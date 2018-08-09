@@ -1,9 +1,11 @@
 package br.com.mpr.admin.vo;
 
+import java.io.Serializable;
+
 /**
  * Created by wagner on 04/06/18.
  */
-public class EnderecoVo {
+public class EnderecoVo implements Serializable {
 
     private Long id;
     private String cep;

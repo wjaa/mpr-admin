@@ -12,7 +12,7 @@
         <h4 class="text-center"> CADASTRO DE FORNECEDOR </h4>
         <hr/>
         <wjaa:feedback/>
-        <form action="/admin/fornecedor/save" method="POST">
+        <form action="/admin/FornecedorEntity/save" method="POST">
           <div class="form-row">
              <div class="form-group col-md-3">
                <label for="id" class="label-primary">#ID</label>
@@ -58,7 +58,7 @@
               </div>
           </div>
           <div class="col-xs-12">
-              <a href="/admin/fornecedor" class="btn btn-success" >Voltar</a>
+              <a href="/admin/FornecedorEntity" class="btn btn-success" >Voltar</a>
               <button type="submit" class="btn btn-primary btn-right">Gravar</button>
           </div>
         </form>

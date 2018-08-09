@@ -1,12 +1,13 @@
 package br.com.mpr.admin.vo;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 /**
  * Created by wagner on 04/06/18.
  */
-public class ClienteVo {
+public class ClienteVo implements Serializable {
 
     private Long id;
     private String nome;

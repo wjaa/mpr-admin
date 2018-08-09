@@ -1,11 +1,12 @@
 package br.com.mpr.admin.vo;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by wagner on 04/06/18.
  */
-public class TabelaPrecoVo {
+public class TabelaPrecoVo implements Serializable {
 
     private Long id;
     private Long idProduto;

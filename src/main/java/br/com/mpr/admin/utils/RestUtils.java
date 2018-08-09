@@ -1,6 +1,7 @@
 package br.com.mpr.admin.utils;
 
 import br.com.mpr.admin.exception.RestException;
+import br.com.mpr.admin.properties.MprAdminProperties;
 import br.com.mpr.admin.vo.ErrorMessageVo;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -12,7 +13,6 @@ import org.apache.http.NameValuePair;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.CredentialsProvider;
-import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -22,31 +22,39 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 
 /**
  * Created by wagner on 16/06/15.
  */
+@Component
 public class RestUtils {
 
+
     private static final Log LOG = LogFactory.getLog(RestUtils.class);
-    //private static final CloseableHttpClient httpclient = HttpClients.createDefault();
-    private static CloseableHttpClient httpclient = null;//HttpClientBuilder.create().setde.createDefault();
-    static{
+    private static CloseableHttpClient httpclient = null;
+    private static final ObjectMapper mapper = new ObjectMapper();
+
+    @Autowired
+    private MprAdminProperties properties;
+
+    @PostConstruct
+    private void initStaticProperties () {
         CredentialsProvider provider = new BasicCredentialsProvider();
         UsernamePasswordCredentials credentials
-                = new UsernamePasswordCredentials("cliente.admin@meuportaretrato.com", "admin@*753951*");
+                = new UsernamePasswordCredentials(properties.getWsUser(), properties.getWsPass());
         provider.setCredentials(AuthScope.ANY, credentials);
 
         httpclient = HttpClientBuilder.create()
                 .setDefaultCredentialsProvider(provider)
                 .build();
     }
-    private static final ObjectMapper mapper = new ObjectMapper();
 
 
     public static <T>T getJsonWithParamPath(Class<T> clazzReturn, String targetUrl, String ... params) throws

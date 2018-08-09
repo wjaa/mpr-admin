@@ -1,9 +1,11 @@
 package br.com.mpr.admin.vo;
 
+import java.io.Serializable;
+
 /**
  * Created by wagner on 7/21/18.
  */
-public class FornecedorVo {
+public class FornecedorVo implements Serializable {
 
     private Long id;
     private String nome;

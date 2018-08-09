@@ -9,6 +9,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.annotation.PostConstruct;
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
+
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
@@ -19,24 +24,34 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
-    @GetMapping("/fornecedor")
-    public ModelAndView listFornecedor(){
-        ModelAndView mav = new ModelAndView("fornecedor/list");
+    private Map<String,String> mapEntity = new HashMap<>();
+
+    @PostConstruct
+    private void init(){
+        mapEntity.put("FornecedorEntity.list","fornecedor/list");
+        mapEntity.put("FornecedorEntity.view","fornecedor/view");
+
+    }
+
+
+    @GetMapping("/{entity}")
+    public ModelAndView listEntity(@PathVariable String entity){
+        ModelAndView mav = new ModelAndView(mapEntity.get(entity + ".list"));
         try {
-            mav.addObject("list",adminService.getAllFornecedor());
+            mav.addObject("list",adminService.listAllEntity(entity));
         } catch (RestException e) {
             mav.addObject(ERROR_MESSAGE,e.getErrorMessageVo());
         }
         return mav;
     }
 
-    @GetMapping("/fornecedor/{id}")
-    public ModelAndView getFornecedor(@PathVariable Long id){
-        ModelAndView mav = new ModelAndView("fornecedor/view");
+    @GetMapping("/{entity}/{id}")
+    public ModelAndView getEntity(@PathVariable String entity, @PathVariable Long id){
+        ModelAndView mav = new ModelAndView(mapEntity.get(entity + ".view"));
         try {
-            FornecedorVo vo = adminService.getFornecedorById(id);
+            Serializable vo = adminService.getEntityById(entity,id);
             //so adiciona o objeto se nao for nulo por causa do redirect do save.
-            if (vo != null && vo.getId() != null) {
+            if (vo != null && id != null) {
                 mav.addObject("vo",vo);
             }
         } catch (RestException e) {
@@ -45,8 +60,9 @@ public class AdminController {
         return mav;
     }
 
-    @PostMapping("/fornecedor/save")
-    public String saveFornecedor(@ModelAttribute FornecedorVo fornecedorVo, final RedirectAttributes redirectAttributes){
+    @PostMapping("/FornecedorEntity/save")
+    public String saveEntity(@ModelAttribute FornecedorVo fornecedorVo,
+                             final RedirectAttributes redirectAttributes){
         try {
             fornecedorVo = adminService.saveFornecedor(fornecedorVo);
             redirectAttributes.addFlashAttribute(SUCCESS_MESSAGE,"Fornecedor cadastrado com sucesso");
@@ -54,9 +70,13 @@ public class AdminController {
             redirectAttributes.addFlashAttribute(ERROR_MESSAGE,e.getErrorMessageVo());
         }
         redirectAttributes.addFlashAttribute("vo",fornecedorVo);
-        String redirect = "redirect:/admin/fornecedor/" + (fornecedorVo.getId() == null ? "0"
+        String redirect = "redirect:/admin/FornecedorEntity/" + (fornecedorVo.getId() == null ? "0"
                 : String.valueOf(fornecedorVo.getId()));
         return redirect;
     }
+
+
+
+
 
 }
