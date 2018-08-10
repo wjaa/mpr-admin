@@ -1,6 +1,7 @@
 package br.com.mpr.admin.vo;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by wagner on 04/06/18.
@@ -12,6 +13,7 @@ public class ProdutoVo implements Serializable {
     private TipoProdutoVo tipo;
     private String descricao;
     private Double peso;
+    private List<TipoProdutoVo> listTipoProdutos;
 
     public Long getId() {
         return id;
@@ -51,5 +53,13 @@ public class ProdutoVo implements Serializable {
 
     public void setPeso(Double peso) {
         this.peso = peso;
+    }
+
+    public List<TipoProdutoVo> getListTipoProdutos() {
+        return listTipoProdutos;
+    }
+
+    public void setListTipoProdutos(List<TipoProdutoVo> listTipoProdutos) {
+        this.listTipoProdutos = listTipoProdutos;
     }
 }

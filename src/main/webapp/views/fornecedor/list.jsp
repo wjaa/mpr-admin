@@ -7,12 +7,13 @@
 <wjaa:header/>
 <body>
 <wjaa:menu/>
-
+    <c:set var="destiny" value="FornecedorEntity"/>
     <div class="content">
         <h4 class="text-center"> LISTA DE FORNECEDORES </h4>
         <hr/>
+        <wjaa:feedback/>
         <div class="text-center btn-novo">
-          <a href="/admin/FornecedorEntity/0" class="btn btn-primary" >NOVO FORNECEDOR</a>
+          <a href="/admin/${destiny}/0" class="btn btn-primary" >NOVO FORNECEDOR</a>
         </div>
         <table class="table">
           <thead class="thead-dark">
@@ -25,19 +26,21 @@
               <th scope="col">TELEFONE 1</th>
               <th scope="col">TELEFONE 2</th>
               <th scope="col">ATIVO</th>
+              <th scope="col">AÇÃO</th>
             </tr>
           </thead>
           <tbody>
             <c:forEach var="f" items="${list}">
             <tr>
-              <th scope="row"><a href="/admin/FornecedorEntity/${f.id}" >${f.id}</a></th>
-              <td><a href="/admin/FornecedorEntity/${f.id}">${f.nome}</a></td>
+              <td scope="row"><a href="/admin/${destiny}/${f.id}?readOnly=true" >${f.id}</a></td>
+              <td><a href="/admin/${destiny}/${f.id}?readOnly=true">${f.nome}</a></td>
               <td>${f.email}</td>
               <td>${f.cnpj}</td>
               <td>${f.endereco}</td>
               <td>${f.telefonePrincipal}</td>
               <td>${f.telefoneSecundario}</td>
-              <td>${f.ativo}</td>
+              <td><c:if test="${f.ativo}">SIM</c:if><c:if test="${!f.ativo}">NÃO</c:if> </td>
+              <td align="center"><a href="/admin/${destiny}/${f.id}" class="btn btn-success"><i class="fas fa-edit"></i></a></td>
             </tr>
             </c:forEach>
           </tbody>

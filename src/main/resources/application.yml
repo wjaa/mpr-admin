@@ -5,6 +5,8 @@ spring:
     view:
       prefix: /views/
       suffix: .jsp
+    locale: pt_BR
+    locale-resolver: fixed
 
 mpr:
   wsApi: api.meuportaretrato.com

@@ -56,27 +56,32 @@ public class AdminService {
                 ClienteVo.class,properties.getWsApi(), "api/v1/admin/" + CLIENTE_ENTITY, id.toString());
     }
 
-    public Serializable getCupom(Long id) throws RestException {
+    public CupomVo getCupom(Long id) throws RestException {
         return RestUtils.getJsonWithParamPath(
                 CupomVo.class,properties.getWsApi(), "api/v1/admin/" + CUPOM_ENTITY, id.toString());
     }
 
-    public Serializable getEstoqueById(Long id) throws RestException {
+    public EstoqueVo getEstoqueById(Long id) throws RestException {
         return RestUtils.getJsonWithParamPath(
                 EstoqueVo.class,properties.getWsApi(), "api/v1/admin/" + ESTOQUE_ENTITY, id.toString());
     }
 
-    public Serializable getTabelaPrecoById(Long id) throws RestException {
+    public TabelaPrecoVo getTabelaPrecoById(Long id) throws RestException {
         return RestUtils.getJsonWithParamPath(
                 TabelaPrecoVo.class,properties.getWsApi(), "api/v1/admin/" + TABELA_PRECO_ENTITY, id.toString());
     }
 
-    public Serializable getProdutoById(Long id) throws RestException {
-        return RestUtils.getJsonWithParamPath(
+    public ProdutoVo getProdutoById(Long id) throws RestException {
+        ProdutoVo produtoVo = RestUtils.getJsonWithParamPath(
                 ProdutoVo.class,properties.getWsApi(), "api/v1/admin/" + PRODUTO_ENTITY, id.toString());
+        if (produtoVo == null){
+            produtoVo = new ProdutoVo();
+        }
+        produtoVo.setListTipoProdutos((List<TipoProdutoVo>) this.listAllTipoProduto());
+        return produtoVo;
     }
 
-    public Serializable getTipoProdutoById(Long id) throws RestException {
+    public TipoProdutoVo getTipoProdutoById(Long id) throws RestException {
         return RestUtils.getJsonWithParamPath(
                 TipoProdutoVo.class,properties.getWsApi(), "api/v1/admin/" + TIPO_PRODUTO_ENTITY, id.toString());
     }
@@ -163,37 +168,37 @@ public class AdminService {
 
     }
 
-    public Serializable saveCliente(ClienteVo clienteVo) throws RestException {
+    public ClienteVo saveCliente(ClienteVo clienteVo) throws RestException {
         return RestUtils.postJson(ClienteVo.class,
                 properties.getWsApi(), "api/v1/admin/" + CLIENTE_ENTITY + "/save",
                 ObjectUtils.toJson(clienteVo));
     }
 
-    public Serializable saveCupom(CupomVo cupomVo) throws RestException {
+    public CupomVo saveCupom(CupomVo cupomVo) throws RestException {
         return RestUtils.postJson(CupomVo.class,
                 properties.getWsApi(), "api/v1/admin/" + CUPOM_ENTITY + "/save",
                 ObjectUtils.toJson(cupomVo));
     }
 
-    public Serializable saveEstoque(EstoqueVo estoqueVo) throws RestException {
+    public EstoqueVo saveEstoque(EstoqueVo estoqueVo) throws RestException {
         return RestUtils.postJson(EstoqueVo.class,
                 properties.getWsApi(), "api/v1/admin/" + ESTOQUE_ENTITY + "/save",
                 ObjectUtils.toJson(estoqueVo));
     }
 
-    public Serializable saveTabelaPreco(TabelaPrecoVo tabelaPrecoVo) throws RestException {
+    public TabelaPrecoVo saveTabelaPreco(TabelaPrecoVo tabelaPrecoVo) throws RestException {
         return RestUtils.postJson(TabelaPrecoVo.class,
                 properties.getWsApi(), "api/v1/admin/" + TABELA_PRECO_ENTITY + "/save",
                 ObjectUtils.toJson(tabelaPrecoVo));
     }
 
-    public Serializable saveProduto(ProdutoVo produtoVo) throws RestException {
+    public ProdutoVo saveProduto(ProdutoVo produtoVo) throws RestException {
         return RestUtils.postJson(ProdutoVo.class,
                 properties.getWsApi(), "api/v1/admin/" + PRODUTO_ENTITY + "/save",
                 ObjectUtils.toJson(produtoVo));
     }
 
-    public Serializable saveTipoProduto(TipoProdutoVo tipoProdutoVo) throws RestException {
+    public TipoProdutoVo saveTipoProduto(TipoProdutoVo tipoProdutoVo) throws RestException {
         return RestUtils.postJson(TipoProdutoVo.class,
                 properties.getWsApi(), "api/v1/admin/" + TIPO_PRODUTO_ENTITY + "/save",
                 ObjectUtils.toJson(tipoProdutoVo));

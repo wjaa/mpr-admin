@@ -63,7 +63,7 @@
           </div>
         </form>
     </div>
-<wjaa:footer/>
+<wjaa:footer readOnly="${readOnly}"/>
 </body>
 
 </html>
