@@ -62,8 +62,14 @@ public class AdminService {
     }
 
     public EstoqueVo getEstoqueById(Long id) throws RestException {
-        return RestUtils.getJsonWithParamPath(
+        EstoqueVo vo = RestUtils.getJsonWithParamPath(
                 EstoqueVo.class,properties.getWsApi(), "api/v1/admin/" + ESTOQUE_ENTITY, id.toString());
+        if (vo == null){
+            vo = new EstoqueVo();
+        }
+        vo.setProdutos(this.listAllProduto());
+        vo.setFornecedores(this.listAllFornecedor());
+        return vo;
     }
 
     public TabelaPrecoVo getTabelaPrecoById(Long id) throws RestException {
@@ -107,37 +113,37 @@ public class AdminService {
                         FornecedorVo[].class,properties.getWsApi(), "api/v1/admin/" + FORNECEDOR_ENTITY + "/all"));
     }
 
-    public List<? extends Serializable> listAllCliente() throws RestException {
+    public List<ClienteVo> listAllCliente() throws RestException {
         return Arrays.asList(
                 RestUtils.getJsonWithParamPath(
                         ClienteVo[].class,properties.getWsApi(), "api/v1/admin/" + CLIENTE_ENTITY + "/all"));
     }
 
-    public List<? extends Serializable> listaAllCupom() throws RestException {
+    public List<CupomVo> listaAllCupom() throws RestException {
         return Arrays.asList(
                 RestUtils.getJsonWithParamPath(
                         CupomVo[].class,properties.getWsApi(), "api/v1/admin/" + CUPOM_ENTITY + "/all"));
     }
 
-    public List<? extends Serializable> listAllEstoque() throws RestException {
+    public List<EstoqueVo> listAllEstoque() throws RestException {
         return Arrays.asList(
                 RestUtils.getJsonWithParamPath(
                         EstoqueVo[].class,properties.getWsApi(), "api/v1/admin/" + ESTOQUE_ENTITY + "/all"));
     }
 
-    public List<? extends Serializable> listAllTabelaPreco() throws RestException {
+    public List<TabelaPrecoVo> listAllTabelaPreco() throws RestException {
         return Arrays.asList(
                 RestUtils.getJsonWithParamPath(
                         TabelaPrecoVo[].class,properties.getWsApi(), "api/v1/admin/" + TABELA_PRECO_ENTITY + "/all"));
     }
 
-    public List<? extends Serializable> listAllProduto() throws RestException {
+    public List<ProdutoVo> listAllProduto() throws RestException {
         return Arrays.asList(
                 RestUtils.getJsonWithParamPath(
                         ProdutoVo[].class,properties.getWsApi(), "api/v1/admin/" + PRODUTO_ENTITY + "/all"));
     }
 
-    public List<? extends Serializable> listAllTipoProduto() throws RestException {
+    public List<TipoProdutoVo> listAllTipoProduto() throws RestException {
         return Arrays.asList(
                 RestUtils.getJsonWithParamPath(
                         TipoProdutoVo[].class,properties.getWsApi(), "api/v1/admin/" + TIPO_PRODUTO_ENTITY + "/all"));

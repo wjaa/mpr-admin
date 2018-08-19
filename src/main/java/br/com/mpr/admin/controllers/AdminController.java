@@ -2,9 +2,7 @@ package br.com.mpr.admin.controllers;
 
 import br.com.mpr.admin.exception.RestException;
 import br.com.mpr.admin.service.AdminService;
-import br.com.mpr.admin.vo.FornecedorVo;
-import br.com.mpr.admin.vo.ProdutoVo;
-import br.com.mpr.admin.vo.TipoProdutoVo;
+import br.com.mpr.admin.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -36,6 +34,14 @@ public class AdminController extends BaseController {
         mapEntity.put("TipoProdutoEntity.view","tipoProduto/view");
         mapEntity.put("ProdutoEntity.list","produto/list");
         mapEntity.put("ProdutoEntity.view","produto/view");
+        mapEntity.put("EstoqueEntity.list","estoque/list");
+        mapEntity.put("EstoqueEntity.view","estoque/view");
+        mapEntity.put("CupomEntity.list","cupom/list");
+        mapEntity.put("CupomEntity.view","cupom/view");
+        mapEntity.put("TabelaPrecoEntity.list","tabelaPreco/list");
+        mapEntity.put("TabelaPrecoEntity.view","tabelaPreco/view");
+        mapEntity.put("ClienteEntity.list","cliente/list");
+        mapEntity.put("ClienteEntity.view","cliente/view");
 
     }
 
@@ -111,6 +117,68 @@ public class AdminController extends BaseController {
         redirectAttributes.addFlashAttribute("vo",produtoVo);
         String redirect = "redirect:/admin/ProdutoEntity/" + (produtoVo.getId() == null ? "0"
                 : String.valueOf(produtoVo.getId()));
+        return redirect;
+    }
+
+
+    @PostMapping("/EstoqueEntity/save")
+    public String saveEntity(@ModelAttribute EstoqueVo estoque,
+                             final RedirectAttributes redirectAttributes){
+        try {
+            estoque = adminService.saveEstoque(estoque);
+            redirectAttributes.addFlashAttribute(SUCCESS_MESSAGE,"Estoque cadastrado com sucesso!");
+        }catch (RestException e){
+            redirectAttributes.addFlashAttribute(ERROR_MESSAGE,e.getErrorMessageVo());
+        }
+        redirectAttributes.addFlashAttribute("vo",estoque);
+        String redirect = "redirect:/admin/EstoqueEntity/" + (estoque.getId() == null ? "0"
+                : String.valueOf(estoque.getId()));
+        return redirect;
+    }
+
+    @PostMapping("/CupomEntity/save")
+    public String saveEntity(@ModelAttribute CupomVo cupom,
+                             final RedirectAttributes redirectAttributes){
+        try {
+            cupom = adminService.saveCupom(cupom);
+            redirectAttributes.addFlashAttribute(SUCCESS_MESSAGE,"Cupom cadastrado com sucesso!");
+        }catch (RestException e){
+            redirectAttributes.addFlashAttribute(ERROR_MESSAGE,e.getErrorMessageVo());
+        }
+        redirectAttributes.addFlashAttribute("vo",cupom);
+        String redirect = "redirect:/admin/CupomEntity/" + (cupom.getId() == null ? "0"
+                : String.valueOf(cupom.getId()));
+        return redirect;
+    }
+
+
+    @PostMapping("/TabelaPrecoEntity/save")
+    public String saveEntity(@ModelAttribute TabelaPrecoVo tabelaPreco,
+                             final RedirectAttributes redirectAttributes){
+        try {
+            tabelaPreco = adminService.saveTabelaPreco(tabelaPreco);
+            redirectAttributes.addFlashAttribute(SUCCESS_MESSAGE,"Tabela Preco cadastrado com sucesso!");
+        }catch (RestException e){
+            redirectAttributes.addFlashAttribute(ERROR_MESSAGE,e.getErrorMessageVo());
+        }
+        redirectAttributes.addFlashAttribute("vo",tabelaPreco);
+        String redirect = "redirect:/admin/TabelaPrecoEntity/" + (tabelaPreco.getId() == null ? "0"
+                : String.valueOf(tabelaPreco.getId()));
+        return redirect;
+    }
+
+    @PostMapping("/ClienteEntity/save")
+    public String saveEntity(@ModelAttribute ClienteVo clienteVo,
+                             final RedirectAttributes redirectAttributes){
+        try {
+            clienteVo = adminService.saveCliente(clienteVo);
+            redirectAttributes.addFlashAttribute(SUCCESS_MESSAGE,"Cliente cadastrado com sucesso!");
+        }catch (RestException e){
+            redirectAttributes.addFlashAttribute(ERROR_MESSAGE,e.getErrorMessageVo());
+        }
+        redirectAttributes.addFlashAttribute("vo",clienteVo);
+        String redirect = "redirect:/admin/ClienteEntity/" + (clienteVo.getId() == null ? "0"
+                : String.valueOf(clienteVo.getId()));
         return redirect;
     }
 

@@ -2,6 +2,7 @@ package br.com.mpr.admin.vo;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by wagner on 13/06/18.
@@ -9,14 +10,18 @@ import java.util.Date;
 public class EstoqueVo implements Serializable {
 
     private Long id;
+    private ProdutoVo produto;
     private Long idProduto;
     private Long idFornecedor;
+    private FornecedorVo fornecedor;
     private Date dataCompra;
     private Date dataAtualizacao;
     private Double precoCompra;
     private Boolean invalido;
     private String observacao;
     private Integer quantidade;
+    private List<ProdutoVo> produtos;
+    private List<FornecedorVo> fornecedores;
 
     public Long getId() {
         return id;
@@ -88,6 +93,38 @@ public class EstoqueVo implements Serializable {
 
     public void setQuantidade(Integer quantidade) {
         this.quantidade = quantidade;
+    }
+
+    public ProdutoVo getProduto() {
+        return produto;
+    }
+
+    public void setProduto(ProdutoVo produto) {
+        this.produto = produto;
+    }
+
+    public FornecedorVo getFornecedor() {
+        return fornecedor;
+    }
+
+    public void setFornecedor(FornecedorVo fornecedor) {
+        this.fornecedor = fornecedor;
+    }
+
+    public List<ProdutoVo> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(List<ProdutoVo> produtos) {
+        this.produtos = produtos;
+    }
+
+    public List<FornecedorVo> getFornecedores() {
+        return fornecedores;
+    }
+
+    public void setFornecedores(List<FornecedorVo> fornecedores) {
+        this.fornecedores = fornecedores;
     }
 }
 
