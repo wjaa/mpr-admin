@@ -2,6 +2,7 @@ package br.com.mpr.admin.controllers;
 
 import br.com.mpr.admin.exception.RestException;
 import br.com.mpr.admin.service.AdminService;
+import br.com.mpr.admin.utils.BeanUtils;
 import br.com.mpr.admin.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -59,12 +60,19 @@ public class AdminController extends BaseController {
 
     @GetMapping("/{entity}/{id}")
     public ModelAndView getEntity(@PathVariable String entity, @PathVariable Long id,
-                                  @RequestParam(required = false) Boolean readOnly){
+                                  @RequestParam(required = false) Boolean readOnly,
+                                  @ModelAttribute("vo") Object flashVo){
         ModelAndView mav = new ModelAndView(mapEntity.get(entity + ".view"));
         try {
+
             Serializable vo = adminService.getEntityById(entity,id);
             //so adiciona o objeto se nao for nulo por causa do redirect do save.
-            if (vo != null && id != null) {
+            if ( vo != null && id != null) {
+                //adicionando tudo que foi preenchido no form antes do erro.
+                if (flashVo != null){
+                    BeanUtils.copyPropertiesIgnoreAnnotation(flashVo,vo);
+                }
+
                 mav.addObject("vo",vo);
             }
             mav.addObject("readOnly", readOnly);
@@ -181,9 +189,5 @@ public class AdminController extends BaseController {
                 : String.valueOf(clienteVo.getId()));
         return redirect;
     }
-
-
-
-
 
 }

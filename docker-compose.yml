@@ -1,0 +1,12 @@
+version: '2'
+services:
+  jobs-hml:
+    ports:
+      - "8080:8080"
+    image: mpr/admin
+    environment:
+      profile: hml
+    stdin_open: true
+    volumes:
+    - /etc/localtime:/etc/localtime
+    domainname: meuportaretrato.com.br

@@ -1,3 +1,4 @@
+<%@tag pageEncoding="UTF-8"%>
 <%@ attribute name="readOnly" required="false" %>
 <script>
     var readOnly = '${readOnly}';

@@ -1,3 +1,4 @@
+<%@tag pageEncoding="UTF-8"%>
 <nav class="navbar navbar-dark bg-dark">
     <a class="navbar-brand" href="/">MPR - Admin</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,6 +23,9 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/admin/CupomEntity">Cupom de Desconto</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/ClienteEntity">Cliente</a>
             </li>
         </ul>
      </div>

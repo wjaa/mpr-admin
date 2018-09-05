@@ -1,3 +1,4 @@
+<%@tag pageEncoding="UTF-8"%>
 <%@ attribute name="description" required="false" %>
 <%@ attribute name="title" required="false" %>
 <meta charset="utf-8">

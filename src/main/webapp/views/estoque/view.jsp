@@ -13,7 +13,7 @@
 <wjaa:menu/>
 <c:set var="destiny" value="EstoqueEntity"/>
 <div class="content">
-    <h4 class="text-center">CADASTRO DE PRODUTO </h4>
+    <h4 class="text-center">CADASTRO DE ESTOQUE </h4>
     <hr/>
     <wjaa:feedback/>
     <form action="/admin/${destiny}/save" method="POST">

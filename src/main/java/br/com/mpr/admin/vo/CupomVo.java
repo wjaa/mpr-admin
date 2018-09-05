@@ -63,7 +63,7 @@ public class CupomVo implements Serializable {
 
 
     public Boolean getPromocao() {
-        return promocao;
+        return promocao != null ? promocao : false;
     }
 
     public void setPromocao(Boolean promocao) {

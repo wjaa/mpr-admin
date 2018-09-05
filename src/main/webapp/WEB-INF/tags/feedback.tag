@@ -1,3 +1,4 @@
+<%@tag pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:if test="${errorMessage != null}">
     <div class="alert alert-danger alert-dismissible fade show" role="alert">

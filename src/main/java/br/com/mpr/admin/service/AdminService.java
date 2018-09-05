@@ -73,8 +73,15 @@ public class AdminService {
     }
 
     public TabelaPrecoVo getTabelaPrecoById(Long id) throws RestException {
-        return RestUtils.getJsonWithParamPath(
+        TabelaPrecoVo vo = RestUtils.getJsonWithParamPath(
                 TabelaPrecoVo.class,properties.getWsApi(), "api/v1/admin/" + TABELA_PRECO_ENTITY, id.toString());
+
+        if (vo == null){
+            vo = new TabelaPrecoVo();
+        }
+        vo.setProdutos(this.listAllProduto());
+
+        return vo;
     }
 
     public ProdutoVo getProdutoById(Long id) throws RestException {
