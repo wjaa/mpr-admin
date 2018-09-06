@@ -5,7 +5,7 @@ services:
       - "8080:8080"
     image: mpr/admin
     environment:
-      profile: hml
+      profile: dev
     stdin_open: true
     volumes:
     - /etc/localtime:/etc/localtime
