@@ -19,7 +19,7 @@
           <thead class="thead-dark">
             <tr>
               <th scope="col">#ID</th>
-              <th scope="col">DESCRIÇÃO</th>
+              <th scope="col">DESCRIÇÃOoo</th>
               <th scope="col">AÇÃO</th>
             </tr>
           </thead>
