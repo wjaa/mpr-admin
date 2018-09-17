@@ -13,3 +13,12 @@ mpr:
   wsUser: cliente.admin@meuportaretrato.com
   wsPass: admin@*753951*
 
+
+logging:
+  level:
+    org:
+      springframework: INFO
+      hibernate: INFO
+    br:
+      com:
+        mpr: DEBUG

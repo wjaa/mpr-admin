@@ -23,7 +23,7 @@
              <div class="form-group col-md-6">
                <label for="cnpj">CNPJ</label>
                <input type="text" class="form-control" name="cnpj" id="cnpj"
-                      placeholder="CNPJ" value="${vo.cnpj}">
+                      placeholder="00.000.000/0000-00" value="${vo.cnpj}">
              </div>
               <div class="form-group offset-md-1 col-md-2">
                   <label >&nbsp;</label>
@@ -44,7 +44,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="endereco">Address</label>
+            <label for="endereco">Endereço</label>
             <input type="text" class="form-control" name="endereco" id="endereco" placeholder="Endereço" value="${vo.endereco}">
           </div>
           <div class="form-row">

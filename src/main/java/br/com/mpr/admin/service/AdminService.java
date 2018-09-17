@@ -121,9 +121,11 @@ public class AdminService {
     }
 
     public List<ClienteVo> listAllCliente() throws RestException {
-        return Arrays.asList(
+        List<ClienteVo> list = Arrays.asList(
                 RestUtils.getJsonWithParamPath(
                         ClienteVo[].class,properties.getWsApi(), "api/v1/admin/" + CLIENTE_ENTITY + "/all"));
+
+        return list;
     }
 
     public List<CupomVo> listaAllCupom() throws RestException {

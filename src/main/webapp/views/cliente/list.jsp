@@ -37,6 +37,7 @@
               <td>${c.cpf}</td>
               <td>${c.celular}</td>
               <td><fmt:formatDate value="${c.aniversario}" pattern="dd/MM/yyyy"></fmt:formatDate></td>
+              <td><c:if test="${c.ativo}">SIM</c:if><c:if test="${!c.ativo}">NÃO</c:if> ${f.ativo}</td>
               <td align="center"><a href="/admin/${destiny}/${c.id}" class="btn btn-success"><i class="fas fa-edit"></i></a></td>
             </tr>
             </c:forEach>

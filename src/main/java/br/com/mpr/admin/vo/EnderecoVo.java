@@ -8,6 +8,7 @@ import java.io.Serializable;
 public class EnderecoVo implements Serializable {
 
     private Long id;
+    private Long idCliente;
     private String cep;
     private String logradouro;
     private String numero;
@@ -15,6 +16,7 @@ public class EnderecoVo implements Serializable {
     private String bairro;
     private String cidade;
     private String uf;
+    private Boolean ativo;
 
 
     public Long getId() {
@@ -79,5 +81,21 @@ public class EnderecoVo implements Serializable {
 
     public void setUf(String uf) {
         this.uf = uf;
+    }
+
+    public Boolean getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
+    }
+
+    public Long getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(Long idCliente) {
+        this.idCliente = idCliente;
     }
 }

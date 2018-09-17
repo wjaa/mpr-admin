@@ -1,5 +1,8 @@
 package br.com.mpr.admin.vo;
 
+import br.com.mpr.admin.helper.JacksonDateDeserializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -15,8 +18,10 @@ public class ClienteVo implements Serializable {
     private String cpf;
     private List<EnderecoVo> enderecos;
     private String celular;
+    @JsonDeserialize(using = JacksonDateDeserializer.class)
     private Date aniversario;
     private String keyDevice ;
+    private Boolean ativo;
 
 
 
@@ -88,5 +93,14 @@ public class ClienteVo implements Serializable {
 
     public void setKeyDevice(String keyDevice) {
         this.keyDevice = keyDevice;
+    }
+
+
+    public Boolean getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
     }
 }

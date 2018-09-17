@@ -5,7 +5,6 @@ import br.com.mpr.admin.properties.MprAdminProperties;
 import br.com.mpr.admin.vo.ErrorMessageVo;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.http.Consts;
@@ -39,7 +38,6 @@ public class RestUtils {
 
     private static final Log LOG = LogFactory.getLog(RestUtils.class);
     private static CloseableHttpClient httpclient = null;
-    private static final ObjectMapper mapper = new ObjectMapper();
 
     @Autowired
     private MprAdminProperties properties;
@@ -74,12 +72,12 @@ public class RestUtils {
             }
 
             if (statusCode == 400 || (statusCode >= 500 && statusCode < 600)){
-                throw new RestException(mapper.readValue(EntityUtils.toString(response.getEntity()), ErrorMessageVo.class));
+                throw new RestException(ObjectUtils.fromJSON(EntityUtils.toString(response.getEntity()), ErrorMessageVo.class));
             }
 
             LOG.debug("m=getJsonWithParamPath Response: " + response.getStatusLine());
 
-            return mapper.readValue(EntityUtils.toString(response.getEntity()), clazzReturn);
+            return ObjectUtils.fromJSON(EntityUtils.toString(response.getEntity()), clazzReturn);
 
         }catch (JsonMappingException | JsonParseException e) {
             throw new RestException(500,"Erro no parser do JSON");
@@ -115,12 +113,12 @@ public class RestUtils {
             }
 
             if (statusCode == 400 || (statusCode >= 500 && statusCode < 600)){
-                throw new RestException(mapper.readValue(EntityUtils.toString(response.getEntity()), ErrorMessageVo.class));
+                throw new RestException(ObjectUtils.fromJSON(EntityUtils.toString(response.getEntity()), ErrorMessageVo.class));
             }
 
             LOG.debug("m=getJsonWithParamPath Response: " + response.getStatusLine());
 
-            return mapper.readValue(EntityUtils.toString(response.getEntity()), clazzReturn);
+            return ObjectUtils.fromJSON(EntityUtils.toString(response.getEntity()), clazzReturn);
 
         }catch (JsonMappingException | JsonParseException e) {
             throw new RestException(500,"Erro no parser do JSON");
@@ -171,12 +169,12 @@ public class RestUtils {
             }
 
             if (statusCode == 400 || (statusCode >= 500 && statusCode < 600)){
-                throw new RestException(mapper.readValue(EntityUtils.toString(response.getEntity()), ErrorMessageVo.class));
+                throw new RestException(ObjectUtils.fromJSON(EntityUtils.toString(response.getEntity()), ErrorMessageVo.class));
             }
 
             LOG.debug("m=getJsonWithParamPath Response: " + response.getStatusLine());
 
-            return mapper.readValue(EntityUtils.toString(response.getEntity()), clazzReturn);
+            return ObjectUtils.fromJSON(EntityUtils.toString(response.getEntity()), clazzReturn);
 
         }catch (JsonMappingException | JsonParseException e) {
             throw new RestException(500,"Erro no parser do JSON");
