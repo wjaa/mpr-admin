@@ -13,7 +13,6 @@ services:
     domainname: meuportaretrato.com
   fe:
     container_name: fe
-    build: .
     image: mpr/admin
     ports:
       - "8080:8080"
