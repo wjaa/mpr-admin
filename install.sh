@@ -6,8 +6,9 @@ git pull && mvn clean install
 path=target/admin.war
 
 if [ -f "$path" ]; then
-    echo "Removendo o container e a imagem anterior"
+    echo "Removendo os containers e as imagens anteriores"
     docker rmi mpr/admin && sudo docker rm -f fe
+    docker rmi mpr/nginx && sudo docker rm -f nginx
     echo "Iniciando o compose"
     docker-compose up -d
     echo "FIM DO BUILD"

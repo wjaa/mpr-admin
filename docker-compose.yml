@@ -1,6 +1,6 @@
 version: '2'
 services:
-  webserver:
+  nginx:
     depends_on:
       - fe
     container_name: nginx
@@ -20,6 +20,7 @@ services:
     environment:
       profile: dev
     stdin_open: true
+    tty: true
     volumes:
     - /etc/localtime:/etc/localtime
     domainname: meuportaretrato.com.br  
