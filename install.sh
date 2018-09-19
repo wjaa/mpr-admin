@@ -7,8 +7,8 @@ path=target/admin.war
 
 if [ -f "$path" ]; then
     echo "Removendo os containers e as imagens anteriores"
-    docker rmi mpr/admin && sudo docker rm -f fe
-    docker rmi mpr/nginx && sudo docker rm -f nginx
+    docker rm -f fe && docker rmi mpr/admin 
+    docker rm -f nginx && docker rmi mpr/nginx
     echo "Iniciando o compose"
     docker-compose up -d
     echo "FIM DO BUILD"
