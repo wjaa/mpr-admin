@@ -10,7 +10,7 @@ spring:
 
 mpr:
 #wsApi: api.meuportaretrato.com
-  wsApi: localhost:8181
+  wsApi: api.meuportaretrato.com:8181
   wsUser: cliente.admin@meuportaretrato.com
   wsPass: admin@*753951*
 
