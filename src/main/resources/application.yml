@@ -9,7 +9,8 @@ spring:
     locale-resolver: fixed
 
 mpr:
-  wsApi: api.meuportaretrato.com
+#wsApi: api.meuportaretrato.com
+  wsApi: localhost:8181
   wsUser: cliente.admin@meuportaretrato.com
   wsPass: admin@*753951*
 
