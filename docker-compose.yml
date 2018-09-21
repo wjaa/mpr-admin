@@ -3,8 +3,6 @@ services:
   nginx:
     depends_on:
       - fe
-    links:
-      - "be"  
     container_name: nginx
     build: nginx/.
     image: mpr/nginx
@@ -20,7 +18,7 @@ services:
     ports:
       - "8080:8080"
     environment:
-      profile: dev
+      profile: prd
     stdin_open: true
     tty: true
     volumes:
