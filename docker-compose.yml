@@ -3,7 +3,8 @@ services:
   nginx:
     depends_on:
       - fe
-      - be
+    links:
+      - "be"  
     container_name: nginx
     build: nginx/.
     image: mpr/nginx
@@ -24,7 +25,4 @@ services:
     tty: true
     volumes:
     - /etc/localtime:/etc/localtime
-    domainname: meuportaretrato.com.br 
-  be:
-    image: mpr/ws
-    container_name: be   
+    domainname: meuportaretrato.com.br
