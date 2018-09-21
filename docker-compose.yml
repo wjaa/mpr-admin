@@ -3,6 +3,7 @@ services:
   nginx:
     depends_on:
       - fe
+      - be
     container_name: nginx
     build: nginx/.
     image: mpr/nginx
