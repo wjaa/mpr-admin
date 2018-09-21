@@ -24,4 +24,6 @@ services:
     tty: true
     volumes:
     - /etc/localtime:/etc/localtime
-    domainname: meuportaretrato.com.br  
+    domainname: meuportaretrato.com.br 
+  be:
+    image: mpr/ws   
