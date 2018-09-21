@@ -26,4 +26,5 @@ services:
     - /etc/localtime:/etc/localtime
     domainname: meuportaretrato.com.br 
   be:
-    image: mpr/ws   
+    image: mpr/ws
+    container_name: be   
