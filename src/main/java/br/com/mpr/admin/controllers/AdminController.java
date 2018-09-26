@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.PostConstruct;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -117,10 +118,19 @@ public class AdminController extends BaseController {
     public String saveEntity(@ModelAttribute ProdutoVo produtoVo,
                              final RedirectAttributes redirectAttributes){
         try {
+            if (produtoVo.getDestaque() != null && !produtoVo.getDestaque().isEmpty()){
+                produtoVo.setByteImgDestaque(produtoVo.getDestaque().getBytes());
+                produtoVo.setNameImgDestaque(produtoVo.getDestaque().getOriginalFilename());
+            }
+            if (produtoVo.getPreview() != null && !produtoVo.getPreview().isEmpty()){
+                produtoVo.setNameImgPreview(produtoVo.getPreview().getOriginalFilename());
+            }
             produtoVo = adminService.saveProduto(produtoVo);
             redirectAttributes.addFlashAttribute(SUCCESS_MESSAGE,"Produto cadastrado com sucesso!");
         }catch (RestException e){
             redirectAttributes.addFlashAttribute(ERROR_MESSAGE,e.getErrorMessageVo());
+        } catch (IOException e) {
+            redirectAttributes.addFlashAttribute(ERROR_MESSAGE,"Erro ao ler uma imagem do produto");
         }
         redirectAttributes.addFlashAttribute("vo",produtoVo);
         String redirect = "redirect:/admin/ProdutoEntity/" + (produtoVo.getId() == null ? "0"

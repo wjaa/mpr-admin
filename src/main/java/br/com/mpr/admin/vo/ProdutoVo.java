@@ -1,5 +1,8 @@
 package br.com.mpr.admin.vo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -13,7 +16,18 @@ public class ProdutoVo implements Serializable {
     private TipoProdutoVo tipo;
     private String descricao;
     private Double peso;
+    private String referencia;
     private List<TipoProdutoVo> listTipoProdutos;
+    private String imgDestaque;
+    private String imgPreview;
+    private byte [] byteImgDestaque;
+    private String nameImgDestaque;
+    private byte [] byteImgPreview;
+    private String nameImgPreview;
+    @JsonIgnore
+    private MultipartFile destaque;
+    @JsonIgnore
+    private MultipartFile preview;
 
     public Long getId() {
         return id;
@@ -61,5 +75,77 @@ public class ProdutoVo implements Serializable {
 
     public void setListTipoProdutos(List<TipoProdutoVo> listTipoProdutos) {
         this.listTipoProdutos = listTipoProdutos;
+    }
+
+    public String getReferencia() {
+        return referencia;
+    }
+
+    public void setReferencia(String referencia) {
+        this.referencia = referencia;
+    }
+
+    public String getImgDestaque() {
+        return imgDestaque;
+    }
+
+    public void setImgDestaque(String imgDestaque) {
+        this.imgDestaque = imgDestaque;
+    }
+
+    public String getImgPreview() {
+        return imgPreview;
+    }
+
+    public void setImgPreview(String imgPreview) {
+        this.imgPreview = imgPreview;
+    }
+
+    public byte[] getByteImgDestaque() {
+        return byteImgDestaque;
+    }
+
+    public void setByteImgDestaque(byte[] byteImgDestaque) {
+        this.byteImgDestaque = byteImgDestaque;
+    }
+
+    public String getNameImgDestaque() {
+        return nameImgDestaque;
+    }
+
+    public void setNameImgDestaque(String nameImgDestaque) {
+        this.nameImgDestaque = nameImgDestaque;
+    }
+
+    public byte[] getByteImgPreview() {
+        return byteImgPreview;
+    }
+
+    public void setByteImgPreview(byte[] byteImgPreview) {
+        this.byteImgPreview = byteImgPreview;
+    }
+
+    public String getNameImgPreview() {
+        return nameImgPreview;
+    }
+
+    public void setNameImgPreview(String nameImgPreview) {
+        this.nameImgPreview = nameImgPreview;
+    }
+
+    public MultipartFile getDestaque() {
+        return destaque;
+    }
+
+    public void setDestaque(MultipartFile destaque) {
+        this.destaque = destaque;
+    }
+
+    public MultipartFile getPreview() {
+        return preview;
+    }
+
+    public void setPreview(MultipartFile preview) {
+        this.preview = preview;
     }
 }

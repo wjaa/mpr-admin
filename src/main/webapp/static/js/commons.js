@@ -1,6 +1,6 @@
 $(document).ready(function(){
     setTimeout(function(){
-            $(".alert").alert('close')
+            $(".mpr-alert").alert('close')
         },10000
     );
 
