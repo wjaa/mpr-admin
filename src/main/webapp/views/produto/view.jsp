@@ -52,22 +52,22 @@
         </div>
 
         <div class="form-row">
-            <div class="form-group col-md-6">
+            <div class="form-group col col-md-4">
                 <div class="col-xs-12 form-group alert alert-info"  >
-                    <label  class="col-lg-12 control-label">Imagem de destaque</label>
+                    <label  class="col-lg-12 control-label font12">Imagem de destaque (imagem apresentada na escolha de um porta retrato no app).</label>
                     <div class="col-xs-12"  >
-                        <div  class="img-thumbnail">
-                            <img src="https://stc.braspress.com.br/${vo.imgDestaque}" class="img-thumbnail" width="300px">
+                        <div  class="img-thumbnail text-center">
+                            <img src="http://stc.meuportaretrato.com/images/d/${vo.imgDestaque}" class="img-thumbnail" style="height: 200px!important;">
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group offset-md-2 col-md-4">
                 <div class="col-xs-12 form-group alert alert-info"  >
-                    <label  class="col-lg-12 control-label">Imagem de preview</label>
+                    <label  class="col-lg-12 control-label font12">Imagem de preview (imagem apresentada quando cliente escolhe foto e PR).</label>
                     <div class="col-xs-12"  >
-                        <div  class="img-thumbnail">
-                            <img src="https://stc.braspress.com.br/${vo.imgPreview}" class="img-thumbnail" width="300px">
+                        <div  class="img-thumbnail text-center">
+                            <img src="http://stc.meuportaretrato.com/images/p/${vo.imgPreview}" class="img-thumbnail" style="height: 200px!important;">
                         </div>
                     </div>
                 </div>
@@ -77,7 +77,7 @@
          <div class="form-row">
             <div class="form-group col-md-6">
                 <div id="divBtnImagem" class="col-xs-4 form-group">
-                     <label for="destaque" class="col-lg-12 control-label">Escolha uma imagem de destaque <font color="red">*</font> :</label>
+                     <label for="destaque" class="col-lg-12 control-label ">Escolha uma imagem de destaque <font color="red">*</font> :</label>
                      <div class="col-xs-12">
                         <input id="destaque" class="file-loading " type="file" name="destaque" accept="image/*"  >
                      </div>

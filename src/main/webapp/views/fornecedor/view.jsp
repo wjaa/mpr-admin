@@ -59,6 +59,12 @@
                        placeholder="11 99999999" value="${vo.telefoneSecundario}">
               </div>
           </div>
+           <div class="form-row">
+               <div class="form-group col-md-12">
+                 <label for="observacao" class="label-primary">OBSERVAÇÃO</label>
+                 <input type="text" class="form-control" name="observacao" id="observacao" value="${vo.observacao}">
+               </div>
+          </div>
           <div class="col-xs-12">
               <a href="/admin/FornecedorEntity" class="btn btn-success" >Voltar</a>
               <button type="submit" class="btn btn-primary btn-right">Gravar</button>

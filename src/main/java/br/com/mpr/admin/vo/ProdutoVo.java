@@ -1,5 +1,6 @@
 package br.com.mpr.admin.vo;
 
+import br.com.mpr.admin.annotation.IgnoreCopy;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -17,8 +18,11 @@ public class ProdutoVo implements Serializable {
     private String descricao;
     private Double peso;
     private String referencia;
+    @IgnoreCopy
     private List<TipoProdutoVo> listTipoProdutos;
+    @IgnoreCopy
     private String imgDestaque;
+    @IgnoreCopy
     private String imgPreview;
     private byte [] byteImgDestaque;
     private String nameImgDestaque;
@@ -148,4 +152,6 @@ public class ProdutoVo implements Serializable {
     public void setPreview(MultipartFile preview) {
         this.preview = preview;
     }
+
+
 }

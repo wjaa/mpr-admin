@@ -91,8 +91,8 @@ public class AdminController extends BaseController {
             redirectAttributes.addFlashAttribute(SUCCESS_MESSAGE,"Fornecedor cadastrado com sucesso!");
         }catch (RestException e){
             redirectAttributes.addFlashAttribute(ERROR_MESSAGE,e.getErrorMessageVo());
+            redirectAttributes.addFlashAttribute("vo",fornecedorVo);
         }
-        redirectAttributes.addFlashAttribute("vo",fornecedorVo);
         String redirect = "redirect:/admin/FornecedorEntity/" + (fornecedorVo.getId() == null ? "0"
                 : String.valueOf(fornecedorVo.getId()));
         return redirect;
@@ -106,8 +106,8 @@ public class AdminController extends BaseController {
             redirectAttributes.addFlashAttribute(SUCCESS_MESSAGE,"Tipo de produto cadastrado com sucesso!");
         }catch (RestException e){
             redirectAttributes.addFlashAttribute(ERROR_MESSAGE,e.getErrorMessageVo());
+            redirectAttributes.addFlashAttribute("vo",tipoProdutoVo);
         }
-        redirectAttributes.addFlashAttribute("vo",tipoProdutoVo);
         String redirect = "redirect:/admin/TipoProdutoEntity/" + (tipoProdutoVo.getId() == null ? "0"
                 : String.valueOf(tipoProdutoVo.getId()));
         return redirect;
@@ -123,16 +123,18 @@ public class AdminController extends BaseController {
                 produtoVo.setNameImgDestaque(produtoVo.getDestaque().getOriginalFilename());
             }
             if (produtoVo.getPreview() != null && !produtoVo.getPreview().isEmpty()){
+                produtoVo.setByteImgPreview(produtoVo.getPreview().getBytes());
                 produtoVo.setNameImgPreview(produtoVo.getPreview().getOriginalFilename());
             }
             produtoVo = adminService.saveProduto(produtoVo);
             redirectAttributes.addFlashAttribute(SUCCESS_MESSAGE,"Produto cadastrado com sucesso!");
         }catch (RestException e){
             redirectAttributes.addFlashAttribute(ERROR_MESSAGE,e.getErrorMessageVo());
+            redirectAttributes.addFlashAttribute("vo",produtoVo);
         } catch (IOException e) {
             redirectAttributes.addFlashAttribute(ERROR_MESSAGE,"Erro ao ler uma imagem do produto");
+            redirectAttributes.addFlashAttribute("vo",produtoVo);
         }
-        redirectAttributes.addFlashAttribute("vo",produtoVo);
         String redirect = "redirect:/admin/ProdutoEntity/" + (produtoVo.getId() == null ? "0"
                 : String.valueOf(produtoVo.getId()));
         return redirect;
@@ -147,8 +149,8 @@ public class AdminController extends BaseController {
             redirectAttributes.addFlashAttribute(SUCCESS_MESSAGE,"Estoque cadastrado com sucesso!");
         }catch (RestException e){
             redirectAttributes.addFlashAttribute(ERROR_MESSAGE,e.getErrorMessageVo());
+            redirectAttributes.addFlashAttribute("vo",estoque);
         }
-        redirectAttributes.addFlashAttribute("vo",estoque);
         String redirect = "redirect:/admin/EstoqueEntity/" + (estoque.getId() == null ? "0"
                 : String.valueOf(estoque.getId()));
         return redirect;
@@ -162,8 +164,8 @@ public class AdminController extends BaseController {
             redirectAttributes.addFlashAttribute(SUCCESS_MESSAGE,"Cupom cadastrado com sucesso!");
         }catch (RestException e){
             redirectAttributes.addFlashAttribute(ERROR_MESSAGE,e.getErrorMessageVo());
+            redirectAttributes.addFlashAttribute("vo",cupom);
         }
-        redirectAttributes.addFlashAttribute("vo",cupom);
         String redirect = "redirect:/admin/CupomEntity/" + (cupom.getId() == null ? "0"
                 : String.valueOf(cupom.getId()));
         return redirect;
@@ -178,8 +180,8 @@ public class AdminController extends BaseController {
             redirectAttributes.addFlashAttribute(SUCCESS_MESSAGE,"Tabela Preco cadastrado com sucesso!");
         }catch (RestException e){
             redirectAttributes.addFlashAttribute(ERROR_MESSAGE,e.getErrorMessageVo());
+            redirectAttributes.addFlashAttribute("vo",tabelaPreco);
         }
-        redirectAttributes.addFlashAttribute("vo",tabelaPreco);
         String redirect = "redirect:/admin/TabelaPrecoEntity/" + (tabelaPreco.getId() == null ? "0"
                 : String.valueOf(tabelaPreco.getId()));
         return redirect;
@@ -193,8 +195,8 @@ public class AdminController extends BaseController {
             redirectAttributes.addFlashAttribute(SUCCESS_MESSAGE,"Cliente cadastrado com sucesso!");
         }catch (RestException e){
             redirectAttributes.addFlashAttribute(ERROR_MESSAGE,e.getErrorMessageVo());
+            redirectAttributes.addFlashAttribute("vo",clienteVo);
         }
-        redirectAttributes.addFlashAttribute("vo",clienteVo);
         String redirect = "redirect:/admin/ClienteEntity/" + (clienteVo.getId() == null ? "0"
                 : String.valueOf(clienteVo.getId()));
         return redirect;

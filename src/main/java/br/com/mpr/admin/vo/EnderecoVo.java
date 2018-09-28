@@ -17,6 +17,9 @@ public class EnderecoVo implements Serializable {
     private String cidade;
     private String uf;
     private Boolean ativo;
+    private String descricao;
+    private String observacao;
+    private Boolean principal;
 
 
     public Long getId() {
@@ -97,5 +100,29 @@ public class EnderecoVo implements Serializable {
 
     public void setIdCliente(Long idCliente) {
         this.idCliente = idCliente;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public String getObservacao() {
+        return observacao;
+    }
+
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
+    }
+
+    public Boolean getPrincipal() {
+        return principal;
+    }
+
+    public void setPrincipal(Boolean principal) {
+        this.principal = principal;
     }
 }

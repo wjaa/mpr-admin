@@ -52,51 +52,64 @@
                  </div>
             </div>
           </div>
-          <hr>
-
           <c:forEach var="e" items="${vo.enderecos}" varStatus="status">
-                <span class="badge badge-primary">Endereço - colocar tipo aqui</span>
-                <div class="form-group col-md-12">
-                   <label >&nbsp;</label>
-                     <div class="custom-control custom-checkbox">
-                         <input type="checkbox" class="custom-control-input" id="enderecos.ativo" name="enderecos[${status.index}].ativo" <c:if test="${e.ativo}">checked</c:if>>
-                         <label class="custom-control-label" for="ativo">Ativo</label>
-                     </div>
+                <input type="hidden" name="enderecos[${status.index}].principal" value="${e.principal}"/>
+                <input type="hidden" name="enderecos[${status.index}].descricao" value="${e.descricao}"/>
+                <div class="card">
+                  <div class="card-body">
+
+                    <h5 class="card-title">${e.descricao}<c:if test="${e.principal}"> - <span class="badge badge-secondary">Principal</span></c:if></h5>
+                    <hr/>
+                        <div class="form-group col-md-12">
+                             <div class="custom-control custom-checkbox">
+                                 <input type="checkbox" class="custom-control-input" id="enderecos.ativo" name="enderecos[${status.index}].ativo" <c:if test="${e.ativo}">checked</c:if>>
+                                 <label class="custom-control-label" for="ativo">Ativo</label>
+                             </div>
+                        </div>
+                        <div class="form-row">
+                             <input type="hidden" name="enderecos[${status.index}].id" id="enderecos.id" value="${e.id}">
+                             <input type="hidden" name="enderecos[${status.index}].idCliente" id="enderecos.idCliente" value="${e.idCliente}">
+                             <div class="form-group col-md-2">
+                               <label for="id" class="label-primary">CEP</label>
+                               <input type="text" class="form-control" name="enderecos[${status.index}].cep" id="enderecos.cep" value="${e.cep}">
+                             </div>
+                             <div class="form-group col-md-8">
+                                 <label for="nome">LOGRADOURO</label>
+                                 <input type="text" class="form-control" name="enderecos[${status.index}].logradouro" id="enderecos.logradouro" placeholder="LOGRADOURO" value="${e.logradouro}">
+                             </div>
+                              <div class="form-group col-md-2">
+                                  <label for="email">NUMERO</label>
+                                  <input type="text" class="form-control" name="enderecos[${status.index}].numero" id="enderecos.numero" placeholder="Número" value="${e.numero}">
+                              </div>
+                        </div>
+                        <div class="form-row">
+                             <div class="form-group col-md-5">
+                               <label for="id" class="label-primary">COMPLEMENTO</label>
+                               <input type="text" class="form-control" name="enderecos[${status.index}].complemento" id="enderecos.complemento" value="${e.complemento}">
+                             </div>
+                             <div class="form-group col-md-3">
+                                 <label for="nome">BAIRRO</label>
+                                 <input type="text" class="form-control" name="enderecos[${status.index}].bairro" id="enderecos.bairro" placeholder="BAIRRO" value="${e.bairro}">
+                             </div>
+                              <div class="form-group col-md-3">
+                                  <label for="email">CIDADE</label>
+                                  <input type="text" class="form-control" name="enderecos[${status.index}].cidade" id="enderecos.cidade" placeholder="Cidade" value="${e.cidade}">
+                              </div>
+                              <div class="form-group col-md-1">
+                                    <label for="email">UF</label>
+                                    <input type="text" class="form-control" name="enderecos[${status.index}].uf" id="enderecos.uf" placeholder="UF" value="${e.uf}">
+                              </div>
+                        </div>
+                        <div class="form-row">
+                             <div class="form-group col-md-12">
+                               <label for="observacao" class="label-primary">OBSERVAÇÃO</label>
+                               <input type="text" class="form-control" name="enderecos[${status.index}].observacao" id="enderecos.observacao" value="${e.observacao}">
+                             </div>
+                        </div>
+                  </div>
                 </div>
-                <div class="form-row">
-                     <input type="hidden" name="enderecos[${status.index}].id" id="enderecos.id" value="${e.id}">
-                     <input type="hidden" name="enderecos[${status.index}].idCliente" id="enderecos.idCliente" value="${e.idCliente}">
-                     <div class="form-group col-md-2">
-                       <label for="id" class="label-primary">CEP</label>
-                       <input type="text" class="form-control" name="enderecos[${status.index}].cep" id="enderecos.cep" value="${e.cep}">
-                     </div>
-                     <div class="form-group col-md-8">
-                         <label for="nome">LOGRADOURO</label>
-                         <input type="text" class="form-control" name="enderecos[${status.index}].logradouro" id="enderecos.logradouro" placeholder="LOGRADOURO" value="${e.logradouro}">
-                     </div>
-                      <div class="form-group col-md-2">
-                          <label for="email">NUMERO</label>
-                          <input type="text" class="form-control" name="enderecos[${status.index}].numero" id="enderecos.numero" placeholder="Número" value="${e.numero}">
-                      </div>
-                </div>
-                <div class="form-row">
-                     <div class="form-group col-md-5">
-                       <label for="id" class="label-primary">COMPLEMENTO</label>
-                       <input type="text" class="form-control" name="enderecos[${status.index}].complemento" id="enderecos.complemento" value="${e.complemento}">
-                     </div>
-                     <div class="form-group col-md-3">
-                         <label for="nome">BAIRRO</label>
-                         <input type="text" class="form-control" name="enderecos[${status.index}].bairro" id="enderecos.bairro" placeholder="BAIRRO" value="${e.bairro}">
-                     </div>
-                      <div class="form-group col-md-3">
-                          <label for="email">CIDADE</label>
-                          <input type="text" class="form-control" name="enderecos[${status.index}].cidade" id="enderecos.cidade" placeholder="Cidade" value="${e.cidade}">
-                      </div>
-                      <div class="form-group col-md-1">
-                            <label for="email">UF</label>
-                            <input type="text" class="form-control" name="enderecos[${status.index}].uf" id="enderecos.uf" placeholder="UF" value="${e.uf}">
-                      </div>
-                </div>
+
+
           </c:forEach>
 
           <div class="col-xs-12">

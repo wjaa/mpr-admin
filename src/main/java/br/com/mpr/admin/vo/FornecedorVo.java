@@ -15,6 +15,7 @@ public class FornecedorVo implements Serializable {
     private String telefonePrincipal;
     private String telefoneSecundario;
     private Boolean ativo;
+    private String observacao;
 
     public Long getId() {
         return id;
@@ -80,4 +81,11 @@ public class FornecedorVo implements Serializable {
         this.ativo = ativo;
     }
 
+    public String getObservacao() {
+        return observacao;
+    }
+
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
+    }
 }
