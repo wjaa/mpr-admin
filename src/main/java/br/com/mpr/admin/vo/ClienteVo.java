@@ -20,8 +20,9 @@ public class ClienteVo implements Serializable {
     private String celular;
     @JsonDeserialize(using = JacksonDateDeserializer.class)
     private Date aniversario;
-    private String keyDevice ;
+    private String genero;
     private Boolean ativo;
+    private LoginVo login;
 
 
 
@@ -87,14 +88,13 @@ public class ClienteVo implements Serializable {
         this.aniversario = aniversario;
     }
 
-    public String getKeyDevice() {
-        return keyDevice;
+    public String getGenero() {
+        return genero;
     }
 
-    public void setKeyDevice(String keyDevice) {
-        this.keyDevice = keyDevice;
+    public void setGenero(String genero) {
+        this.genero = genero;
     }
-
 
     public Boolean getAtivo() {
         return ativo;
@@ -102,5 +102,13 @@ public class ClienteVo implements Serializable {
 
     public void setAtivo(Boolean ativo) {
         this.ativo = ativo;
+    }
+
+    public LoginVo getLogin() {
+        return login;
+    }
+
+    public void setLogin(LoginVo login) {
+        this.login = login;
     }
 }
