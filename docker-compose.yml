@@ -10,6 +10,8 @@ services:
       - "80:80"
     stdin_open: true
     tty: true
+    volumes:
+    - /var/www/static/mpr:/var/www/static/mpr
     domainname: meuportaretrato.com
   fe:
     container_name: fe
