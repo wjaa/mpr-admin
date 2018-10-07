@@ -23,4 +23,5 @@ services:
     tty: true
     volumes:
     - /etc/localtime:/etc/localtime
+    - /etc/hosts:/etc/hosts
     domainname: meuportaretrato.com.br
