@@ -5,3 +5,5 @@ MAINTAINER Wagner Jeronimo A. Araujo
 ADD apimpr.conf /etc/nginx/conf.d/apimpr.conf
 ADD adminmpr.conf /etc/nginx/conf.d/adminmpr.conf
 ADD stcmpr.conf /etc/nginx/conf.d/stcmpr.conf
+COPY hosts /tmp/
+CMD cat /tmp/hosts >> /etc/hosts
