@@ -32,6 +32,10 @@ public class ProdutoVo implements Serializable {
     private MultipartFile destaque;
     @JsonIgnore
     private MultipartFile preview;
+    private String nomeCor;
+    private String hexaCor;
+    private Double preco;
+    private String nomeTipoProduto;
 
     public Long getId() {
         return id;
@@ -154,4 +158,35 @@ public class ProdutoVo implements Serializable {
     }
 
 
+    public String getNomeCor() {
+        return nomeCor;
+    }
+
+    public void setNomeCor(String nomeCor) {
+        this.nomeCor = nomeCor;
+    }
+
+    public String getHexaCor() {
+        return hexaCor;
+    }
+
+    public void setHexaCor(String hexaCor) {
+        this.hexaCor = hexaCor;
+    }
+
+    public Double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(Double preco) {
+        this.preco = preco;
+    }
+
+    public String getNomeTipoProduto() {
+        return nomeTipoProduto;
+    }
+
+    public void setNomeTipoProduto(String nomeTipoProduto) {
+        this.nomeTipoProduto = nomeTipoProduto;
+    }
 }

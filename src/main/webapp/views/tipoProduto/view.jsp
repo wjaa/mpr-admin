@@ -21,7 +21,7 @@
             <div class="form-group col-md-6">
                 <label for="descricao">DESCRIÇÃO</label>
                 <input type="text" class="form-control" name="descricao" id="descricao"
-                       placeholder="Descrição" value="${vo.descricao}">
+                       placeholder="Descrição" value="${vo.descricao}" maxlength="80">
             </div>
         </div>
         <div class="col-xs-12">

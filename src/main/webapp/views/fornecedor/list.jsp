@@ -37,7 +37,7 @@
               <td scope="row"><a href="/admin/${destiny}/${f.id}?readOnly=true" >${f.id}</a></td>
               <td><a href="/admin/${destiny}/${f.id}?readOnly=true">${f.nome}</a></td>
               <td>${f.email}</td>
-              <td>${f.cnpj}</td>
+              <td class="cnpj">${f.cnpj}</td>
               <td>${f.endereco}</td>
               <td>${f.telefonePrincipal}</td>
               <td>${f.telefoneSecundario}</td>

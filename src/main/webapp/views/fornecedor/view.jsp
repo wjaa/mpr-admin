@@ -22,8 +22,8 @@
              </div>
              <div class="form-group col-md-6">
                <label for="cnpj">CNPJ</label>
-               <input type="text" class="form-control" name="cnpj" id="cnpj"
-                      placeholder="00.000.000/0000-00" value="${vo.cnpj}">
+               <input type="text" class="form-control cnpj" name="cnpj" id="cnpj"
+                      placeholder="00.000.000/0000-00" value="${vo.cnpj}" maxlength="18">
              </div>
               <div class="form-group offset-md-1 col-md-2">
                   <label >&nbsp;</label>
@@ -36,33 +36,33 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="nome">Nome</label>
-              <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome" value="${vo.nome}">
+              <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome" value="${vo.nome}" maxlength="60">
             </div>
             <div class="form-group col-md-6">
               <label for="email">Email</label>
-              <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="${vo.email}">
+              <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="${vo.email}" maxlength="100">
             </div>
           </div>
           <div class="form-group">
             <label for="endereco">Endereço</label>
-            <input type="text" class="form-control" name="endereco" id="endereco" placeholder="Endereço" value="${vo.endereco}">
+            <input type="text" class="form-control" name="endereco" id="endereco" placeholder="Endereço" value="${vo.endereco}" maxlength="200">
           </div>
           <div class="form-row">
               <div class="form-group col-md-6">
-                <label for="telefonePrincipal">Telefone Primário</label>
+                <label for="telefonePrincipal">Telefone Comercial</label>
                 <input type="phone" class="form-control" name="telefonePrincipal" id="telefonePrincipal"
-                     placeholder="11 99999999" value="${vo.telefonePrincipal}">
+                     placeholder="11 99999999" value="${vo.telefonePrincipal}" maxlength="13">
               </div>
               <div class="form-group col-md-6">
-                <label for="telefoneSecundario">Telefone Secundário</label>
+                <label for="telefoneSecundario">Celular</label>
                 <input type="phone" class="form-control" name="telefoneSecundario" id="telefoneSecundario"
-                       placeholder="11 99999999" value="${vo.telefoneSecundario}">
+                       placeholder="11 99999999" value="${vo.telefoneSecundario}" maxlength="13">
               </div>
           </div>
            <div class="form-row">
                <div class="form-group col-md-12">
                  <label for="observacao" class="label-primary">OBSERVAÇÃO</label>
-                 <input type="text" class="form-control" name="observacao" id="observacao" value="${vo.observacao}">
+                 <input type="text" class="form-control" name="observacao" id="observacao" value="${vo.observacao}" maxlength="255">
                </div>
           </div>
           <div class="col-xs-12">

@@ -19,7 +19,7 @@
         <div class="form-row">
             <div class="form-group col-md-3">
                 <label for="id" class="label-primary">#ID</label>
-                <input type="number" class="form-control" name="id" id="id" readonly="readonly" value="${vo.id}">
+                <input type="number" class="form-control" name="id" id="id" readonly="readonly" value="${vo.id}" >
             </div>
             <div class="form-group col-md-6">
                 <label for="descricao">TIPO DE PRODUTO</label>
@@ -34,20 +34,46 @@
             </div>
             <div class="form-group col-md-3">
                 <label for="referencia" class="label-primary">Referência</label>
-                <input type="text" class="form-control" name="referencia" id="referencia" value="${vo.referencia}" size="50" >
+                <input type="text" class="form-control" name="referencia" id="referencia" value="${vo.referencia}" maxlength="50" >
             </div>
         </div>
 
         <div class="form-row">
-            <div class="form-group col-md-7">
+            <div class="form-group col-md-9">
                 <label for="id" class="label-primary">DESCRIÇÃO</label>
                 <input type="text" class="form-control" name="descricao" id="descricao"
-                       placeholder="DESCRIÇÃO DO PRODUTO" value="${vo.descricao}">
+                       placeholder="DESCRIÇÃO DO PRODUTO" value="${vo.descricao}" maxlength="80">
             </div>
             <div class="form-group col-md-3">
+                <label for="peso">PREÇO</label>
+                <input type="text" class="form-control money" name="preco" id="preco"
+                        <c:if test="${vo.id > 0}"> readOnly="readOnly" </c:if>
+                       placeholder="0,00" value="<fmt:formatNumber value="${vo.preco}" pattern="#,##0.00" />" maxlength="9"/>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-3">
                 <label for="peso">PESO</label>
-                <input type="text" class="form-control" name="peso" id="peso"
-                       placeholder="0,00" value="<fmt:formatNumber value="${vo.peso}" pattern="#,##0.00" />" />
+                <input type="text" class="form-control money" name="peso" id="peso"
+                       placeholder="0,00" value="<fmt:formatNumber value="${vo.peso}" pattern="#,##0.00" />" maxlength="9"/>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="id" class="label-primary">Nome da cor</label>
+                <input type="text" class="form-control" name="nomeCor" id="nomeCor"
+                       placeholder="COR DO PRODUTO" value="${vo.nomeCor}" maxlength="50">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="peso">Hexa da cor</label>
+                <input type="text" class="form-control" name="hexaCor" id="hexaCor"
+                       placeholder="#FFFFFF" value="${vo.hexaCor}" maxlength="7"/>
+            </div>
+            <div id="colorSquare" class="form-group col-md-3" style="font-size:60px; color:${vo.hexaCor};">
+                <label>&nbsp;</label>
+                <i class="fas fa-square"></i>
+                <i class="far fa-square"></i>
+                <i class="fas fa-circle"></i>
+                <i class="far fa-circle"></i>
             </div>
         </div>
 
@@ -102,6 +128,7 @@
     </form>
 </div>
 <wjaa:footer readOnly="${readOnly}"/>
+<script src="/static/js/produto/view.js?v=1"></script>
 </body>
 
 </html>

@@ -36,13 +36,13 @@
               <div class="form-group col-md-4">
                   <label for="id" class="label-primary">DATA VIGÊNCIA</label>
                   <input type="text" class="form-control data" name="dataVigencia" id="dataVigencia"
-                                         placeholder="DD/MM/YYYY" value="<fmt:formatDate value="${vo.dataVigencia}" pattern="dd/MM/yyyy"/> ">
+                                         placeholder="DD/MM/YYYY" value="<fmt:formatDate value="${vo.dataVigencia}" pattern="dd/MM/yyyy"/> " maxlength="10">
               </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="nome">DESCRIÇÃO</label>
-              <input type="text" class="form-control" name="descricao" id="descricao" placeholder="DESCRIÇÃO" value="${vo.descricao}">
+              <input type="text" class="form-control" name="descricao" id="descricao" placeholder="DESCRIÇÃO" value="${vo.descricao}" maxlength="50">
             </div>
             <div class="form-group col-md-6">
               <label for="id" class="label-primary">VALOR (UN) COMPRA</label>
@@ -50,8 +50,8 @@
                   <div class="input-group-prepend">
                       <span class="input-group-text" id="basic-addon1">R$</span>
                   </div>
-                  <input type="text" class="form-control" name="preco" id="preco"
-                         placeholder="0,00" value="<fmt:formatNumber value="${vo.preco}" pattern="#,##0.00"/>" />
+                  <input type="text" class="form-control money" name="preco" id="preco"
+                         placeholder="0,00" value="<fmt:formatNumber value="${vo.preco}" pattern="#,##0.00"/>" maxlength="9"/>
               </div>
             </div>
           </div>

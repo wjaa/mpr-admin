@@ -11,7 +11,6 @@
     </header>
 <body>
 <wjaa:menu/>
-
     <div class="content">
         <h4 class="text-center"> CLIENTE </h4>
         <hr/>
@@ -27,11 +26,11 @@
                  </div>
                  <div class="form-group col-md-5">
                      <label for="nome">NOME</label>
-                     <input type="text" class="form-control" name="nome" id="nome" placeholder="NOME DO CLIENTE" value="${vo.nome}">
+                     <input type="text" class="form-control" name="nome" id="nome" placeholder="NOME DO CLIENTE" value="${vo.nome}" maxlength="60">
                  </div>
                   <div class="form-group col-md-4">
                       <label for="email">E-MAIL</label>
-                      <input type="text" class="form-control" name="email" id="email" placeholder="exemplo@cliente.com" value="${vo.email}">
+                      <input type="text" class="form-control" name="email" id="email" placeholder="exemplo@cliente.com" value="${vo.email}" maxlength="100">
                   </div>
                   <div class="form-group col-md-2">
                      <label >&nbsp;</label>
@@ -44,15 +43,15 @@
               <div class="form-row">
                 <div class="form-group col-md-3">
                   <label for="cpf">CPF</label>
-                  <input type="text" class="form-control" name="cpf" id="cpf" placeholder="000.000.000-00" value="${vo.cpf}">
+                  <input type="text" class="form-control cpf" name="cpf" id="cpf" placeholder="000.000.000-00" value="${vo.cpf}" maxlength="14">
                 </div>
                 <div class="form-group col-md-3">
                   <label for="celular">CELULAR</label>
-                  <input type="text" class="form-control" name="celular" id="celular" placeholder="11999999999" value="${vo.celular}">
+                  <input type="text" class="form-control" name="celular" id="celular" placeholder="11999999999" value="${vo.celular}" maxlength="13">
                 </div>
                 <div class="form-group col-md-3">
                    <label for="aniversario">ANIVERSÁRIO</label>
-                   <input type="text" class="form-control" name="aniversario" id="aniversario" placeholder="01/01/2000" value="<fmt:formatDate value="${vo.aniversario}" pattern="dd/MM/yyyy"></fmt:formatDate>">
+                   <input type="text" class="form-control" name="aniversario" id="aniversario" placeholder="01/01/2000" value="<fmt:formatDate value="${vo.aniversario}" pattern="dd/MM/yyyy"></fmt:formatDate>" maxlength="10">
                 </div>
                 <div class="form-group col-md-3">
                    <label >Gênero</label>
@@ -129,39 +128,39 @@
                              <input type="hidden" name="enderecos[${status.index}].idCliente" id="enderecos.idCliente" value="${e.idCliente}">
                              <div class="form-group col-md-2">
                                <label for="id" class="label-primary">CEP</label>
-                               <input type="text" class="form-control" name="enderecos[${status.index}].cep" id="enderecos.cep" value="${e.cep}">
+                               <input type="text" class="form-control" name="enderecos[${status.index}].cep" id="enderecos.cep" value="${e.cep}" maxlength="8">
                              </div>
                              <div class="form-group col-md-8">
                                  <label for="nome">LOGRADOURO</label>
-                                 <input type="text" class="form-control" name="enderecos[${status.index}].logradouro" id="enderecos.logradouro" placeholder="LOGRADOURO" value="${e.logradouro}">
+                                 <input type="text" class="form-control" name="enderecos[${status.index}].logradouro" id="enderecos.logradouro" placeholder="LOGRADOURO" value="${e.logradouro}" maxlength="80">
                              </div>
                               <div class="form-group col-md-2">
                                   <label for="email">NUMERO</label>
-                                  <input type="text" class="form-control" name="enderecos[${status.index}].numero" id="enderecos.numero" placeholder="Número" value="${e.numero}">
+                                  <input type="text" class="form-control" name="enderecos[${status.index}].numero" id="enderecos.numero" placeholder="Número" value="${e.numero}" maxlength="10">
                               </div>
                         </div>
                         <div class="form-row">
                              <div class="form-group col-md-5">
                                <label for="id" class="label-primary">COMPLEMENTO</label>
-                               <input type="text" class="form-control" name="enderecos[${status.index}].complemento" id="enderecos.complemento" value="${e.complemento}">
+                               <input type="text" class="form-control" name="enderecos[${status.index}].complemento" id="enderecos.complemento" value="${e.complemento}" maxlength="60">
                              </div>
                              <div class="form-group col-md-3">
                                  <label for="nome">BAIRRO</label>
-                                 <input type="text" class="form-control" name="enderecos[${status.index}].bairro" id="enderecos.bairro" placeholder="BAIRRO" value="${e.bairro}">
+                                 <input type="text" class="form-control" name="enderecos[${status.index}].bairro" id="enderecos.bairro" placeholder="BAIRRO" value="${e.bairro}" maxlength="60">
                              </div>
                               <div class="form-group col-md-3">
                                   <label for="email">CIDADE</label>
-                                  <input type="text" class="form-control" name="enderecos[${status.index}].cidade" id="enderecos.cidade" placeholder="Cidade" value="${e.cidade}">
+                                  <input type="text" class="form-control" name="enderecos[${status.index}].cidade" id="enderecos.cidade" placeholder="Cidade" value="${e.cidade}" maxlength="60">
                               </div>
                               <div class="form-group col-md-1">
                                     <label for="email">UF</label>
-                                    <input type="text" class="form-control" name="enderecos[${status.index}].uf" id="enderecos.uf" placeholder="UF" value="${e.uf}">
+                                    <input type="text" class="form-control" name="enderecos[${status.index}].uf" id="enderecos.uf" placeholder="UF" value="${e.uf}" maxlength="2">
                               </div>
                         </div>
                         <div class="form-row">
                              <div class="form-group col-md-12">
                                <label for="observacao" class="label-primary">OBSERVAÇÃO</label>
-                               <input type="text" class="form-control" name="enderecos[${status.index}].observacao" id="enderecos.observacao" value="${e.observacao}">
+                               <input type="text" class="form-control" name="enderecos[${status.index}].observacao" id="enderecos.observacao" value="${e.observacao}" maxlength="150">
                              </div>
                         </div>
                   </div>

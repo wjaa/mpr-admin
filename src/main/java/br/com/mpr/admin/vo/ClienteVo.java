@@ -58,7 +58,7 @@ public class ClienteVo implements Serializable {
     }
 
     public void setCpf(String cpf) {
-        this.cpf = cpf;
+        this.cpf = cpf != null ? cpf.replaceAll("[^\\d]", "") : null;
     }
 
 

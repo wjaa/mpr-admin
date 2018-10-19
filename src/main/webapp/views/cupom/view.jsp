@@ -24,7 +24,7 @@
             </div>
             <div class="form-group col-md-7">
                 <label for="descricao" class="label-primary">DESCRIÇÃO</label>
-                <input type="text" class="form-control" name="descricao" id="descricao" value="${vo.descricao}">
+                <input type="text" class="form-control" name="descricao" id="descricao" value="${vo.descricao}" maxlength="50">
             </div>
             <div class="form-group col-md-3">
                 <label >&nbsp;</label>
@@ -38,7 +38,7 @@
         <div class="form-row">
             <div class="form-group col-md-4">
                 <label for="hash" class="label-primary">CÓDIGO</label>
-                <input type="text" class="form-control" name="hash" id="hash" value="${vo.hash}">
+                <input type="text" class="form-control" name="hash" id="hash" value="${vo.hash}" maxlength="8">
             </div>
             <div class="form-group col-md-4">
                 <label for="dataInicio" class="label-primary">DATA DE INICIO</label>
@@ -56,8 +56,8 @@
             <div class="input-group col-md-2">
                 <label for="id" class="label-primary">PORCENTAGEM</label>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" name="porcentagem" id="porcentagem"
-                    placeholder="0,00" value="<fmt:formatNumber value="${vo.porcentagem}" pattern="#,##0.00"/>" />
+                    <input type="text" class="form-control money" name="porcentagem" id="porcentagem"
+                    placeholder="0,00" value="<fmt:formatNumber value="${vo.porcentagem}" pattern="#,##0.00"/>" maxlength="8"/>
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">%</span>
                     </div>

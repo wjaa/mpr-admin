@@ -71,8 +71,8 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">R$</span>
                     </div>
-                    <input type="text" class="form-control" name="precoCompra" id="precoCompra"
-                           placeholder="0,00" value="<fmt:formatNumber value="${vo.precoCompra}" pattern="#,##0.00"/>" />
+                    <input type="text" class="form-control money" name="precoCompra" id="precoCompra"
+                           placeholder="0,00" value="<fmt:formatNumber value="${vo.precoCompra}" pattern="#,##0.00"/>" maxlength="9"/>
                 </div>
 
             </div>
@@ -87,7 +87,7 @@
         <div class="form-row">
             <div class="form-group col-md-12">
                 <label for="id" class="label-primary">OBSERVAÇÃO</label>
-                <textarea class="form-control" id="observacao" name="observacao" rows="3">${vo.observacao}</textarea>
+                <textarea class="form-control" id="observacao" name="observacao" rows="3" maxlength="60">${vo.observacao}</textarea>
             </div>
         </div>
         <div class="col-xs-12">
