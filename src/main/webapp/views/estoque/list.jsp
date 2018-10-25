@@ -7,7 +7,7 @@
 <html>
 <header>
     <wjaa:header/>
-    <link rel="stylesheet" href="/static/css/estoque/list.css?v=1" />
+    <link rel="stylesheet" href="/static/css/estoque/list.css?v=1.1" />
 </header>
 <body>
 <wjaa:menu/>
@@ -22,31 +22,31 @@
         <table class="table">
           <thead class="thead-dark">
             <tr>
-              <th scope="col">LOTES</th>
-              <th scope="col">NOME PRODUTO</th>
-              <th scope="col">TIPO PRODUTO</th>
-              <th scope="col">REFERENCIA</th>
-              <th scope="col">QUANTIDADE</th>
+              <th scope="col" class="text-center">LOTES</th>
+              <th scope="col" class="text-center">NOME PRODUTO</th>
+              <th scope="col" class="text-center">TIPO PRODUTO</th>
+              <th scope="col" class="text-center">REFERENCIA</th>
+              <th scope="col" class="text-center">QUANTIDADE</th>
             </tr>
           </thead>
           <tbody>
             <c:forEach var="e" items="${list}">
             <tr>
-              <td scope="row">
+              <td scope="row" class="text-center">
                 <a id="expand${e.idProduto}" href="#" onclick="listLote(${e.idProduto},this);"><i class="fas fa-plus-circle"></i></a>
                 <a id="redunce${e.idProduto}" href="#" onclick="hideLote(${e.idProduto},this);" style="color:red; display:none;"><i class="fas fa-minus-circle"></i></a>
               </td>
-              <td scope="row">${e.nomeProduto}</td>
-              <td scope="row">${e.tipoProduto}</td>
-              <td scope="row">${e.referencia}</td>
+              <td scope="row" class="text-center">${e.nomeProduto}</td>
+              <td scope="row" class="text-center">${e.tipoProduto}</td>
+              <td scope="row" class="text-center">${e.referencia}</td>
               <c:set var="cssStyle" value="quantidadeOk"/>
-              <c:if test="${e.quantidade <= e.quantidadeMinima}">
+              <c:if test="${e.quantidade <= e.estoqueMinimo}">
                  <c:set var="cssStyle" value="quantidadeWarning"/>
               </c:if>
               <c:if test="${e.quantidade == 0}">
                  <c:set var="cssStyle" value="quantidadeZero"/>
               </c:if>
-              <td scope="row" class="${cssStyle}">${e.quantidade}</td>
+              <td scope="row" class="${cssStyle} text-center">${e.quantidade}</td>
             </tr>
             <tr id="tr${e.idProduto}" style="display:none;">
                 <td>&nbsp;</td>
@@ -62,7 +62,7 @@
         </table>
     </div>
     <wjaa:footer/>
-    <script src="/static/js/estoque/list.js?v=1.1"></script>
+    <script src="/static/js/estoque/list.js?v=1.2"></script>
 </body>
 
 </html>

@@ -12,7 +12,7 @@ public class ProdutoEstoqueVo implements Serializable {
     private String tipoProduto;
     private String nomeProduto;
     private Integer quantidade;
-    private Integer quantidadeMinima;
+    private Integer estoqueMinimo;
 
     public Long getIdProduto() {
         return idProduto;
@@ -54,11 +54,11 @@ public class ProdutoEstoqueVo implements Serializable {
         this.referencia = referencia;
     }
 
-    public Integer getQuantidadeMinima() {
-        return quantidadeMinima;
+    public Integer getEstoqueMinimo() {
+        return estoqueMinimo;
     }
 
-    public void setQuantidadeMinima(Integer quantidadeMinima) {
-        this.quantidadeMinima = quantidadeMinima;
+    public void setEstoqueMinimo(Integer estoqueMinimo) {
+        this.estoqueMinimo = estoqueMinimo;
     }
 }

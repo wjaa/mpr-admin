@@ -36,6 +36,7 @@ public class ProdutoVo implements Serializable {
     private String hexaCor;
     private Double preco;
     private String nomeTipoProduto;
+    private Integer estoqueMinimo;
 
     public Long getId() {
         return id;
@@ -188,5 +189,13 @@ public class ProdutoVo implements Serializable {
 
     public void setNomeTipoProduto(String nomeTipoProduto) {
         this.nomeTipoProduto = nomeTipoProduto;
+    }
+
+    public Integer getEstoqueMinimo() {
+        return estoqueMinimo;
+    }
+
+    public void setEstoqueMinimo(Integer estoqueMinimo) {
+        this.estoqueMinimo = estoqueMinimo;
     }
 }

@@ -39,10 +39,15 @@
         </div>
 
         <div class="form-row">
-            <div class="form-group col-md-9">
+            <div class="form-group col-md-6">
                 <label for="id" class="label-primary">DESCRIÇÃO</label>
                 <input type="text" class="form-control" name="descricao" id="descricao"
                        placeholder="DESCRIÇÃO DO PRODUTO" value="${vo.descricao}" maxlength="80">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="peso">ESTOQUE MÍNIMO</label>
+                <input type="text" class="form-control" name="estoqueMinimo" id="estoqueMinimo"
+                        value="${vo.estoqueMinimo}" maxlength="10"/>
             </div>
             <div class="form-group col-md-3">
                 <label for="peso">PREÇO</label>
@@ -53,7 +58,7 @@
         </div>
 
         <div class="form-row">
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-2">
                 <label for="peso">PESO</label>
                 <input type="text" class="form-control money" name="peso" id="peso"
                        placeholder="0,00" value="<fmt:formatNumber value="${vo.peso}" pattern="#,##0.00" />" maxlength="9"/>
@@ -68,7 +73,7 @@
                 <input type="text" class="form-control" name="hexaCor" id="hexaCor"
                        placeholder="#FFFFFF" value="${vo.hexaCor}" maxlength="7"/>
             </div>
-            <div id="colorSquare" class="form-group col-md-3" style="font-size:60px; color:${vo.hexaCor};">
+            <div id="colorSquare" class="form-group col-md-4" style="font-size:60px; color:${vo.hexaCor};">
                 <label>&nbsp;</label>
                 <i class="fas fa-square"></i>
                 <i class="far fa-square"></i>

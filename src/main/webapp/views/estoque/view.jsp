@@ -62,7 +62,7 @@
                 <select id="idFornecedor" name="idFornecedor" class="form-control">
                     <option value="">--Selecione--</option>
                     <c:forEach var="f" items="${vo.fornecedores}">
-                        <option value="${f.id}" <c:if test="${f.id == vo.idProduto}">selected</c:if> >
+                        <option value="${f.id}" <c:if test="${f.id == vo.idFornecedor}">selected</c:if> >
                                 ${f.nome}
                         </option>
                     </c:forEach>
@@ -85,7 +85,7 @@
         <div class="form-row">
             <div class="form-group col-md-12">
                 <label for="id" class="label-primary">OBSERVAÇÃO</label>
-                <textarea class="form-control" id="observacao" name="observacao" rows="3" maxlength="60">${vo.observacao}</textarea>
+                <textarea class="form-control" id="observacao" name="observacao" rows="5" maxlength="1000">${vo.observacao}</textarea>
             </div>
         </div>
         <div class="col-xs-12">
