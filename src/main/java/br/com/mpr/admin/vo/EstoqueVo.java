@@ -19,9 +19,11 @@ public class EstoqueVo implements Serializable {
     private Double precoCompra;
     private Boolean invalido;
     private String observacao;
+    private Integer quantidadeAtual;
     private Integer quantidade;
     private List<ProdutoVo> produtos;
     private List<FornecedorVo> fornecedores;
+    private String nomeFornecedor;
 
     public Long getId() {
         return id;
@@ -87,12 +89,12 @@ public class EstoqueVo implements Serializable {
         this.observacao = observacao;
     }
 
-    public Integer getQuantidade() {
-        return quantidade;
+    public Integer getQuantidadeAtual() {
+        return quantidadeAtual;
     }
 
-    public void setQuantidade(Integer quantidade) {
-        this.quantidade = quantidade;
+    public void setQuantidadeAtual(Integer quantidadeAtual) {
+        this.quantidadeAtual = quantidadeAtual;
     }
 
     public ProdutoVo getProduto() {
@@ -125,6 +127,22 @@ public class EstoqueVo implements Serializable {
 
     public void setFornecedores(List<FornecedorVo> fornecedores) {
         this.fornecedores = fornecedores;
+    }
+
+    public String getNomeFornecedor() {
+        return nomeFornecedor;
+    }
+
+    public void setNomeFornecedor(String nomeFornecedor) {
+        this.nomeFornecedor = nomeFornecedor;
+    }
+
+    public Integer getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(Integer quantidade) {
+        this.quantidade = quantidade;
     }
 }
 

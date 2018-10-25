@@ -1,0 +1,14 @@
+.quantidadeOk{
+  font-size : 18px;
+  color: green;
+}
+
+.quantidadeWarning{
+   font-size : 25px;
+   color: yellow;
+}
+
+.quantidadeZero{
+   font-size : 25px;
+   color: red;
+}

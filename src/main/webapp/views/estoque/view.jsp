@@ -6,14 +6,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-  <wjaa:header title="Fornecedor"/>
+  <wjaa:header title="Lote Estoque"/>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/gijgo/1.9.10/combined/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <wjaa:menu/>
 <c:set var="destiny" value="EstoqueEntity"/>
 <div class="content">
-    <h4 class="text-center">CADASTRO DE ESTOQUE </h4>
+    <h4 class="text-center">CADASTRO DE LOTE DO ESTOQUE </h4>
     <hr/>
     <wjaa:feedback/>
     <form action="/admin/${destiny}/save" method="POST">
@@ -37,11 +37,16 @@
         <div class="form-row">
 
             <div class="form-group col-md-2">
-                <label for="dataCompra" class="label-primary">QUANTIDADE</label>
-                <input type="text" class="form-control" name="quantidade" id="quantidade">
+                <label for="quantidade" class="label-primary">QUANTIDADE</label>
+                <input type="text" class="form-control" name="quantidade" id="quantidade" value="${vo.quantidade}">
             </div>
 
-            <div class="form-group col-md-5">
+            <div class="form-group col-md-2">
+                <label for="" class="label-primary">QUANTIDADE ATUAL</label>
+                <input type="text" class="form-control" readOnly="readOnly" value="${vo.quantidadeAtual}">
+            </div>
+
+            <div class="form-group col-md-4">
                 <label for="idProduto">PRODUTO</label>
                 <select id="idProduto" name="idProduto" class="form-control">
                     <option value="">--Selecione--</option>
@@ -52,7 +57,7 @@
                     </c:forEach>
                 </select>
             </div>
-            <div class="form-group col-md-5">
+            <div class="form-group col-md-4">
                 <label for="idFornecedor">FORNECEDOR</label>
                 <select id="idFornecedor" name="idFornecedor" class="form-control">
                     <option value="">--Selecione--</option>
@@ -75,13 +80,6 @@
                            placeholder="0,00" value="<fmt:formatNumber value="${vo.precoCompra}" pattern="#,##0.00"/>" maxlength="9"/>
                 </div>
 
-            </div>
-            <div class="form-group col-md-3">
-                <label >&nbsp;</label>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="invalido" name="invalido" <c:if test="${vo.invalido}">checked</c:if>>
-                    <label class="custom-control-label" for="invalido">Produto inválido</label>
-                </div>
             </div>
         </div>
         <div class="form-row">

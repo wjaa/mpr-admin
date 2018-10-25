@@ -38,6 +38,7 @@ public class AdminController extends BaseController {
         mapEntity.put("ProdutoEntity.view","produto/view");
         mapEntity.put("EstoqueEntity.list","estoque/list");
         mapEntity.put("EstoqueEntity.view","estoque/view");
+        mapEntity.put("EstoqueEntity.byIdProduto","estoque/listLote");
         mapEntity.put("CupomEntity.list","cupom/list");
         mapEntity.put("CupomEntity.view","cupom/view");
         mapEntity.put("TabelaPrecoEntity.list","tabelaPreco/list");
@@ -58,6 +59,20 @@ public class AdminController extends BaseController {
         }
         return mav;
     }
+
+
+    @GetMapping("/EstoqueEntity/byIdProduto/{idProduto}")
+    public ModelAndView listByIdProduto(@PathVariable Long idProduto){
+        ModelAndView mav = new ModelAndView(mapEntity.get("EstoqueEntity.byIdProduto"));
+        try {
+            mav.addObject("list",adminService.listEstoqueByIdProduto(idProduto));
+        } catch (RestException e) {
+            mav.addObject(ERROR_MESSAGE,e.getErrorMessageVo());
+        }
+        return mav;
+    }
+
+
 
     @GetMapping("/{entity}/{id}")
     public ModelAndView getEntity(@PathVariable String entity, @PathVariable Long id,

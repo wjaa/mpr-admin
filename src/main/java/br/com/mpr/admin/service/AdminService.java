@@ -134,10 +134,10 @@ public class AdminService {
                         CupomVo[].class,properties.getWsApi(), "api/v1/admin/" + CUPOM_ENTITY + "/all"));
     }
 
-    public List<EstoqueVo> listAllEstoque() throws RestException {
+    public List<ProdutoEstoqueVo> listAllEstoque() throws RestException {
         return Arrays.asList(
                 RestUtils.getJsonWithParamPath(
-                        EstoqueVo[].class,properties.getWsApi(), "api/v1/admin/" + ESTOQUE_ENTITY + "/all"));
+                        ProdutoEstoqueVo[].class,properties.getWsApi(), "api/v1/admin/" + ESTOQUE_ENTITY + "/all"));
     }
 
     public List<TabelaPrecoVo> listAllTabelaPreco() throws RestException {
@@ -219,4 +219,10 @@ public class AdminService {
                 ObjectUtils.toJson(tipoProdutoVo));
     }
 
+    public List<EstoqueVo> listEstoqueByIdProduto(Long idProduto) throws RestException  {
+        return Arrays.asList(
+                RestUtils.getJsonWithParamPath(
+                        EstoqueVo[].class,properties.getWsApi(), "api/v1/admin/" +
+                                ESTOQUE_ENTITY + "/byIdProduto/" + idProduto));
+    }
 }

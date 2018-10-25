@@ -7,45 +7,62 @@
 <html>
 <header>
     <wjaa:header/>
+    <link rel="stylesheet" href="/static/css/estoque/list.css?v=1" />
 </header>
 <body>
 <wjaa:menu/>
     <c:set var="destiny" value="EstoqueEntity"/>
     <div class="content">
-        <h4 class="text-center"> LISTA DE ESTOQUE </h4>
+        <h4 class="text-center"> PRODUTOS EM ESTOQUE </h4>
         <hr/>
         <wjaa:feedback/>
         <div class="text-center btn-novo">
-          <a href="/admin/${destiny}/0" class="btn btn-primary" >ADICIONAR ESTOQUE</a>
+          <a href="/admin/${destiny}/0" class="btn btn-primary" >CRIAR UM NOVO LOTE</a>
         </div>
         <table class="table">
           <thead class="thead-dark">
             <tr>
-              <th scope="col">ID</th>
-              <th scope="col">PRODUTO</th>
-              <th scope="col">FORNECEDOR</th>
-              <th scope="col">DATA COMPRA</th>
-              <th scope="col">DATA ATUALIZAÇÃO</th>
-              <th scope="col">PREÇO COMPRA (UN)</th>
-              <th scope="col">AÇÃO</th>
+              <th scope="col">LOTES</th>
+              <th scope="col">NOME PRODUTO</th>
+              <th scope="col">TIPO PRODUTO</th>
+              <th scope="col">REFERENCIA</th>
+              <th scope="col">QUANTIDADE</th>
             </tr>
           </thead>
           <tbody>
             <c:forEach var="e" items="${list}">
             <tr>
-              <td scope="row"><a href="/admin/${destiny}/${e.id}?readOnly=true" >${e.id}</a></td>
-              <td><a href="/admin/${destiny}/${e.id}?readOnly=true">${e.produto.descricao}</a></td>
-              <td>${e.fornecedor.nome}</td>
-              <td><fmt:formatDate value="${e.dataCompra}" pattern="dd/MM/yyyy"></fmt:formatDate></td>
-              <td><fmt:formatDate value="${e.dataAtualizacao}" pattern="dd/MM/yyyy"></fmt:formatDate></td>
-              <td><fmt:formatNumber value="${e.precoCompra}" pattern="#,##0.00" /></td>
-              <td align="center"><a href="/admin/${destiny}/${e.id}" class="btn btn-success"><i class="fas fa-edit"></i></a></td>
+              <td scope="row">
+                <a id="expand${e.idProduto}" href="#" onclick="listLote(${e.idProduto},this);"><i class="fas fa-plus-circle"></i></a>
+                <a id="redunce${e.idProduto}" href="#" onclick="hideLote(${e.idProduto},this);" style="color:red; display:none;"><i class="fas fa-minus-circle"></i></a>
+              </td>
+              <td scope="row">${e.nomeProduto}</td>
+              <td scope="row">${e.tipoProduto}</td>
+              <td scope="row">${e.referencia}</td>
+              <c:set var="cssStyle" value="quantidadeOk"/>
+              <c:if test="${e.quantidade <= e.quantidadeMinima}">
+                 <c:set var="cssStyle" value="quantidadeWarning"/>
+              </c:if>
+              <c:if test="${e.quantidade == 0}">
+                 <c:set var="cssStyle" value="quantidadeZero"/>
+              </c:if>
+              <td scope="row" class="${cssStyle}">${e.quantidade}</td>
+            </tr>
+            <tr id="tr${e.idProduto}" style="display:none;">
+                <td>&nbsp;</td>
+                <td colspan="4">
+                    <div id="card${e.idProduto}" class="card-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    </div>
+
+                </td>
             </tr>
             </c:forEach>
           </tbody>
         </table>
     </div>
-<wjaa:footer/>
+    <wjaa:footer/>
+    <script src="/static/js/estoque/list.js?v=1.1"></script>
 </body>
 
 </html>
