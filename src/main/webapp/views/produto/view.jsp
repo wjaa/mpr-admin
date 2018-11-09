@@ -21,7 +21,7 @@
                 <label for="id" class="label-primary">#ID</label>
                 <input type="number" class="form-control" name="id" id="id" readonly="readonly" value="${vo.id}" >
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
                 <label for="descricao">TIPO DE PRODUTO</label>
                 <select name="idTipoProduto" class="form-control">
                     <option value="">--Selecione--</option>
@@ -35,6 +35,13 @@
             <div class="form-group col-md-3">
                 <label for="referencia" class="label-primary">Referência</label>
                 <input type="text" class="form-control" name="referencia" id="referencia" value="${vo.referencia}" maxlength="50" >
+            </div>
+            <div class="form-group col-md-2">
+                <label >&nbsp;</label>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="ativo" name="ativo" <c:if test="${vo.ativo}">checked</c:if>>
+                    <label class="custom-control-label" for="ativo">Produto ativo?</label>
+                </div>
             </div>
         </div>
 
@@ -54,6 +61,13 @@
                 <input type="text" class="form-control money" name="preco" id="preco"
                         <c:if test="${vo.id > 0}"> readOnly="readOnly" </c:if>
                        placeholder="0,00" value="<fmt:formatNumber value="${vo.preco}" pattern="#,##0.00" />" maxlength="9"/>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label for="id" class="label-primary">DESCRIÇÃO DETALHADA</label>
+                <textarea class="form-control" id="descricaoDetalhada" name="descricaoDetalhada" rows="5" maxlength="1000">${vo.descricaoDetalhada}</textarea>
             </div>
         </div>
 
@@ -83,46 +97,81 @@
         </div>
 
         <div class="form-row">
-            <div class="form-group col col-md-4">
-                <div class="col-xs-12 form-group alert alert-info"  >
-                    <label  class="col-lg-12 control-label font12">Imagem de destaque (imagem apresentada na escolha de um porta retrato no app).</label>
-                    <div class="col-xs-12"  >
-                        <div  class="img-thumbnail text-center">
-                            <img src="http://stc.meuportaretrato.com/images/d/${vo.imgDestaque}" class="img-thumbnail" style="height: 200px!important;">
+            <div class="form-group col col-md-6">
+                <div class="alert alert-success">
+                    <div class="col-xs-12 form-group"  >
+                        <label  class="col-lg-12 control-label font12">Imagem de destaque (imagem apresentada na escolha de um porta retrato no app).</label>
+                        <div class="col-xs-12"  >
+                            <div  class="img-thumbnail text-center">
+                                <img src="http://stc.meuportaretrato.com/images/d/${vo.imgDestaque}" class="img-thumbnail" onerror="this.src='/static/img/notfound.png';" style="height: 200px!important;">
+                            </div>
                         </div>
                     </div>
+
+                    <div class="form-group col-md-12">
+                        <div id="divBtnImagem" class="col-xs-6 form-group text-center">
+                             <label for="destaque" class="col-lg-12 control-label ">Escolha uma imagem de destaque <font color="red">*</font> :</label>
+                             <div class="col-xs-12">
+                                <input id="destaque" class="file-loading " type="file" name="destaque" accept="image/*"  >
+                             </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-            <div class="form-group offset-md-2 col-md-4">
-                <div class="col-xs-12 form-group alert alert-info"  >
-                    <label  class="col-lg-12 control-label font12">Imagem de preview (imagem apresentada quando cliente escolhe foto e PR).</label>
-                    <div class="col-xs-12"  >
-                        <div  class="img-thumbnail text-center">
-                            <img src="http://stc.meuportaretrato.com/images/p/${vo.imgPreview}" class="img-thumbnail" style="height: 200px!important;">
+            <div class="form-group col col-md-6">
+                <div class="alert alert-secondary">
+                    <div class="col-xs-12 form-group "  >
+                        <label  class="col-lg-12 control-label font12">Imagem de preview (imagem apresentada quando cliente escolhe foto e PR).</label>
+                        <div class="col-xs-12"  >
+                            <div  class="img-thumbnail text-center">
+                                <img src="http://stc.meuportaretrato.com/images/p/${vo.imgPreview}" onerror="this.src='/static/img/notfound.png';" class="img-thumbnail" style="height: 200px!important;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <div id="divBtnImagem" class="col-xs-6 form-group text-center">
+                             <label for="preview" class="col-lg-12 control-label">Escolha uma imagem de preview <font color="red">*</font> :</label>
+                             <div class="col-xs-12">
+                                <input id="preview" class="file-loading " type="file" name="preview" accept="image/*"  >
+                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-         <div class="form-row">
-            <div class="form-group col-md-6">
-                <div id="divBtnImagem" class="col-xs-4 form-group">
-                     <label for="destaque" class="col-lg-12 control-label ">Escolha uma imagem de destaque <font color="red">*</font> :</label>
-                     <div class="col-xs-12">
-                        <input id="destaque" class="file-loading " type="file" name="destaque" accept="image/*"  >
-                     </div>
+        <div class="form-row">
+            <div class="form-group col col-md-6">
+                <div class="alert alert-primary font12" role="alert">
+                  Imagem de destaque secundária será apresentada quando o cliente abrir o detalhamento de um produto.
                 </div>
+                <table class="table table-bordered">
+                    <thead class="thead-dark ">
+                        <tr>
+                            <th>Ação</th>
+                            <th>Imagem destaque segundaria</th>
+                        </tr>
+                    </thred>
+                    <tbody>
+                        <c:forEach var="i" items="${vo.listImgDestaque}" varStatus="status" >
+                        <tr id="tr${i.id}">
+                            <input type="hidden" name="listImgDestaque[${status.index}].id" value="${i.id}"/>
+                            <input type="hidden" name="listImgDestaque[${status.index}].img" value="${i.img}" />
+                            <td><button class="btn btn-danger" onclick="$('#tr${i.id}').remove();"><i class="fas fa-trash-alt"></i> </button></td>
+                            <td><img src="http://stc.meuportaretrato.com/images/p/${i.img}" onerror="this.src='/static/img/notfound.png';" class="img-thumbnail" style="height: 70px!important;"></td>
+                        </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
 
             </div>
-            <div class="form-group col-md-6">
-                <div id="divBtnImagem" class="col-xs-4 form-group">
-                     <label for="preview" class="col-lg-12 control-label">Escolha uma imagem de preview <font color="red">*</font> :</label>
-                     <div class="col-xs-12">
-                        <input id="preview" class="file-loading " type="file" name="preview" accept="image/*"  >
-                     </div>
-                </div>
+
+            <div class="col-md-6">
+                  <input type="file" class="form-control" id="listDestaque" name="listDestaque"  multiple/>
             </div>
+
+
         </div>
 
 

@@ -9,6 +9,7 @@ public class TipoProdutoVo implements Serializable {
 
     private Long id;
     private String descricao;
+    private Boolean acessorio;
 
     public Long getId() {
         return id;
@@ -24,5 +25,13 @@ public class TipoProdutoVo implements Serializable {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public Boolean getAcessorio() {
+        return acessorio;
+    }
+
+    public void setAcessorio(Boolean acessorio) {
+        this.acessorio = acessorio;
     }
 }

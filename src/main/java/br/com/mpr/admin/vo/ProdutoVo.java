@@ -16,6 +16,7 @@ public class ProdutoVo implements Serializable {
     private Long idTipoProduto;
     private TipoProdutoVo tipo;
     private String descricao;
+    private String descricaoDetalhada;
     private Double peso;
     private String referencia;
     @IgnoreCopy
@@ -37,6 +38,12 @@ public class ProdutoVo implements Serializable {
     private Double preco;
     private String nomeTipoProduto;
     private Integer estoqueMinimo;
+    private Boolean ativo;
+    @JsonIgnore
+    private MultipartFile [] listDestaque;
+
+    private List<ProdutoImagemDestaqueVo> listImgDestaque;
+
 
     public Long getId() {
         return id;
@@ -197,5 +204,38 @@ public class ProdutoVo implements Serializable {
 
     public void setEstoqueMinimo(Integer estoqueMinimo) {
         this.estoqueMinimo = estoqueMinimo;
+    }
+
+    public String getDescricaoDetalhada() {
+        return descricaoDetalhada;
+    }
+
+    public void setDescricaoDetalhada(String descricaoDetalhada) {
+        this.descricaoDetalhada = descricaoDetalhada;
+    }
+
+    public Boolean getAtivo() {
+        return ativo == null ? false : ativo;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
+    }
+
+
+    public List<ProdutoImagemDestaqueVo> getListImgDestaque() {
+        return listImgDestaque;
+    }
+
+    public void setListImgDestaque(List<ProdutoImagemDestaqueVo> listImgDestaque) {
+        this.listImgDestaque = listImgDestaque;
+    }
+
+    public MultipartFile[] getListDestaque() {
+        return listDestaque;
+    }
+
+    public void setListDestaque(MultipartFile[] listDestaque) {
+        this.listDestaque = listDestaque;
     }
 }

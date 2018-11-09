@@ -23,6 +23,13 @@
                 <input type="text" class="form-control" name="descricao" id="descricao"
                        placeholder="Descrição" value="${vo.descricao}" maxlength="80">
             </div>
+            <div class="form-group col-md-3">
+                <label >&nbsp;</label>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="acessorio" name="acessorio" <c:if test="${vo.acessorio}">checked</c:if>>
+                    <label class="custom-control-label" for="acessorio">Acessório?</label>
+                </div>
+            </div>
         </div>
         <div class="col-xs-12">
             <a href="/admin/${destiny}" class="btn btn-success" >Voltar</a>

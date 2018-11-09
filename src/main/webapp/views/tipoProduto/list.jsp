@@ -20,6 +20,7 @@
             <tr>
               <th scope="col">#ID</th>
               <th scope="col">DESCRIÇÃO</th>
+              <th scope="col">ACESSÓRIO</th>
               <th scope="col">AÇÃO</th>
             </tr>
           </thead>
@@ -28,6 +29,7 @@
             <tr>
               <td scope="row"><a href="/admin/${destiny}/${t.id}?readOnly=true" >${t.id}</a></td>
               <td><a href="/admin/${destiny}/${t.id}?readOnly=true">${t.descricao}</a></td>
+              <td><c:if test="${t.acessorio}">SIM</c:if><c:if test="${!t.acessorio}">NÃO</c:if> </td>
               <td align="center"><a href="/admin/${destiny}/${t.id}" class="btn btn-success"><i class="fas fa-edit"></i></a></td>
             </tr>
             </c:forEach>

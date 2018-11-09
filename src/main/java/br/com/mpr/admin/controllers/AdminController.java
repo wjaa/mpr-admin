@@ -7,12 +7,14 @@ import br.com.mpr.admin.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -140,6 +142,19 @@ public class AdminController extends BaseController {
             if (produtoVo.getPreview() != null && !produtoVo.getPreview().isEmpty()){
                 produtoVo.setByteImgPreview(produtoVo.getPreview().getBytes());
                 produtoVo.setNameImgPreview(produtoVo.getPreview().getOriginalFilename());
+            }
+            if (produtoVo.getListDestaque() != null && produtoVo.getListDestaque().length > 0){
+                if (produtoVo.getListImgDestaque() == null) {
+                    produtoVo.setListImgDestaque(new ArrayList<>());
+                }
+                for (MultipartFile file : produtoVo.getListDestaque()){
+                    if (!file.isEmpty()){
+                        ProdutoImagemDestaqueVo destaqueVo = new ProdutoImagemDestaqueVo();
+                        destaqueVo.setByteImgDestaque(file.getBytes());
+                        destaqueVo.setNameImgDestaque(file.getOriginalFilename());
+                        produtoVo.getListImgDestaque().add(destaqueVo);
+                    }
+                }
             }
             produtoVo = adminService.saveProduto(produtoVo);
             redirectAttributes.addFlashAttribute(SUCCESS_MESSAGE,"Produto cadastrado com sucesso!");
