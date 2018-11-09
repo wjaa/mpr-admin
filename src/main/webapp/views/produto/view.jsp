@@ -159,7 +159,7 @@
                             <input type="hidden" name="listImgDestaque[${status.index}].id" value="${i.id}"/>
                             <input type="hidden" name="listImgDestaque[${status.index}].img" value="${i.img}" />
                             <td><button class="btn btn-danger" onclick="$('#tr${i.id}').remove();"><i class="fas fa-trash-alt"></i> </button></td>
-                            <td><img src="http://stc.meuportaretrato.com/images/p/${i.img}" onerror="this.src='/static/img/notfound.png';" class="img-thumbnail" style="height: 70px!important;"></td>
+                            <td><img src="http://stc.meuportaretrato.com/images/d/${i.img}" onerror="this.src='/static/img/notfound.png';" class="img-thumbnail" style="height: 70px!important;"></td>
                         </tr>
                         </c:forEach>
                     </tbody>
