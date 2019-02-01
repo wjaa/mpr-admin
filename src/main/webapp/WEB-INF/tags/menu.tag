@@ -27,6 +27,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="/admin/ClienteEntity">Cliente</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/checkout/escolhaCliente">Checkout Test</a>
+            </li>
         </ul>
      </div>
 </nav>

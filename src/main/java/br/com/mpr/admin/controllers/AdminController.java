@@ -231,5 +231,4 @@ public class AdminController extends BaseController {
                 : String.valueOf(clienteVo.getId()));
         return redirect;
     }
-
 }

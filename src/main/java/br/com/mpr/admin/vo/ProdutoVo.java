@@ -39,6 +39,9 @@ public class ProdutoVo implements Serializable {
     private String nomeTipoProduto;
     private Integer estoqueMinimo;
     private Boolean ativo;
+    private Double comp;
+    private Double larg;
+    private Double alt;
     @JsonIgnore
     private MultipartFile [] listDestaque;
 
@@ -237,5 +240,29 @@ public class ProdutoVo implements Serializable {
 
     public void setListDestaque(MultipartFile[] listDestaque) {
         this.listDestaque = listDestaque;
+    }
+
+    public Double getComp() {
+        return comp;
+    }
+
+    public void setComp(Double comp) {
+        this.comp = comp;
+    }
+
+    public Double getLarg() {
+        return larg;
+    }
+
+    public void setLarg(Double larg) {
+        this.larg = larg;
+    }
+
+    public Double getAlt() {
+        return alt;
+    }
+
+    public void setAlt(Double alt) {
+        this.alt = alt;
     }
 }

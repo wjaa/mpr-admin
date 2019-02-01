@@ -2,6 +2,7 @@ package br.com.mpr.admin.utils;
 
 import br.com.mpr.admin.exception.RestException;
 import br.com.mpr.admin.properties.MprAdminProperties;
+import br.com.mpr.admin.vo.CarrinhoVo;
 import br.com.mpr.admin.vo.ErrorMessageVo;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -13,9 +14,7 @@ import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.CredentialsProvider;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.*;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.BasicCredentialsProvider;
@@ -97,6 +96,48 @@ public class RestUtils {
         }
     }
 
+    public static String get(String url, String ... params) throws
+            RestException {
+
+
+        CloseableHttpResponse response = null;
+        try {
+            HttpGet httpGet = new HttpGet("http://" + url + "/" + RestUtils.createParamsPath(params));
+
+            response = httpclient.execute(httpGet);
+            int statusCode = response.getStatusLine().getStatusCode();
+
+            if ( statusCode > 400 && statusCode < 500){
+                LOG.error("Error code:" + statusCode + " response: " + response);
+                throw new RestException(statusCode,"Servico está fora do ar ou a requisição falhou.");
+            }
+
+            if (statusCode == 400 || (statusCode >= 500 && statusCode < 600)){
+                throw new RestException(ObjectUtils.fromJSON(EntityUtils.toString(response.getEntity()), ErrorMessageVo.class));
+            }
+
+            LOG.debug("m=getJsonWithParamPath Response: " + response.getStatusLine());
+
+            return EntityUtils.toString(response.getEntity());
+
+        }catch (JsonMappingException | JsonParseException e) {
+            throw new RestException(500,"Erro no parser do JSON");
+        } catch (RestException  e) {
+            throw e;
+        }  catch (Exception e) {
+            throw new RestException(new ErrorMessageVo(500, e.getMessage()));
+        } finally {
+            try{
+                if (response != null){
+                    response.close();
+                }
+            }catch(Exception ex){
+                LOG.error("Erro ao fechar a conexao.", ex);
+            }
+
+        }
+    }
+
     public static <T>T postJson(Class<T> clazzReturn, String targetUrl, String uri, String json) throws RestException {
 
 
@@ -105,6 +146,47 @@ public class RestUtils {
             HttpPost httpPost = new HttpPost("http://" + targetUrl + "/" + uri);
             httpPost.setEntity(new StringEntity(json, ContentType.create("application/json", Consts.UTF_8)));
             response = httpclient.execute(httpPost);
+            int statusCode = response.getStatusLine().getStatusCode();
+
+            if ( statusCode > 400 && statusCode < 500){
+                LOG.error("Error code:" + statusCode + " response: " + response);
+                throw new RestException(statusCode,"Servico está fora do ar ou a requisição falhou.");
+            }
+
+            if (statusCode == 400 || (statusCode >= 500 && statusCode < 600)){
+                throw new RestException(ObjectUtils.fromJSON(EntityUtils.toString(response.getEntity()), ErrorMessageVo.class));
+            }
+
+            LOG.debug("m=getJsonWithParamPath Response: " + response.getStatusLine());
+
+            return ObjectUtils.fromJSON(EntityUtils.toString(response.getEntity()), clazzReturn);
+
+        }catch (JsonMappingException | JsonParseException e) {
+            throw new RestException(500,"Erro no parser do JSON");
+        } catch (RestException  e) {
+            throw e;
+        }  catch (Exception e) {
+            throw new RestException(new ErrorMessageVo(500, e.getMessage()));
+        } finally {
+            try{
+                if (response != null){
+                    response.close();
+                }
+            }catch(Exception ex){
+                LOG.error("Erro ao fechar a conexao.", ex);
+            }
+
+        }
+    }
+
+    public static <T>T putJson(Class<T> clazzReturn, String targetUrl, String uri, String json) throws RestException {
+
+
+        CloseableHttpResponse response = null;
+        try {
+            HttpPut httpPut = new HttpPut("http://" + targetUrl + "/" + uri);
+            httpPut.setEntity(new StringEntity(json, ContentType.create("application/json", Consts.UTF_8)));
+            response = httpclient.execute(httpPut);
             int statusCode = response.getStatusLine().getStatusCode();
 
             if ( statusCode > 400 && statusCode < 500){
@@ -161,6 +243,48 @@ public class RestUtils {
             }
             httpPost.setEntity(new UrlEncodedFormEntity(postParameters));
             response = httpclient.execute(httpPost);
+            int statusCode = response.getStatusLine().getStatusCode();
+
+            if ( statusCode > 400 && statusCode < 500){
+                LOG.error("Error code:" + statusCode + " response: " + response);
+                throw new RestException(statusCode,"Servico está fora do ar ou a requisição falhou.");
+            }
+
+            if (statusCode == 400 || (statusCode >= 500 && statusCode < 600)){
+                throw new RestException(ObjectUtils.fromJSON(EntityUtils.toString(response.getEntity()), ErrorMessageVo.class));
+            }
+
+            LOG.debug("m=getJsonWithParamPath Response: " + response.getStatusLine());
+
+            return ObjectUtils.fromJSON(EntityUtils.toString(response.getEntity()), clazzReturn);
+
+        }catch (JsonMappingException | JsonParseException e) {
+            throw new RestException(500,"Erro no parser do JSON");
+        } catch (RestException  e) {
+            throw e;
+        }  catch (Exception e) {
+            throw new RestException(new ErrorMessageVo(500, e.getMessage()));
+        } finally {
+            try{
+                if (response != null){
+                    response.close();
+                }
+            }catch(Exception ex){
+                LOG.error("Erro ao fechar a conexao.", ex);
+            }
+
+        }
+    }
+
+    public static <T>T delete(Class<T> clazzReturn, String targetUrl, String ... params) throws
+            RestException {
+
+
+        CloseableHttpResponse response = null;
+        try {
+            HttpDelete httpDelete = new HttpDelete("http://" + targetUrl + "/" + RestUtils.createParamsPath(params));
+
+            response = httpclient.execute(httpDelete);
             int statusCode = response.getStatusLine().getStatusCode();
 
             if ( statusCode > 400 && statusCode < 500){

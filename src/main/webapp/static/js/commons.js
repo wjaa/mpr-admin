@@ -7,6 +7,7 @@ $(document).ready(function(){
 
     if (readOnly){
         $("input, select, button, textarea").attr("disabled",true);
+        $("button.navbar-toggler").attr("disabled",false);
     }
 
 

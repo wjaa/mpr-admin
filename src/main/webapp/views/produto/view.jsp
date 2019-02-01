@@ -77,6 +77,25 @@
                 <input type="text" class="form-control money" name="peso" id="peso"
                        placeholder="0,00" value="<fmt:formatNumber value="${vo.peso}" pattern="#,##0.00" />" maxlength="9"/>
             </div>
+            <div class="form-group col-md-2">
+                <label for="comp">COMPRIMENTO</label>
+                <input type="text" class="form-control money" name="comp" id="comp"
+                       placeholder="0,00" value="<fmt:formatNumber value="${vo.comp}" pattern="#,##0.00" />" maxlength="9"/>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="larg">LARGURA</label>
+                <input type="text" class="form-control money" name="larg" id="larg"
+                       placeholder="0,00" value="<fmt:formatNumber value="${vo.larg}" pattern="#,##0.00" />" maxlength="9"/>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="alt">ALTURA</label>
+                <input type="text" class="form-control money" name="alt" id="alt"
+                       placeholder="0,00" value="<fmt:formatNumber value="${vo.alt}" pattern="#,##0.00" />" maxlength="9"/>
+            </div>
+        </div>
+
+        <div class="form-row">
+
             <div class="form-group col-md-3">
                 <label for="id" class="label-primary">Nome da cor</label>
                 <input type="text" class="form-control" name="nomeCor" id="nomeCor"
@@ -87,7 +106,7 @@
                 <input type="text" class="form-control" name="hexaCor" id="hexaCor"
                        placeholder="#FFFFFF" value="${vo.hexaCor}" maxlength="7"/>
             </div>
-            <div id="colorSquare" class="form-group col-md-4" style="font-size:60px; color:${vo.hexaCor};">
+            <div id="colorSquare" class="form-group col-md-6" style="font-size:60px; color:${vo.hexaCor};">
                 <label>&nbsp;</label>
                 <i class="fas fa-square"></i>
                 <i class="far fa-square"></i>
