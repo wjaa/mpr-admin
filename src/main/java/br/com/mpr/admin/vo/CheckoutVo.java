@@ -16,10 +16,11 @@ public class CheckoutVo {
     private Double valorDesconto;
     private Integer diasEntrega;
     private Double valorFrete;
-    private Long idCupom;
-    private Long idCarrinho;
+    private CupomVo cupom;
+    private CarrinhoVo carrinho;
     private Long idCliente;
     private String checkoutToken;
+    private Double valorTotal;
 
     public Long getId() {
         return id;
@@ -53,32 +54,12 @@ public class CheckoutVo {
         this.valorProdutos = valorProdutos;
     }
 
-    public Double getValorTotal() {
-        return this.getValorFrete() + this.getValorProdutos() - this.getValorDesconto();
-    }
-
     public Double getValorDesconto() {
         return valorDesconto == null ? 0.0 : valorDesconto;
     }
 
     public void setValorDesconto(Double valorDesconto) {
         this.valorDesconto = valorDesconto;
-    }
-
-    public Long getIdCupom() {
-        return idCupom;
-    }
-
-    public void setIdCupom(Long idCupom) {
-        this.idCupom = idCupom;
-    }
-
-    public Long getIdCarrinho() {
-        return idCarrinho;
-    }
-
-    public void setIdCarrinho(Long idCarrinho) {
-        this.idCarrinho = idCarrinho;
     }
 
     public List<ResultFreteVo> getListResultFrete() {
@@ -127,5 +108,29 @@ public class CheckoutVo {
 
     public void setCheckoutToken(String checkoutToken) {
         this.checkoutToken = checkoutToken;
+    }
+
+    public CupomVo getCupom() {
+        return cupom;
+    }
+
+    public void setCupom(CupomVo cupom) {
+        this.cupom = cupom;
+    }
+
+    public CarrinhoVo getCarrinho() {
+        return carrinho;
+    }
+
+    public void setCarrinho(CarrinhoVo carrinho) {
+        this.carrinho = carrinho;
+    }
+
+    public void setValorTotal(Double valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+
+    public Double getValorTotal() {
+        return valorTotal == null ? 0.0 : valorTotal;
     }
 }

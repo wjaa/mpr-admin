@@ -4,9 +4,7 @@ import br.com.mpr.admin.exception.RestException;
 import br.com.mpr.admin.properties.MprAdminProperties;
 import br.com.mpr.admin.utils.ObjectUtils;
 import br.com.mpr.admin.utils.RestUtils;
-import br.com.mpr.admin.vo.CarrinhoVo;
-import br.com.mpr.admin.vo.CheckoutVo;
-import br.com.mpr.admin.vo.ItemCarrinhoForm;
+import br.com.mpr.admin.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,6 +42,12 @@ public class CheckoutService {
 
     public CarrinhoVo removeItemCarrinho(Long idItem) throws RestException {
         return RestUtils.delete(CarrinhoVo.class,
-                properties.getWsApi(), "api/v1/core/carrinho/removeItem/",idItem.toString());
+                properties.getWsApi(), "api/v1/core/carrinho/removeItem",idItem.toString());
+    }
+
+    public PedidoVo pagamento(CheckoutForm form) throws RestException {
+        return RestUtils.postJson(PedidoVo.class,
+                properties.getWsApi(), "api/v1/core/pagamento",
+                ObjectUtils.toJson(form));
     }
 }

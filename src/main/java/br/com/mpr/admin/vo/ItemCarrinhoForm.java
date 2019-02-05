@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 /**
  * Created by wagner on 31/01/19.
@@ -13,13 +14,8 @@ public class ItemCarrinhoForm {
     private Long idCliente;
     @NotNull(message = "Produto é obrigatório!")
     private Long idProduto;
-    private byte[] foto;
-    @JsonIgnore
-    private MultipartFile fotoCliente;
-    private String nomeArquivo;
-    private Long idCatalogo;
+    private List<AnexoVo> anexos;
     private Long idCarrinho;
-
 
     public Long getIdCliente() {
         return idCliente;
@@ -37,22 +33,6 @@ public class ItemCarrinhoForm {
         this.idProduto = idProduto;
     }
 
-    public byte[] getFoto() {
-        return foto;
-    }
-
-    public void setFoto(byte[] foto) {
-        this.foto = foto;
-    }
-
-    public Long getIdCatalogo() {
-        return idCatalogo;
-    }
-
-    public void setIdCatalogo(Long idCatalogo) {
-        this.idCatalogo = idCatalogo;
-    }
-
     public Long getIdCarrinho() {
         return idCarrinho;
     }
@@ -61,19 +41,11 @@ public class ItemCarrinhoForm {
         this.idCarrinho = idCarrinho;
     }
 
-    public String getNomeArquivo() {
-        return nomeArquivo;
+    public List<AnexoVo> getAnexos() {
+        return anexos;
     }
 
-    public void setNomeArquivo(String nomeArquivo) {
-        this.nomeArquivo = nomeArquivo;
-    }
-
-    public MultipartFile getFotoCliente() {
-        return fotoCliente;
-    }
-
-    public void setFotoCliente(MultipartFile fotoCliente) {
-        this.fotoCliente = fotoCliente;
+    public void setAnexos(List<AnexoVo> anexos) {
+        this.anexos = anexos;
     }
 }

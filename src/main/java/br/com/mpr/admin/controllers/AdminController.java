@@ -162,7 +162,8 @@ public class AdminController extends BaseController {
             redirectAttributes.addFlashAttribute(ERROR_MESSAGE,e.getErrorMessageVo());
             redirectAttributes.addFlashAttribute("vo",produtoVo);
         } catch (IOException e) {
-            redirectAttributes.addFlashAttribute(ERROR_MESSAGE,"Erro ao ler uma imagem do produto");
+            redirectAttributes.addFlashAttribute(ERROR_MESSAGE,
+                    new ErrorMessageVo(500,"Erro ao ler uma imagem do produto"));
             redirectAttributes.addFlashAttribute("vo",produtoVo);
         }
         String redirect = "redirect:/admin/ProdutoEntity/" + (produtoVo.getId() == null ? "0"

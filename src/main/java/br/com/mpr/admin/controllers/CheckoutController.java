@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
@@ -74,8 +75,8 @@ public class CheckoutController extends BaseController {
     public String addProduto(@ModelAttribute ItemCarrinhoForm item,
                                  final RedirectAttributes redirectAttributes){
         try {
-            item.setNomeArquivo(item.getFotoCliente().getOriginalFilename());
-            item.setFoto(item.getFotoCliente().getBytes());
+            item.getAnexos().get(0).setNomeArquivo(item.getAnexos().get(0).getFotoCliente().getOriginalFilename());
+            item.getAnexos().get(0).setFoto(item.getAnexos().get(0).getFotoCliente().getBytes());
             checkoutService.addItemCarrinho(item);
 
         }catch(RestException ex){
@@ -88,7 +89,7 @@ public class CheckoutController extends BaseController {
         return redirect;
     }
 
-    @GetMapping("/removeProduto/{idItem}")
+    @GetMapping("/removeProduto/{idItem}/{idCliente}")
     public String removeProduto(@PathVariable Long idItem, @PathVariable Long idCliente,
                              final RedirectAttributes redirectAttributes){
         try {
@@ -112,6 +113,20 @@ public class CheckoutController extends BaseController {
         }catch(RestException ex){
             mav.addObject(ERROR_MESSAGE,ex.getErrorMessageVo());
             mav.setViewName("checkout/carrinho");
+        }
+        return mav;
+    }
+
+    @PostMapping("/pagamento")
+    public ModelAndView pagamento(@ModelAttribute CheckoutForm form){
+
+        ModelAndView mav = new ModelAndView("checkout/pedido");
+        try {
+            PedidoVo pedido = checkoutService.pagamento(form);
+            mav.addObject("pedido",pedido);
+        }catch(RestException ex){
+            mav = finish(form.getIdCarrinho());
+            mav.addObject(ERROR_MESSAGE,ex.getErrorMessageVo());
         }
         return mav;
     }

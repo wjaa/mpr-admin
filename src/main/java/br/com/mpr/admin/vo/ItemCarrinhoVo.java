@@ -1,5 +1,7 @@
 package br.com.mpr.admin.vo;
 
+import java.util.List;
+
 /**
  * Created by wagner on 31/01/19.
  */
@@ -8,8 +10,7 @@ public class ItemCarrinhoVo {
     private Long id;
     private Long idCarrinho;
     private ProdutoVo produto;
-    private String urlFoto;
-    private Long idCatalogo;
+    private List<AnexoVo> anexos;
 
     public Long getId() {
         return id;
@@ -35,20 +36,11 @@ public class ItemCarrinhoVo {
         this.produto = produto;
     }
 
-    public String getUrlFoto() {
-        return urlFoto;
+    public List<AnexoVo> getAnexos() {
+        return anexos;
     }
 
-    public void setUrlFoto(String urlFoto) {
-        this.urlFoto = urlFoto;
+    public void setAnexos(List<AnexoVo> anexos) {
+        this.anexos = anexos;
     }
-
-    public Long getIdCatalogo() {
-        return idCatalogo;
-    }
-
-    public void setIdCatalogo(Long idCatalogo) {
-        this.idCatalogo = idCatalogo;
-    }
-
 }
