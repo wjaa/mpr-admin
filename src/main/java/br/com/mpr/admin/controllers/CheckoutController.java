@@ -131,4 +131,58 @@ public class CheckoutController extends BaseController {
         return mav;
     }
 
+    @GetMapping("/addCupom/{idCarrinho}/{idCheckout}/{cupom}")
+    public ModelAndView addCupom(@PathVariable Long idCarrinho,
+                                 @PathVariable Long idCheckout,
+                                 @PathVariable String cupom){
+        ModelAndView mav = new ModelAndView("checkout/checkout");
+        try {
+            CheckoutVo checkoutVo = checkoutService.addCupom(idCheckout,cupom);
+            mav.addObject("checkout",checkoutVo);
+            String token = checkoutService.getCheckoutToken();
+            mav.addObject("token", token);
+        }catch(RestException ex){
+            mav = finish(idCarrinho);
+            mav.addObject(ERROR_MESSAGE,ex.getErrorMessageVo());
+        }
+
+        return mav;
+    }
+
+    @GetMapping("/alterarEndereco/{idCarrinho}/{idCheckout}/{idEndereco}")
+    public ModelAndView alterarEndereco(@PathVariable Long idCarrinho,
+                                        @PathVariable Long idCheckout,
+                                        @PathVariable Long idEndereco){
+        ModelAndView mav = new ModelAndView("checkout/checkout");
+        try {
+            CheckoutVo checkoutVo = checkoutService.alterarEndereco(idCheckout,idEndereco);
+            mav.addObject("checkout",checkoutVo);
+            String token = checkoutService.getCheckoutToken();
+            mav.addObject("token", token);
+        }catch(RestException ex){
+            mav = finish(idCarrinho);
+            mav.addObject(ERROR_MESSAGE,ex.getErrorMessageVo());
+        }
+
+        return mav;
+    }
+
+    @GetMapping("/alterarFrete/{idCarrinho}/{idCheckout}/{tipoFrete}")
+    public ModelAndView alterarFrete(@PathVariable Long idCarrinho,
+                                        @PathVariable Long idCheckout,
+                                        @PathVariable String tipoFrete){
+        ModelAndView mav = new ModelAndView("checkout/checkout");
+        try {
+            CheckoutVo checkoutVo = checkoutService.alterarFrete(idCheckout,tipoFrete);
+            mav.addObject("checkout",checkoutVo);
+            String token = checkoutService.getCheckoutToken();
+            mav.addObject("token", token);
+        }catch(RestException ex){
+            mav = finish(idCarrinho);
+            mav.addObject(ERROR_MESSAGE,ex.getErrorMessageVo());
+        }
+
+        return mav;
+    }
+
 }

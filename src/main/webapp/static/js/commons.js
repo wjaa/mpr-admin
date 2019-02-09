@@ -68,17 +68,18 @@ var Utils = function() {
 		   $(campo).val($(campo).val().replace(/[^0-9]/g, ''));
 	   },
 	   showAlert:function(msg){
-		   BootstrapDialog.show({
-	            title: 'Alerta!',
-	            message: msg,
-	            cssClass: 'alert-dialog',
-	            buttons: [{
-	                label: 'Ok',
-	                action: function(dialogItself){
-	                    dialogItself.close();
-	                }
-	            }]
-	        });
+	       bootbox.alert({
+             title: "Alerta!",
+             size: "small",
+             message: msg,
+           });
+           var h4 = $(".modal-header h4");
+           var button = $(".modal-body button");
+           $(".modal-header").html(h4).append(button);
+           $(".modal-body").addClass("alert-danger");
+           $(".modal-footer button").removeClass("btn-primary").addClass("btn-danger");
+           h4.css("color","#dc3545");
+
 	   },
 	   confirmDlg : function(msg, callback){
 		   bootbox.confirm(msg, callback);

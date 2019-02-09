@@ -18,7 +18,7 @@ public class CheckoutVo {
     private Double valorFrete;
     private CupomVo cupom;
     private CarrinhoVo carrinho;
-    private Long idCliente;
+    private ClienteVo cliente;
     private String checkoutToken;
     private Double valorTotal;
 
@@ -70,12 +70,12 @@ public class CheckoutVo {
         this.listResultFrete = listResultFrete;
     }
 
-    public Long getIdCliente() {
-        return idCliente;
+    public ClienteVo getCliente() {
+        return cliente;
     }
 
-    public void setIdCliente(Long idCliente) {
-        this.idCliente = idCliente;
+    public void setCliente(ClienteVo cliente) {
+        this.cliente = cliente;
     }
 
     public ResultFreteVo getFreteSelecionado() {

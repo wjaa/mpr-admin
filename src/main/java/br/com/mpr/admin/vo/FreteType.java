@@ -5,8 +5,17 @@ package br.com.mpr.admin.vo;
  */
 public enum FreteType {
 
-    ECONOMICO,
-    RAPIDO,
+    ECONOMICO("Padrão"),
+    RAPIDO("Express"),
 
     ;
+    private String descricao;
+
+    FreteType(String descricao){
+        this.descricao = descricao;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
 }

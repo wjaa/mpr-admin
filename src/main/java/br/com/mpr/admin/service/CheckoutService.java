@@ -50,4 +50,22 @@ public class CheckoutService {
                 properties.getWsApi(), "api/v1/core/pagamento",
                 ObjectUtils.toJson(form));
     }
+
+    public CheckoutVo addCupom(Long idCheckout, String cupom) throws RestException {
+        return RestUtils.post(CheckoutVo.class,
+                properties.getWsApi(), "api/v1/core/checkout/addCupom",
+                idCheckout.toString(), cupom);
+    }
+
+    public CheckoutVo alterarEndereco(Long idCheckout, Long idEndereco) throws RestException {
+        return RestUtils.post(CheckoutVo.class,
+                properties.getWsApi(), "api/v1/core/checkout/alterarEndereco",
+                idCheckout.toString(), idEndereco.toString());
+    }
+
+    public CheckoutVo alterarFrete(Long idCheckout, String tipoFrete) throws RestException {
+        return RestUtils.post(CheckoutVo.class,
+                properties.getWsApi(), "api/v1/core/checkout/alterarFrete",
+                idCheckout.toString(), tipoFrete);
+    }
 }

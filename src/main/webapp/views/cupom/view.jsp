@@ -42,18 +42,28 @@
             </div>
             <div class="form-group col-md-4">
                 <label for="dataInicio" class="label-primary">DATA DE INICIO</label>
-                <input type="text" class="form-control" name="dataInicio" id="dataInicio"
-                       placeholder="DD/MM/YYYY" value="<fmt:formatDate value="${vo.dataInicio}" pattern="dd/MM/yyyy"/> ">
+                <div class='input-group' id='pickerDataInicio'>
+                    <input type="text" class="form-control date" name="dataInicio" id="dataInicio"
+                           placeholder="DD/MM/YYYY" value="<fmt:formatDate value="${vo.dataInicio}" pattern="dd/MM/yyyy"/> ">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
             </div>
             <div class="form-group col-md-4">
                 <label for="dataFim" class="label-primary">DATA DE FIM</label>
-                <input type="text" class="form-control" name="dataFim" id="dataFim"
-                       placeholder="DD/MM/YYYY" value="<fmt:formatDate value="${vo.dataFim}" pattern="dd/MM/yyyy"/> ">
+                <div class='input-group' id='pickerDataFim'>
+                    <input type="text" class="form-control date" name="dataFim" id="dataFim"
+                           placeholder="DD/MM/YYYY" value="<fmt:formatDate value="${vo.dataFim}" pattern="dd/MM/yyyy"/> ">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
             </div>
 
         </div>
         <div class="form-row">
-            <div class="input-group col-md-2">
+            <div class="input-group col-md-3">
                 <label for="id" class="label-primary">PORCENTAGEM</label>
                 <div class="input-group mb-3">
                     <input type="text" class="form-control money" name="porcentagem" id="porcentagem"
@@ -61,6 +71,13 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">%</span>
                     </div>
+                </div>
+            </div>
+            <div class="input-group col-md-3">
+                <label for="id" class="label-primary">QUANTIDADE</label>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="quantidade" id="quantidade"
+                    placeholder="99999" value="${vo.quantidade}" maxlength="5"/>
                 </div>
             </div>
         </div>
@@ -76,7 +93,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gijgo/1.9.10/combined/js/gijgo.min.js" type="text/javascript"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gijgo/1.9.10/combined/js/messages/messages.pt-br.min.js" type="text/javascript"></script>
 <script>
-    $('#dataCompra').datepicker({
+    $('#dataFim').datepicker({
+        uiLibrary: 'bootstrap4',
+        locale: "pt-br",
+        format: 'dd/mm/yyyy'
+    });
+    $('#dataInicio').datepicker({
         uiLibrary: 'bootstrap4',
         locale: "pt-br",
         format: 'dd/mm/yyyy'

@@ -4,6 +4,7 @@ import br.com.mpr.admin.helper.JacksonDateDeserializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class ClienteVo implements Serializable {
     private String nome;
     private String email;
     private String cpf;
-    private List<EnderecoVo> enderecos;
+    private List<EnderecoVo> enderecos = new ArrayList<>();
     private String celular;
     @JsonDeserialize(using = JacksonDateDeserializer.class)
     private Date aniversario;

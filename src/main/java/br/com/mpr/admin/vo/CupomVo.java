@@ -15,6 +15,7 @@ public class CupomVo implements Serializable {
     private Date dataFim;
     private Boolean promocao;
     private Double porcentagem;
+    private Integer quantidade;
 
 
     public Long getId() {
@@ -77,5 +78,13 @@ public class CupomVo implements Serializable {
 
     public void setPorcentagem(Double porcentagem) {
         this.porcentagem = porcentagem;
+    }
+
+    public Integer getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(Integer quantidade) {
+        this.quantidade = quantidade;
     }
 }

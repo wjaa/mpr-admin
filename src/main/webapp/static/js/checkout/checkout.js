@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
     console.log("init");
 
     //utilizado para validar o CVV, data de validacao do cartao de credito.
@@ -59,7 +60,47 @@ $(document).ready(function(){
          complete: function(response) {
          }
         });
-    })
+    });
+
+
+    $("#btnCupom").click(function(){
+       Utils.waiting("Aguarde adicionando cupom...");
+       var idCheckout = $(this).attr("id-checkout");
+       var idCarrinho = $(this).attr("id-carrinho");
+       var cupom = $("#cupom").val();
+       window.location.href = "/admin/checkout/addCupom/" + idCarrinho + "/" + idCheckout + "/" + cupom;
+
+    });
+
+    $("#btnChangeEnd").click(function(){
+         var idCarrinho = $("#idCarrinho").val();
+         var idCheckout = $("#idCheckout").val();
+         var idEndAtual = $(this).attr("endereco-atual");
+         var idEndereco = $("input[name='endereco']:checked"). val();
+         if (idEndAtual == idEndereco ){
+            Utils.showAlert("Você já está utilizando esse endereço.");
+            return;
+         }
+
+        Utils.waiting("Aguarde alterando endereço...");
+        window.location.href = "/admin/checkout/alterarEndereco/" +idCarrinho + "/" + idCheckout + "/" + idEndereco;
+
+    });
+
+    $("#btnChangeFrete").click(function(){
+         var idCarrinho = $("#idCarrinho").val();
+         var idCheckout = $("#idCheckout").val();
+         var tipoFreteAtual = $(this).attr("frete-atual");
+         var tipoFrete = $("input[name='tipoFrete']:checked"). val();
+         if (tipoFreteAtual == tipoFrete ){
+            Utils.showAlert("Você já está utilizando esse frete.");
+            return;
+         }
+
+        Utils.waiting("Aguarde alterando frete...");
+        window.location.href = "/admin/checkout/alterarFrete/" +idCarrinho + "/" + idCheckout + "/" + tipoFrete;
+
+    });
 
 });
 

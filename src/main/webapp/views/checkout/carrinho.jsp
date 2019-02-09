@@ -94,7 +94,7 @@
 
     </div>
     <wjaa:footer readOnly="${readOnly}"/>
-    <script src="/static/js/checkout/carrinho.js?v=2"></script>
+    <script src="/static/js/checkout/carrinho.js?v=3"></script>
 </body>
 
 </html>

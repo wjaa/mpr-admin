@@ -1,5 +1,4 @@
 $(document).ready(function(){
-    //Utils.showAlert("Teste Errrooo...");
     $(".btn-remover").click(function(){
        Utils.waiting("Aguarde removendo produto...");
        var idItem = $(this).attr("id-item");
