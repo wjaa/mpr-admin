@@ -214,7 +214,7 @@
 
             <hr class="col-md-12">
             <div class="col-md-12">
-                <button class="btn btn-danger" type="button" onclick="window.location.href='/admin/checkout/carrinho/' + ${checkout.carrinho.idCarrinho}">Voltar</button>
+                <button class="btn btn-danger" type="button" onclick="window.location.href='/admin/checkout/carrinho/' + ${checkout.carrinho.idCliente}">Voltar</button>
                 <button id="btnCheckout" class="btn btn-primary" type="button" style="float:right">Pagar</button>
             </div>
         </div>

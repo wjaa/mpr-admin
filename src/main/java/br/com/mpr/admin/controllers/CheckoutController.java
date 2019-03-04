@@ -122,8 +122,8 @@ public class CheckoutController extends BaseController {
 
         ModelAndView mav = new ModelAndView("checkout/pedido");
         try {
-            PedidoVo pedido = checkoutService.pagamento(form);
-            mav.addObject("pedido",pedido);
+            ResultadoPagamentoVo resultadoPagamento = checkoutService.pagamento(form);
+            mav.addObject("resultadoPagamento",resultadoPagamento);
         }catch(RestException ex){
             mav = finish(form.getIdCarrinho());
             mav.addObject(ERROR_MESSAGE,ex.getErrorMessageVo());

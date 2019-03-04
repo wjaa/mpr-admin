@@ -21,18 +21,24 @@
                    <tr>
                      <th scope="col">#</th>
                      <th scope="col">Código do pedido</th>
-                     <th scope="col">Código da transação</th>
                      <th scope="col">Data</th>
+                     <th scope="col">Tipo Pagamento</th>
+                     <th scope="col">Status pedido</th>
+                     <th scope="col">E-mail cliente</th>
+                     <th scope="col">Link do boleto</th>
                    </tr>
                  </thead>
                  <tbody>
                       <tr>
                          <td scope="row">
-                            ${pedido.id}
+                            ${resultadoPagamento.idPedido}
                          </td>
-                         <td>${pedido.codigoPedido}</td>
-                         <td>${pedido.codigoTransacao}</td>
-                         <td><fmt:formatDate value="${pedido.data}" pattern="dd/MM/yyyy"></fmt:formatDate></td>
+                         <td>${resultadoPagamento.codigoPedido}</td>
+                         <td><fmt:formatDate value="${resultadoPagamento.dataPedido}" pattern="dd/MM/yyyy"></fmt:formatDate></td>
+                         <td>${resultadoPagamento.pagamentoType}</td>
+                         <td>${resultadoPagamento.statusPedido}</td>
+                         <td>${resultadoPagamento.email}</td>
+                         <td>${resultadoPagamento.paymentLink}</td>
                       </tr>
                  </tbody>
                </table>

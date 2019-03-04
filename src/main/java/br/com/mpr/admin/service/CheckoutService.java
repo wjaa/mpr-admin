@@ -45,8 +45,8 @@ public class CheckoutService {
                 properties.getWsApi(), "api/v1/core/carrinho/removeItem",idItem.toString());
     }
 
-    public PedidoVo pagamento(CheckoutForm form) throws RestException {
-        return RestUtils.postJson(PedidoVo.class,
+    public ResultadoPagamentoVo pagamento(CheckoutForm form) throws RestException {
+        return RestUtils.postJson(ResultadoPagamentoVo.class,
                 properties.getWsApi(), "api/v1/core/pagamento",
                 ObjectUtils.toJson(form));
     }
