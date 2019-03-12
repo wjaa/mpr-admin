@@ -12,8 +12,30 @@
 <wjaa:menu/>
     <c:set var="destiny" value="ProdutoEntity"/>
     <div class="content">
-        <h4 class="text-center"> LISTA DE PRODUTOS </h4>
-        <hr/>
+        <h4 class="text-center"> BUSCA DE PRODUTOS </h4>
+       <hr/>
+         <form action="/admin/ProdutoEntity/find" method="POST">
+           <div class="form-row">
+             <div class="form-group col-md-3">
+               <label for="exampleInputEmail1">Tipo de Produto</label>
+               <select class="form-control" name="idTipoProduto">
+                   <option value="">-- SELECIONE -- </option>
+                   <c:forEach var="t" items="${listTipoProduto}">
+                       <option value="${t.id}">${t.descricao}</option>
+                   </c:forEach>
+               </select>
+             </div>
+             <div class="form-group col-md-3">
+               <label for="codigo">Descrição Produto</label>
+               <input type="text" class="form-control" id="descricao" name="descricao" placeholder="Descrição Produto">
+             </div>
+             <div class="form-group col-md-1">
+               <label for="btnBuscar">&nbsp;</label>
+               <button id="btnBuscar" type="submit" class="form-control btn btn-primary">Buscar</button>
+             </div>
+           </div>
+          </form>
+       <hr/>
         <wjaa:feedback/>
         <div class="text-center btn-novo">
           <a href="/admin/${destiny}/0" class="btn btn-primary" >NOVO PRODUTO</a>

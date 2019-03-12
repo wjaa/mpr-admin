@@ -225,4 +225,27 @@ public class AdminService {
                         EstoqueVo[].class,properties.getWsApi(), "api/v1/admin/" +
                                 ESTOQUE_ENTITY + "/byIdProduto/" + idProduto));
     }
+
+    public List<SysCodeVo> listAllSysCode() throws RestException {
+        return Arrays.asList(
+                RestUtils.getJsonWithParamPath(
+                        SysCodeVo[].class,properties.getWsApi(), "api/v1/admin/SysCode/list"));
+    }
+
+    public List<PedidoVo> findPedido(PedidoFindForm pedidoFindForm) throws RestException {
+        if ("".equals(pedidoFindForm.getSysCode())){
+            pedidoFindForm.setSysCode(null);
+        }
+        return Arrays.asList(
+                RestUtils.postJson(PedidoVo[].class,
+                properties.getWsApi(), "api/v1/admin/PedidoEntity/find",
+                ObjectUtils.toJson(pedidoFindForm)));
+    }
+
+    public List<ProdutoVo> findProduto(ProdutoFindForm produtoFindForm) throws RestException {
+        return Arrays.asList(
+                RestUtils.postJson(ProdutoVo[].class,
+                        properties.getWsApi(), "api/v1/admin/ProdutoEntity/find",
+                        ObjectUtils.toJson(produtoFindForm)));
+    }
 }

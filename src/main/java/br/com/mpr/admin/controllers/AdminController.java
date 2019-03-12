@@ -47,6 +47,8 @@ public class AdminController extends BaseController {
         mapEntity.put("TabelaPrecoEntity.view","tabelaPreco/view");
         mapEntity.put("ClienteEntity.list","cliente/list");
         mapEntity.put("ClienteEntity.view","cliente/view");
+        mapEntity.put("PedidoEntity.list","pedido/list");
+        mapEntity.put("PedidoEntity.view","pedido/view");
 
     }
 
@@ -231,5 +233,52 @@ public class AdminController extends BaseController {
         String redirect = "redirect:/admin/ClienteEntity/" + (clienteVo.getId() == null ? "0"
                 : String.valueOf(clienteVo.getId()));
         return redirect;
+    }
+
+    @GetMapping("/PedidoEntity/list")
+    public ModelAndView listPedido(){
+        ModelAndView mav = new ModelAndView(mapEntity.get("PedidoEntity.list"));
+        try{
+            mav.addObject("listSysCode", this.adminService.listAllSysCode());
+        }catch(RestException e){
+            mav.addObject(ERROR_MESSAGE,e.getErrorMessageVo());
+        }
+        return mav;
+    }
+
+    @PostMapping("/PedidoEntity/find")
+    public ModelAndView findPedido(@ModelAttribute PedidoFindForm pedidoFindForm){
+        ModelAndView mav = new ModelAndView(mapEntity.get("PedidoEntity.list"));
+        try {
+            mav.addObject("listSysCode", this.adminService.listAllSysCode());
+            mav.addObject("list", adminService.findPedido(pedidoFindForm));
+        }catch (RestException e){
+            mav.addObject(ERROR_MESSAGE,e.getErrorMessageVo());
+        }
+        return mav;
+    }
+
+    @GetMapping("/ProdutoEntity/list")
+    public ModelAndView listProdutos(){
+        ModelAndView mav = new ModelAndView(mapEntity.get("ProdutoEntity.list"));
+        try{
+            mav.addObject("listTipoProduto", this.adminService.listAllTipoProduto());
+            mav.addObject("list", adminService.listAllProduto());
+        }catch(RestException e){
+            mav.addObject(ERROR_MESSAGE,e.getErrorMessageVo());
+        }
+        return mav;
+    }
+
+    @PostMapping("/ProdutoEntity/find")
+    public ModelAndView findProduto(@ModelAttribute ProdutoFindForm produtoFindForm){
+        ModelAndView mav = new ModelAndView(mapEntity.get("ProdutoEntity.list"));
+        try {
+            mav.addObject("listTipoProduto", this.adminService.listAllTipoProduto());
+            mav.addObject("list", adminService.findProduto(produtoFindForm));
+        }catch (RestException e){
+            mav.addObject(ERROR_MESSAGE,e.getErrorMessageVo());
+        }
+        return mav;
     }
 }

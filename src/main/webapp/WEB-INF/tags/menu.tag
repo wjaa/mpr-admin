@@ -13,7 +13,7 @@
                 <a class="nav-link" href="/admin/TipoProdutoEntity">Tipo de Produto</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/admin/ProdutoEntity">Produtos</a>
+                <a class="nav-link" href="/admin/ProdutoEntity/list">Produtos</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/admin/EstoqueEntity">Estoque</a>
@@ -26,6 +26,9 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/admin/ClienteEntity">Cliente</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/PedidoEntity/list">Pedido</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/admin/checkout/escolhaCliente">Checkout Test</a>
