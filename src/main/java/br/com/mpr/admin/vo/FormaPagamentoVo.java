@@ -5,15 +5,15 @@ package br.com.mpr.admin.vo;
  */
 public class FormaPagamentoVo {
 
-    private String tipoPagamento;
+    private String pagamentoType;
     private CartaoCreditoVo cartaoCredito;
 
-    public String getTipoPagamento() {
-        return tipoPagamento;
+    public String getPagamentoType() {
+        return pagamentoType;
     }
 
-    public void setTipoPagamento(String tipoPagamento) {
-        this.tipoPagamento = tipoPagamento;
+    public void setPagamentoType(String pagamentoType) {
+        this.pagamentoType = pagamentoType;
     }
 
     public CartaoCreditoVo getCartaoCredito() {

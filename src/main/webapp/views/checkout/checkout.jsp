@@ -83,11 +83,11 @@
 
                   <div class="d-block my-3">
                       <div class="custom-control custom-radio">
-                          <input id="credit" name="formaPagamento.tipoPagamento" type="radio" class="custom-control-input" value="CARTAO_CREDITO" checked="" required="">
+                          <input id="credit" name="formaPagamento.pagamentoType" type="radio" class="custom-control-input" value="CARTAO_CREDITO" checked="" required="">
                           <label class="custom-control-label" for="credit">Cartão de crédito</label>
                       </div>
                       <div class="custom-control custom-radio">
-                          <input id="boleto" name="formaPagamento.tipoPagamento" type="radio" class="custom-control-input" value="BOLETO" required="">
+                          <input id="boleto" name="formaPagamento.pagamentoType" type="radio" class="custom-control-input" value="BOLETO" required="">
                           <label class="custom-control-label" for="boleto">Boleto</label>
                       </div>
                   </div>
