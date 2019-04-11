@@ -42,6 +42,8 @@ public class ProdutoVo implements Serializable {
     private Double comp;
     private Double larg;
     private Double alt;
+    private Boolean lancamento;
+    private Boolean popular;
     @JsonIgnore
     private MultipartFile [] listDestaque;
 
@@ -264,5 +266,21 @@ public class ProdutoVo implements Serializable {
 
     public void setAlt(Double alt) {
         this.alt = alt;
+    }
+
+    public Boolean getLancamento() {
+        return lancamento;
+    }
+
+    public void setLancamento(Boolean lancamento) {
+        this.lancamento = lancamento;
+    }
+
+    public Boolean getPopular() {
+        return popular;
+    }
+
+    public void setPopular(Boolean popular) {
+        this.popular = popular;
     }
 }

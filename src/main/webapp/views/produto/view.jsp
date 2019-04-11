@@ -92,6 +92,20 @@
                 <input type="text" class="form-control money" name="alt" id="alt"
                        placeholder="0,00" value="<fmt:formatNumber value="${vo.alt}" pattern="#,##0.00" />" maxlength="9"/>
             </div>
+            <div class="form-group col-md-2">
+                <label >&nbsp;</label>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="lancamento" name="lancamento" <c:if test="${vo.lancamento}">checked</c:if>>
+                    <label class="custom-control-label" for="lancamento">Lançamento</label>
+                </div>
+            </div>
+            <div class="form-group col-md-2">
+                <label >&nbsp;</label>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="popular" name="popular" <c:if test="${vo.popular}">checked</c:if>>
+                    <label class="custom-control-label" for="popular">Popular</label>
+                </div>
+            </div>
         </div>
 
         <div class="form-row">
