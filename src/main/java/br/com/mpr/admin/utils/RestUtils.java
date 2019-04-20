@@ -318,6 +318,47 @@ public class RestUtils {
         }
     }
 
+
+    public static void delete(String targetUrl, String ... params) throws
+            RestException {
+
+
+        CloseableHttpResponse response = null;
+        try {
+            HttpDelete httpDelete = new HttpDelete("http://" + targetUrl + "/" + RestUtils.createParamsPath(params));
+
+            response = httpclient.execute(httpDelete);
+            int statusCode = response.getStatusLine().getStatusCode();
+
+            if ( statusCode > 400 && statusCode < 500){
+                LOG.error("Error code:" + statusCode + " response: " + response);
+                throw new RestException(statusCode,"Servico está fora do ar ou a requisição falhou.");
+            }
+
+            if (statusCode == 400 || (statusCode >= 500 && statusCode < 600)){
+                throw new RestException(ObjectUtils.fromJSON(EntityUtils.toString(response.getEntity()), ErrorMessageVo.class));
+            }
+
+            LOG.debug("m=getJsonWithParamPath Response: " + response.getStatusLine());
+
+        }catch (JsonMappingException | JsonParseException e) {
+            throw new RestException(500,"Erro no parser do JSON");
+        } catch (RestException  e) {
+            throw e;
+        }  catch (Exception e) {
+            throw new RestException(new ErrorMessageVo(500, e.getMessage()));
+        } finally {
+            try{
+                if (response != null){
+                    response.close();
+                }
+            }catch(Exception ex){
+                LOG.error("Erro ao fechar a conexao.", ex);
+            }
+
+        }
+    }
+
     public static <T>T post(Class<T> clazzReturn, String targetUrl, String ... params) throws
             RestException {
 

@@ -25,6 +25,8 @@ public class AdminService {
     public static final String TABELA_PRECO_ENTITY = "TabelaPrecoEntity";
     public static final String PRODUTO_ENTITY = "ProdutoEntity";
     public static final String TIPO_PRODUTO_ENTITY = "TipoProdutoEntity";
+    public static final String CATALOGO_GRUPO_ENTITY = "CatalogoGrupoEntity";
+    public static final String CATALOGO_ENTITY = "CatalogoEntity";
 
 
     @Autowired
@@ -41,6 +43,8 @@ public class AdminService {
             case ESTOQUE_ENTITY: return getEstoqueById(id);
             case CUPOM_ENTITY: return getCupom(id);
             case CLIENTE_ENTITY: return getClienteById(id);
+            case CATALOGO_GRUPO_ENTITY: return getCatalogoGrupoById(id);
+            case CATALOGO_ENTITY: return getCatalogoById(id);
             default: throw new RestException(500, "Argumento [entity] inválido!");
 
         }
@@ -90,13 +94,29 @@ public class AdminService {
         if (produtoVo == null){
             produtoVo = new ProdutoVo();
         }
-        produtoVo.setListTipoProdutos((List<TipoProdutoVo>) this.listAllTipoProduto());
+        produtoVo.setListTipoProdutos(this.listAllTipoProduto());
         return produtoVo;
     }
 
     public TipoProdutoVo getTipoProdutoById(Long id) throws RestException {
         return RestUtils.getJsonWithParamPath(
                 TipoProdutoVo.class,properties.getWsApi(), "api/v1/admin/" + TIPO_PRODUTO_ENTITY, id.toString());
+    }
+
+    public CatalogoGrupoVo getCatalogoGrupoById(Long id) throws RestException {
+        return RestUtils.getJsonWithParamPath(
+                CatalogoGrupoVo.class,properties.getWsApi(), "api/v1/admin/" + CATALOGO_GRUPO_ENTITY, id.toString());
+    }
+
+    public CatalogoVo getCatalogoById(Long id) throws RestException {
+        CatalogoVo vo = RestUtils.getJsonWithParamPath(
+                CatalogoVo.class,properties.getWsApi(), "api/v1/admin/" + CATALOGO_ENTITY, id.toString());
+        if (vo == null){
+            vo = new CatalogoVo();
+            vo.setAtivo(true);
+        }
+        vo.setListCatalogoGrupo(this.listAllCatalogoGrupo());
+        return vo;
     }
 
 
@@ -109,6 +129,8 @@ public class AdminService {
             case ESTOQUE_ENTITY: return listAllEstoque();
             case CUPOM_ENTITY: return listaAllCupom();
             case CLIENTE_ENTITY: return listAllCliente();
+            case CATALOGO_GRUPO_ENTITY: return listAllCatalogoGrupo();
+            case CATALOGO_ENTITY: return listAllCatalogo();
             default: throw new RestException(500,"Argumento [entity] inválido!");
 
         }
@@ -158,6 +180,18 @@ public class AdminService {
                         TipoProdutoVo[].class,properties.getWsApi(), "api/v1/admin/" + TIPO_PRODUTO_ENTITY + "/all"));
     }
 
+    public List<CatalogoGrupoVo> listAllCatalogoGrupo() throws RestException {
+        return Arrays.asList(
+                RestUtils.getJsonWithParamPath(
+                        CatalogoGrupoVo[].class,properties.getWsApi(), "api/v1/admin/" + CATALOGO_GRUPO_ENTITY + "/all"));
+    }
+
+    public List<CatalogoVo> listAllCatalogo() throws RestException {
+        return Arrays.asList(
+                RestUtils.getJsonWithParamPath(
+                        CatalogoVo[].class,properties.getWsApi(), "api/v1/admin/" + CATALOGO_ENTITY + "/all"));
+    }
+
 
 
     public Serializable saveEntity(String entity, String jsonEntity) throws RestException {
@@ -170,6 +204,8 @@ public class AdminService {
             case ESTOQUE_ENTITY: return saveEstoque(ObjectUtils.fromJSON(jsonEntity, EstoqueVo.class));
             case CUPOM_ENTITY: return saveCupom(ObjectUtils.fromJSON(jsonEntity, CupomVo.class));
             case CLIENTE_ENTITY: return saveCliente(ObjectUtils.fromJSON(jsonEntity, ClienteVo.class));
+            case CATALOGO_GRUPO_ENTITY: return saveCatalogoGrupo(ObjectUtils.fromJSON(jsonEntity, CatalogoGrupoVo.class));
+            case CATALOGO_ENTITY: return saveCatalogo(ObjectUtils.fromJSON(jsonEntity, CatalogoVo.class));
             default: throw new RestException(500,"Argumento [entity] {" +
                     "inválido!");
 
@@ -219,6 +255,18 @@ public class AdminService {
                 ObjectUtils.toJson(tipoProdutoVo));
     }
 
+    public CatalogoGrupoVo saveCatalogoGrupo(CatalogoGrupoVo catalogoGrupo) throws RestException {
+        return RestUtils.postJson(CatalogoGrupoVo.class,
+                properties.getWsApi(), "api/v1/admin/" + CATALOGO_GRUPO_ENTITY + "/save",
+                ObjectUtils.toJson(catalogoGrupo));
+    }
+
+    public CatalogoVo saveCatalogo(CatalogoVo catalogo) throws RestException {
+        return RestUtils.postJson(CatalogoVo.class,
+                properties.getWsApi(), "api/v1/admin/" + CATALOGO_ENTITY + "/save",
+                ObjectUtils.toJson(catalogo));
+    }
+
     public List<EstoqueVo> listEstoqueByIdProduto(Long idProduto) throws RestException  {
         return Arrays.asList(
                 RestUtils.getJsonWithParamPath(
@@ -247,5 +295,19 @@ public class AdminService {
                 RestUtils.postJson(ProdutoVo[].class,
                         properties.getWsApi(), "api/v1/admin/ProdutoEntity/find",
                         ObjectUtils.toJson(produtoFindForm)));
+    }
+
+
+    public void removeEntityById(String entity, Long id) throws RestException {
+        switch (entity) {
+            case CATALOGO_ENTITY:
+                removeCatalogoById(id);
+                break;
+        }
+
+    }
+
+    private void removeCatalogoById(Long id) throws RestException {
+        RestUtils.delete(properties.getWsApi() , "api/v1/admin" , CATALOGO_ENTITY, id.toString());
     }
 }

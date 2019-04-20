@@ -1,5 +1,7 @@
 package br.com.mpr.admin.vo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -58,5 +60,17 @@ public class ErrorMessageVo implements Serializable {
 
     public void setErrorMessage(String[] errorMessage) {
         this.errorMessage = errorMessage;
+    }
+
+    @JsonIgnore
+    public String getFullError(){
+        StringBuilder errors = new StringBuilder();
+        errors.append(this.errorDetail != null ? this.errorDetail + ": \n" : "Error: \n");
+        if (errorMessage != null){
+            for (String erros : errorMessage){
+                errors.append(erros + "\n") ;
+            }
+        }
+        return errors.toString();
     }
 }

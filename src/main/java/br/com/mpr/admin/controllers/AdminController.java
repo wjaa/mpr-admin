@@ -5,6 +5,8 @@ import br.com.mpr.admin.service.AdminService;
 import br.com.mpr.admin.utils.BeanUtils;
 import br.com.mpr.admin.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -49,6 +51,10 @@ public class AdminController extends BaseController {
         mapEntity.put("ClienteEntity.view","cliente/view");
         mapEntity.put("PedidoEntity.list","pedido/list");
         mapEntity.put("PedidoEntity.view","pedido/view");
+        mapEntity.put("CatalogoGrupoEntity.list","catalogoGrupo/list");
+        mapEntity.put("CatalogoGrupoEntity.view","catalogoGrupo/view");
+        mapEntity.put("CatalogoEntity.list","catalogo/list");
+        mapEntity.put("CatalogoEntity.view","catalogo/view");
 
     }
 
@@ -100,6 +106,21 @@ public class AdminController extends BaseController {
             mav.addObject(ERROR_MESSAGE,e.getErrorMessageVo());
         }
         return mav;
+    }
+
+    @DeleteMapping("/{entity}/{id}")
+    public ResponseEntity<String> removeEntity(@PathVariable String entity, @PathVariable Long id){
+        try {
+
+            adminService.removeEntityById(entity,id);
+            return new ResponseEntity(HttpStatus.OK);
+
+        } catch (RestException e) {
+            return new ResponseEntity(e.getErrorMessageVo().getFullError(),
+                    HttpStatus.valueOf(e.getErrorMessageVo().getErrorCode() == null ?
+                            HttpStatus.INTERNAL_SERVER_ERROR.value() : e.getErrorMessageVo().getErrorCode()));
+        }
+
     }
 
     @PostMapping("/FornecedorEntity/save")
@@ -217,6 +238,44 @@ public class AdminController extends BaseController {
         }
         String redirect = "redirect:/admin/TabelaPrecoEntity/" + (tabelaPreco.getId() == null ? "0"
                 : String.valueOf(tabelaPreco.getId()));
+        return redirect;
+    }
+
+    @PostMapping("/CatalogoGrupoEntity/save")
+    public String saveCatalogoGrupoEntity(@ModelAttribute CatalogoGrupoVo catalogoGrupo,
+                             final RedirectAttributes redirectAttributes){
+        try {
+            catalogoGrupo = adminService.saveCatalogoGrupo(catalogoGrupo);
+            redirectAttributes.addFlashAttribute(SUCCESS_MESSAGE,"Catalogo cadastrado com sucesso!");
+        }catch (RestException e){
+            redirectAttributes.addFlashAttribute(ERROR_MESSAGE,e.getErrorMessageVo());
+            redirectAttributes.addFlashAttribute("vo",catalogoGrupo);
+        }
+        String redirect = "redirect:/admin/CatalogoGrupoEntity/" + (catalogoGrupo.getId() == null ? "0"
+                : String.valueOf(catalogoGrupo.getId()));
+        return redirect;
+    }
+
+    @PostMapping("/CatalogoEntity/save")
+    public String saveImagemExclusiva(@ModelAttribute CatalogoVo catalogo,
+                             final RedirectAttributes redirectAttributes){
+        try {
+            if (catalogo.getFileImg() != null && !catalogo.getFileImg().isEmpty()){
+                catalogo.setByteImg(catalogo.getFileImg().getBytes());
+                catalogo.setNameImg(catalogo.getFileImg().getOriginalFilename());
+            }
+            catalogo = adminService.saveCatalogo(catalogo);
+            redirectAttributes.addFlashAttribute(SUCCESS_MESSAGE,"Imagem exclusiva cadastrada com sucesso!");
+        }catch (RestException e){
+            redirectAttributes.addFlashAttribute(ERROR_MESSAGE,e.getErrorMessageVo());
+            redirectAttributes.addFlashAttribute("vo",catalogo);
+        } catch (IOException e) {
+            redirectAttributes.addFlashAttribute(ERROR_MESSAGE,
+                    new ErrorMessageVo(500,"Erro ao ler a imagem do upload."));
+            redirectAttributes.addFlashAttribute("vo",catalogo);
+        }
+        String redirect = "redirect:/admin/CatalogoEntity/" + (catalogo.getId() == null ? "0"
+                : String.valueOf(catalogo.getId()));
         return redirect;
     }
 
