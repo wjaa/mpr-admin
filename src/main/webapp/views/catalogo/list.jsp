@@ -30,7 +30,7 @@
             <c:forEach var="t" items="${list}">
             <tr>
               <td scope="row"><a href="/admin/${destiny}/${t.id}?readOnly=true" >${t.id}</a></td>
-              <td><img src="http://stc.meuportaretrato.com/images/catalogo/${p.img}" class="img-thumbnail" style="height: 50px!important;"></td>
+              <td><img src="http://stc.meuportaretrato.com/images/catalogo/${t.img}" class="img-thumbnail" style="height: 50px!important;"></td>
               <td><a href="/admin/${destiny}/${t.id}?readOnly=true">${t.descricao}</a></td>
               <td><a href="/admin/${destiny}/${t.id}?readOnly=true">${t.catalogoGrupo.nome}</a></td>
               <td><c:if test="${t.ativo}">SIM</c:if><c:if test="${!t.ativo}">NÃO</c:if> </td>
