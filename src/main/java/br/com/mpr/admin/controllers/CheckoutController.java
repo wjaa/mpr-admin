@@ -57,6 +57,10 @@ public class CheckoutController extends BaseController {
             List<ProdutoVo> produtos = adminService.listAllProduto();
             mav.addObject("produtos", produtos);
             CarrinhoVo carrinhoVo = checkoutService.getCarrinhoByIdCliente(idCliente);
+            List<CatalogoGrupoVo> listCatalogo = adminService.listAllCatalogoGrupo();
+            mav.addObject("listCatalogo",listCatalogo);
+            mav.addObject("imagensExclusivas",checkoutService
+                    .listImagensExclusivas(listCatalogo.get(0).getId()));
             mav.addObject("carrinho",carrinhoVo);
             mav.addObject("idCliente",idCliente);
 

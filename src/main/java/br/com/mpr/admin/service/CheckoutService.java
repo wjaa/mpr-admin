@@ -8,6 +8,9 @@ import br.com.mpr.admin.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  *
  */
@@ -67,5 +70,13 @@ public class CheckoutService {
         return RestUtils.post(CheckoutVo.class,
                 properties.getWsApi(), "api/v1/core/checkout/alterarFrete",
                 idCheckout.toString(), tipoFrete);
+    }
+
+    public List<ImagemExclusivaVo> listImagensExclusivas(Long idCatalogo) throws RestException {
+        return Arrays.asList(RestUtils.getJsonWithParamPath(
+                ImagemExclusivaVo[].class,properties.getWsApi(),
+                "api/v1/core/imagensExclusivas/byCatalogo",
+                idCatalogo.toString()));
+
     }
 }

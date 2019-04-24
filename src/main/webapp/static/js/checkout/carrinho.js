@@ -13,3 +13,10 @@ $(document).ready(function(){
     });
 
 });
+
+function selectImg(idCatalogo, imgUrl){
+    $('#modalImagensExclusivas').modal('hide');
+    $("#imgCatalogo").show();
+    $("#imgCatalogo img").attr("src",imgUrl);
+    $("#idCatalogo").val(idCatalogo);
+}

@@ -48,6 +48,7 @@ public class ProdutoVo implements Serializable {
     private MultipartFile [] listDestaque;
 
     private List<ProdutoImagemDestaqueVo> listImgDestaque;
+    private List<String> imagensDestaque;
 
 
     public Long getId() {
@@ -282,5 +283,13 @@ public class ProdutoVo implements Serializable {
 
     public void setPopular(Boolean popular) {
         this.popular = popular;
+    }
+
+    public List<String> getImagensDestaque() {
+        return imagensDestaque;
+    }
+
+    public void setImagensDestaque(List<String> imagensDestaque) {
+        this.imagensDestaque = imagensDestaque;
     }
 }

@@ -16,7 +16,7 @@
         <hr/>
         <wjaa:feedback/>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-5">
                     <form id="formAddCarrinho" action="/admin/checkout/addProduto" method="POST" enctype="multipart/form-data">
                         <div class="col-md-12">
                             <div class="form-group col-md-12">
@@ -32,18 +32,34 @@
                                     </c:forEach>
                                 </select>
                             </div>
-                            <div class="form-group col-md-12">
-                                <label for="idCliente">FOTO</label>
-                                <input type="file" class="form-control" id="fotoCliente" name="anexos[0].fotoCliente" required/>
+
+                            <div class="form-group col-md-12 text-center">
+                                 <label class="text-center" for="idProduto">FOTO</label>
+                            </div>
+
+                            <div id="imgCatalogo" class="form-row text-center" style="display:none">
+                                <div class="form-group col-md-12 text-center">
+                                    <input type="hidden" id="idCatalogo" name="anexos[0].idCatalogo" value="" />
+                                    <img src="" width="80px" class="rounded float-left text-center ">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalImagensExclusivas">Imagens exclusivas</button>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <input type="file" class="form-control" id="fotoCliente" name="anexos[0].fotoCliente"/>
+                                </div>
                             </div>
 
                         </div>
-                        <div class="col-md-12" >
-                            <button class="btn btn-primary" type="submit" style="float:right">Adicionar Produto </button>
+                        <div class="col-md-12 text-center" >
+                            <button class="btn btn-primary text-center" type="submit" style="float:right">Adicionar Produto </button>
                         </div>
                     </form>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-7">
                     <form id="formCheckout" action="/admin/checkout/finish" method="POST" enctype="multipart/form-data">
                         <input type="hidden" value="${carrinho.idCarrinho}" name="idCarrinho"/>
                         <div class="col-md-12">
@@ -92,9 +108,44 @@
             <button class="btn btn-primary" style="float:right" type="button" onclick="Utils.waiting('Aguarde fazendo checkout...');document.forms[1].submit();" >Checkout</button>
         </div>
 
+
+
+
+        <div id="modalImagensExclusivas" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Escolha sua imagem exclusiva</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group col-md-12">
+                        <label for="idCatalogoGrupo">CATALOGO</label>
+                        <select id="idCatalogoGrupo" name="idCatalogoGrupo" class="form-control" required>
+                            <c:forEach var="c" items="${listCatalogo}">
+                                <option value="${c.id}">${c.nome}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <c:forEach var="i" items="${imagensExclusivas}">
+                            <div class="col-sm-3">
+                                <img src="http://stc.meuportaretrato.com/images/catalogo/${i.urlImg}" width="200px" alt="${i.descricao}"
+                                class="rounded float-left img-thumbnail" style="cursor:pointer" onclick="selectImg(${i.idCatalogo}, 'http://stc.meuportaretrato.com/images/catalogo/${i.urlImg}');">
+                            </div>
+                        </c:forEach>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+
     </div>
     <wjaa:footer readOnly="${readOnly}"/>
-    <script src="/static/js/checkout/carrinho.js?v=3"></script>
+    <script src="/static/js/checkout/carrinho.js?v=4"></script>
 </body>
 
 </html>

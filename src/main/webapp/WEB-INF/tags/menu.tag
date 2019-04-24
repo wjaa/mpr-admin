@@ -40,14 +40,7 @@
                   Operação
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownCadastro">
-                  <a class="dropdown-item" href="/admin/FornecedorEntity">Fornecedores</a>
-                  <a class="dropdown-item" href="/admin/TipoProdutoEntity">Tipo de Produto</a>
-                  <a class="dropdown-item" href="/admin/ProdutoEntity/list">Produtos</a>
-                  <a class="dropdown-item" href="/admin/EstoqueEntity">Estoque</a>
-                  <a class="dropdown-item" href="/admin/TabelaPrecoEntity">Tabela de Preço</a>
-                  <a class="dropdown-item" href="/admin/CupomEntity">Cupom de Desconto</a>
-                  <a class="dropdown-item" href="/admin/CatalogoGrupoEntity">Catalogo</a>
-                  <a class="dropdown-item" href="/admin/CatalogoEntity">Imagens Exclusivas</a>
+                  <a class="dropdown-item" href="/admin/lotes">Gerenciar Lotes</a>
                 </div>
             </li>
         </ul>
