@@ -11,34 +11,42 @@ $(document).ready(function(){
     $("#btnCheckout").click(function(){
 
         Utils.waiting("Aguarde, enviado dados de pagamento...");
-        var param = {
-                cardNumber: $("input#cc-number").val(),
-                cvv: $("input#cc-cvv").val(),
-                expirationMonth: $("input#cc-expiration-month").val(),
-                expirationYear: $("input#cc-expiration-year").val(),
-                brand: brand.name,
-                success: function(response) {
-                    $("#cardToken").val(response.card.token);
-                    if ( response.card.token != null ){
-                        $("#formCheckout").submit();
-                    }else{
-                        Utils.waitingClose();
-                        Utils.showAlert("Token do pagseguro está vazio, tente novamente.");
-                    }
-
-                },
-                error: function(response) {
-                    Utils.waitingClose();
-                    Utils.showAlert("Erro ao tentar resgatar o token: " + response);
-                },
-                complete: function(response) {
-                }
-        }
         console.log("iniciando checkout");
         var senderHash = PagSeguroDirectPayment.getSenderHash();
         console.log(senderHash);
         $("#senderHash").val(senderHash);
-        PagSeguroDirectPayment.createCardToken(param);
+        if ( 'CARTAO_CREDITO' == $("input[name='formaPagamento.pagamentoType']:checked").val() ){
+            var param = {
+                    cardNumber: $("input#cc-number").val(),
+                    cvv: $("input#cc-cvv").val(),
+                    expirationMonth: $("input#cc-expiration-month").val(),
+                    expirationYear: $("input#cc-expiration-year").val(),
+                    brand: brand.name,
+                    success: function(response) {
+                        $("#cardToken").val(response.card.token);
+                        if ( response.card.token != null ){
+                            $("#formCheckout").submit();
+                        }else{
+                            Utils.waitingClose();
+                            Utils.showAlert("Token do pagseguro está vazio, tente novamente.");
+                        }
+
+                    },
+                    error: function(response) {
+                        Utils.waitingClose();
+                        Utils.showAlert("Erro ao tentar resgatar o token: " + response);
+                    },
+                    complete: function(response) {
+                    }
+            }
+
+            PagSeguroDirectPayment.createCardToken(param);
+        }else{
+            //BOLETO
+            $("#formCheckout").submit();
+        }
+
+
 
     });
 
