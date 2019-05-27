@@ -12,6 +12,13 @@ $(document).ready(function(){
         return true;
     });
 
+    $("#btnCalculoFrete").click(function(){
+       Utils.waiting("Aguarde calculando frente...");
+       var cep = $(this).attr("id-item");
+       var idCliente = $(this).attr("id-cliente");
+       window.location.href = "/admin/checkout/removeProduto/" + idItem + "/" + idCliente;
+    });
+
 });
 
 function selectImg(idCatalogo, imgUrl){

@@ -1,7 +1,5 @@
 package br.com.mpr.admin.vo;
 
-import java.util.Date;
-
 /**
  * Created by wagner on 31/01/19.
  */
@@ -10,9 +8,10 @@ public class ResultFreteVo {
     private Boolean selecionado;
     private Integer diasUteis;
     private Double valor;
-    private Date previsaoEntrega;
+    private String previsaoEntrega;
     private String messageError;
     private FreteType freteType;
+    private String obs;
 
     public Boolean getSelecionado() {
         return selecionado;
@@ -38,11 +37,11 @@ public class ResultFreteVo {
         this.valor = valor;
     }
 
-    public Date getPrevisaoEntrega() {
+    public String getPrevisaoEntrega() {
         return previsaoEntrega;
     }
 
-    public void setPrevisaoEntrega(Date previsaoEntrega) {
+    public void setPrevisaoEntrega(String previsaoEntrega) {
         this.previsaoEntrega = previsaoEntrega;
     }
 
@@ -60,5 +59,13 @@ public class ResultFreteVo {
 
     public void setFreteType(FreteType freteType) {
         this.freteType = freteType;
+    }
+
+    public String getObs() {
+        return obs;
+    }
+
+    public void setObs(String obs) {
+        this.obs = obs;
     }
 }

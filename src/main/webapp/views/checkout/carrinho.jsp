@@ -18,6 +18,7 @@
             <div class="row">
                 <div class="col-md-5">
                     <form id="formAddCarrinho" action="/admin/checkout/addProduto" method="POST" enctype="multipart/form-data">
+
                         <div class="col-md-12">
                             <div class="form-group col-md-12">
                                 <label for="idCliente">ID CLIENTE</label>
@@ -95,6 +96,38 @@
                                             </div>
                                         </li>
                                     </c:forEach>
+                                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                            <div class="col-md-8 md-4">
+                                                <h5 class="my-0">Total de itens</h5>
+                                            </div>
+                                            <div>
+                                                <span class="text-muted">${carrinho.totalItens}</span>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                            <div class="col-md-8 md-4">
+                                                <h5 class="my-0">Frete ${carrinho.resultFrete.freteType.descricao}</h5>
+                                            </div>
+                                            <div>
+                                                <span class="text-muted">R$ <fmt:formatNumber value="${carrinho.resultFrete.valor}" pattern="#,##0.00" /></span>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                            <div class="col-md-8 md-4">
+                                                <h5 class="my-0">Valor Itens:</h5>
+                                            </div>
+                                            <div>
+                                                <span class="text-muted">R$ <fmt:formatNumber value="${carrinho.valorItens}" pattern="#,##0.00" /></span>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                            <div class="col-md-8 md-4">
+                                                <h5 class="my-0">Valor Total:</h5>
+                                            </div>
+                                            <div>
+                                                <span class="text-muted">R$ <fmt:formatNumber value="${carrinho.valorTotalCarrinho}" pattern="#,##0.00" /></span>
+                                            </div>
+                                        </li>
 
                               </ul>
                         </div>

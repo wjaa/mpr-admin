@@ -50,6 +50,27 @@ public class CheckoutController extends BaseController {
     }
 
 
+    @GetMapping("/frete/view")
+    public ModelAndView viewFrete(){
+        ModelAndView mav = new ModelAndView("frete/frete");
+        try{
+            List<ProdutoVo> produtos = adminService.listAllProduto();
+            mav.addObject("produtos", produtos);
+        }catch(RestException ex){
+            mav.addObject(ERROR_MESSAGE,ex.getErrorMessageVo());
+        }
+
+        return mav;
+    }
+
+    @GetMapping("/frete/calcular/{idProduto}/{cep}")
+    public @ResponseBody ResultFreteVo[] calcularFrete(@PathVariable Long idProduto,
+                                      @PathVariable String cep) throws RestException {
+        return adminService.calcularFrete(idProduto,cep);
+
+    }
+
+
     @GetMapping("/carrinho/{idCliente}")
     public ModelAndView carrinhoGet(@PathVariable Long idCliente){
         ModelAndView mav = new ModelAndView("checkout/carrinho");

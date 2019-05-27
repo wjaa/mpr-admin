@@ -310,4 +310,11 @@ public class AdminService {
     private void removeCatalogoById(Long id) throws RestException {
         RestUtils.delete(properties.getWsApi() , "api/v1/admin" , CATALOGO_ENTITY, id.toString());
     }
+
+    public ResultFreteVo[] calcularFrete(Long idProduto, String cep) throws RestException {
+        return RestUtils.getJsonWithParamPath(
+                        ResultFreteVo[].class,
+                        properties.getWsApi(),
+                        "api/v1/core/frete/all/" + idProduto + "/" + cep);
+    }
 }

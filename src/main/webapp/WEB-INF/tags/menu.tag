@@ -32,8 +32,15 @@
                   <a class="dropdown-item" href="/admin/PedidoEntity/list">Pedidos</a>
                 </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/admin/checkout/escolhaCliente">Checkout Test</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCheckout" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                   Checkout
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownCliente">
+                  <a class="dropdown-item" href="/admin/checkout/escolhaCliente">TESTE de Checkout</a>
+                  <a class="dropdown-item" href="/admin/checkout/frete/view">Calcular Frete</a>
+                </div>
+
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCadastro" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
