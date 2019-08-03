@@ -73,7 +73,7 @@
 
         <div class="form-row">
             <div class="form-group col-md-2">
-                <label for="peso">PESO</label>
+                <label for="peso">PESO C/ CAIXA</label>
                 <input type="text" class="form-control money" name="peso" id="peso"
                        placeholder="0,00" value="<fmt:formatNumber value="${vo.peso}" pattern="#,##0.00" />" maxlength="9"/>
             </div>

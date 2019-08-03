@@ -2,8 +2,10 @@ package br.com.mpr.admin.controllers;
 
 import br.com.mpr.admin.exception.RestException;
 import br.com.mpr.admin.service.AdminService;
+import br.com.mpr.admin.service.AuthService;
 import br.com.mpr.admin.service.CheckoutService;
 import br.com.mpr.admin.utils.BeanUtils;
+import br.com.mpr.admin.utils.Token;
 import br.com.mpr.admin.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -28,6 +31,7 @@ public class CheckoutController extends BaseController {
 
     public static final String ERROR_MESSAGE = "errorMessage";
     public static final String SUCCESS_MESSAGE = "successMessage";
+    public static final String AUTH = "auth";
     @Autowired
     private CheckoutService checkoutService;
 
@@ -35,18 +39,42 @@ public class CheckoutController extends BaseController {
     private AdminService adminService;
 
 
+    @Autowired
+    private AuthService authService;
 
 
     @GetMapping("/escolhaCliente")
-    public ModelAndView escolhaCliente(){
+    public ModelAndView escolhaCliente(HttpServletRequest request){
         ModelAndView mav = new ModelAndView("checkout/cliente");
-        try {
-            List<ClienteVo> clientes = adminService.listAllCliente();
-            mav.addObject("clientes", clientes);
-        }catch(RestException ex){
-            mav.addObject(ERROR_MESSAGE,ex.getErrorMessageVo());
-        }
+
+        AuthVo auth = (AuthVo) request.getSession().getAttribute("auth");
+        mav.addObject("auth",auth);
+
         return mav;
+    }
+
+    @PostMapping("/login")
+    public ModelAndView login(@ModelAttribute AuthVo auth, HttpServletRequest request){
+        ModelAndView mav = new ModelAndView("checkout/cliente");
+
+        Token token = authService.auth(auth.getUsername(), auth.getPassword());
+
+        if (token == null){
+            mav.addObject(ERROR_MESSAGE,"Usuário ou senha inválido");
+            return mav;
+        }else{
+
+            request.getSession().setAttribute("auth",new AuthVo(auth.getUsername(), token));
+            return carrinhoGet(request);
+        }
+
+    }
+
+    @GetMapping("/logoff")
+    public ModelAndView logoff(HttpServletRequest request){
+        request.getSession().removeAttribute(AUTH);
+        return escolhaCliente(request);
+
     }
 
 
@@ -71,19 +99,23 @@ public class CheckoutController extends BaseController {
     }
 
 
-    @GetMapping("/carrinho/{idCliente}")
-    public ModelAndView carrinhoGet(@PathVariable Long idCliente){
+    @GetMapping("/carrinho")
+    public ModelAndView carrinhoGet(HttpServletRequest request){
         ModelAndView mav = new ModelAndView("checkout/carrinho");
         try {
+            AuthVo authVo = (AuthVo) request.getSession().getAttribute("auth");
+            if (authVo == null){
+                return escolhaCliente(request);
+            }
+
             List<ProdutoVo> produtos = adminService.listAllProduto();
             mav.addObject("produtos", produtos);
-            CarrinhoVo carrinhoVo = checkoutService.getCarrinhoByIdCliente(idCliente);
+            CarrinhoVo carrinhoVo = checkoutService.getCarrinho(authVo.getToken());
             List<CatalogoGrupoVo> listCatalogo = adminService.listAllCatalogoGrupo();
             mav.addObject("listCatalogo",listCatalogo);
             mav.addObject("imagensExclusivas",checkoutService
                     .listImagensExclusivas(listCatalogo.get(0).getId()));
             mav.addObject("carrinho",carrinhoVo);
-            mav.addObject("idCliente",idCliente);
 
         }catch(RestException ex){
             mav.addObject(ERROR_MESSAGE,ex.getErrorMessageVo());
@@ -92,17 +124,23 @@ public class CheckoutController extends BaseController {
     }
 
     @PostMapping("/carrinho")
-    public String carrinhoPost(@RequestParam Long idCliente){
-        return "redirect:/admin/checkout/carrinho/" + idCliente;
+    public String carrinhoPost(){
+        return "redirect:/admin/checkout/carrinho";
     }
 
     @PostMapping("/addProduto")
     public String addProduto(@ModelAttribute ItemCarrinhoForm item,
+                                  HttpServletRequest request,
                                  final RedirectAttributes redirectAttributes){
         try {
+            AuthVo authVo = (AuthVo) request.getSession().getAttribute("auth");
+            if (authVo == null){
+                return "redirect:/admin/checkout/escolhaCliente";
+            }
+
             item.getAnexos().get(0).setNomeArquivo(item.getAnexos().get(0).getFotoCliente().getOriginalFilename());
             item.getAnexos().get(0).setFoto(item.getAnexos().get(0).getFotoCliente().getBytes());
-            checkoutService.addItemCarrinho(item);
+            checkoutService.addItemCarrinho(authVo.getToken(),item);
 
         }catch(RestException ex){
             redirectAttributes.addFlashAttribute(ERROR_MESSAGE,ex.getErrorMessageVo());
@@ -110,19 +148,26 @@ public class CheckoutController extends BaseController {
         } catch (IOException e) {
             redirectAttributes.addFlashAttribute(ERROR_MESSAGE,new ErrorMessageVo(500,e.getMessage()));
         }
-        String redirect = "redirect:/admin/checkout/carrinho/" + item.getIdCliente();
+        String redirect = "redirect:/admin/checkout/carrinho";
         return redirect;
     }
 
-    @GetMapping("/removeProduto/{idItem}/{idCliente}")
-    public String removeProduto(@PathVariable Long idItem, @PathVariable Long idCliente,
+    @GetMapping("/removeProduto/{idItem}")
+    public String removeProduto(@PathVariable Long idItem,
+                             HttpServletRequest request,
                              final RedirectAttributes redirectAttributes){
         try {
-            checkoutService.removeItemCarrinho(idItem);
+
+            AuthVo authVo = (AuthVo) request.getSession().getAttribute("auth");
+            if (authVo == null){
+                return "redirect:/admin/checkout/escolhaCliente";
+            }
+
+            checkoutService.removeItemCarrinho(authVo.getToken(),idItem);
         }catch(RestException ex){
             redirectAttributes.addFlashAttribute(ERROR_MESSAGE,ex.getErrorMessageVo());
         }
-        String redirect = "redirect:/admin/checkout/carrinho/" + idCliente;
+        String redirect = "redirect:/admin/checkout/carrinho";
         return redirect;
     }
 

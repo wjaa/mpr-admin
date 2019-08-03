@@ -11,23 +11,39 @@
 <body>
 <wjaa:menu/>
     <div class="content">
-        <h4 class="text-center"> CHECKOUT TEST - ESCOLHA UM CLIENTE</h4>
+        <h4 class="text-center"> CHECKOUT TEST - LOGIN</h4>
         <hr/>
         <wjaa:feedback/>
-        <form action="/admin/checkout/carrinho" method="POST" enctype="multipart/form-data">
+        <form action="/admin/checkout/login" method="POST" enctype="multipart/form-data">
             <div class="row">
                 <div class="form-group col-md-6">
-                    <label for="idCliente">Clientes</label>
-                    <select id="idCliente" name="idCliente" class="form-control" required>
-                        <option value="">--Selecione--</option>
-                        <c:forEach var="c" items="${clientes}">
-                            <option value="${c.id}">${c.nome}</option>
-                        </c:forEach>
-                    </select>
+                    <div class="form-group offset-md-2 col-md-6" style="margin-top:50px;">
+                        <button class="btn btn-primary btn-block" type="button">Cliente não autenticado</button>
+                    </div>
                 </div>
-                <div class="form-group col-md-2">
-                    <label for="idCliente">&nbsp;</label>
-                    <button class="btn btn-primary btn-block" type="submit">Próximo</button>
+
+                <div class="form-group col-md-6">
+
+                    <c:if test="${auth != null}">
+                        <div class="form-group offset-md-2 col-md-6">
+                              <label for="id" class="label-primary">Você está logado com <a href="/admin/checkout/carrinho" >${auth.username}</a></label>
+                              <button class="btn btn-danger btn-block" type="button" onclick="window.location.href='/admin/checkout/logoff'">Sair</button>
+                        </div>
+
+                    </c:if>
+                    <c:if test="${auth == null}">
+                        <div class="form-group offset-md-2 col-md-6">
+                            <label for="id" class="label-primary">Usuário</label>
+                            <input type="text" class="form-control" name="username" id="username" required>
+                        </div>
+                        <div class="form-group offset-md-2 col-md-6">
+                            <label for="id" class="label-primary">Senha</label>
+                            <input type="text" class="form-control" name="password" id="password" required>
+                        </div>
+                        <div class="form-group offset-md-2 col-md-6">
+                            <button class="btn btn-primary btn-block" type="submit">Entrar</button>
+                        </div>
+                    </c:if>
                 </div>
             </div>
         </form>

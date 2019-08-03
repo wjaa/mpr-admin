@@ -3,7 +3,9 @@ package br.com.mpr.admin.service;
 import br.com.mpr.admin.exception.RestException;
 import br.com.mpr.admin.properties.MprAdminProperties;
 import br.com.mpr.admin.utils.ObjectUtils;
-import br.com.mpr.admin.utils.RestUtils;
+import br.com.mpr.admin.utils.RestUtilsApp;
+import br.com.mpr.admin.utils.RestUtilsAuth;
+import br.com.mpr.admin.utils.Token;
 import br.com.mpr.admin.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,59 +23,58 @@ public class CheckoutService {
     private MprAdminProperties properties;
 
     public String getCheckoutToken() throws RestException {
-        return RestUtils.get(properties.getWsApi(), "api/v1/core/checkout/token");
+        return RestUtilsApp.get(properties.getWsApi(), "api/v1/core/checkout/token");
     }
 
-    public CarrinhoVo addItemCarrinho(ItemCarrinhoForm item) throws RestException {
-        return RestUtils.putJson(CarrinhoVo.class,
+    public CarrinhoVo addItemCarrinho(Token token, ItemCarrinhoForm item) throws RestException {
+        return RestUtilsAuth.putJson(token,CarrinhoVo.class,
                 properties.getWsApi(), "api/v1/core/carrinho/add",
                 ObjectUtils.toJson(item));
     }
 
     public CheckoutVo checkout(Long idCarrinho) throws RestException {
-        return RestUtils.getJsonWithParamPath(
+        return RestUtilsApp.getJsonWithParamPath(
                 CheckoutVo.class,properties.getWsApi(), "api/v1/core/checkout", idCarrinho.toString());
     }
 
-    public CarrinhoVo getCarrinhoByIdCliente(Long idCliente) throws RestException {
-        return RestUtils.getJsonWithParamPath(
+    public CarrinhoVo getCarrinho(Token token) throws RestException {
+        return RestUtilsAuth.getJsonWithParamPath(token,
                 CarrinhoVo.class,properties.getWsApi(),
-                "api/v1/core/carrinho/byIdCliente",
-                idCliente.toString());
+                "api/v1/core/carrinho");
 
     }
 
-    public CarrinhoVo removeItemCarrinho(Long idItem) throws RestException {
-        return RestUtils.delete(CarrinhoVo.class,
+    public CarrinhoVo removeItemCarrinho(Token token, Long idItem) throws RestException {
+        return RestUtilsAuth.delete(token,CarrinhoVo.class,
                 properties.getWsApi(), "api/v1/core/carrinho/removeItem",idItem.toString());
     }
 
     public ResultadoPagamentoVo pagamento(CheckoutForm form) throws RestException {
-        return RestUtils.postJson(ResultadoPagamentoVo.class,
+        return RestUtilsApp.postJson(ResultadoPagamentoVo.class,
                 properties.getWsApi(), "api/v1/core/pagamento",
                 ObjectUtils.toJson(form));
     }
 
     public CheckoutVo addCupom(Long idCheckout, String cupom) throws RestException {
-        return RestUtils.post(CheckoutVo.class,
+        return RestUtilsApp.post(CheckoutVo.class,
                 properties.getWsApi(), "api/v1/core/checkout/addCupom",
                 idCheckout.toString(), cupom);
     }
 
     public CheckoutVo alterarEndereco(Long idCheckout, Long idEndereco) throws RestException {
-        return RestUtils.post(CheckoutVo.class,
+        return RestUtilsApp.post(CheckoutVo.class,
                 properties.getWsApi(), "api/v1/core/checkout/alterarEndereco",
                 idCheckout.toString(), idEndereco.toString());
     }
 
     public CheckoutVo alterarFrete(Long idCheckout, String tipoFrete) throws RestException {
-        return RestUtils.post(CheckoutVo.class,
+        return RestUtilsApp.post(CheckoutVo.class,
                 properties.getWsApi(), "api/v1/core/checkout/alterarFrete",
                 idCheckout.toString(), tipoFrete);
     }
 
     public List<ImagemExclusivaVo> listImagensExclusivas(Long idCatalogo) throws RestException {
-        return Arrays.asList(RestUtils.getJsonWithParamPath(
+        return Arrays.asList(RestUtilsApp.getJsonWithParamPath(
                 ImagemExclusivaVo[].class,properties.getWsApi(),
                 "api/v1/core/imagensExclusivas/byCatalogo",
                 idCatalogo.toString()));

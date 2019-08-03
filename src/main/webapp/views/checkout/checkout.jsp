@@ -67,7 +67,7 @@
                                       <label class="custom-control-label" for="tipoFrete${f.freteType}">${f.freteType.descricao}</label>
                                     </div>
                                  </th>
-                                 <td><fmt:formatDate value="${f.previsaoEntrega}" pattern="dd/MM/yyyy"></fmt:formatDate></td>
+                                 <td>${f.previsaoEntrega}</td>
                                  <td>R$ <fmt:formatNumber value="${f.valor}" pattern="#,##0.00" /></td>
                                </tr>
                            </c:forEach>

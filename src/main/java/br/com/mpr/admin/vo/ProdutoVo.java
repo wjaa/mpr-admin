@@ -44,6 +44,7 @@ public class ProdutoVo implements Serializable {
     private Double alt;
     private Boolean lancamento;
     private Boolean popular;
+    private String ref;
     @JsonIgnore
     private MultipartFile [] listDestaque;
 
@@ -291,5 +292,13 @@ public class ProdutoVo implements Serializable {
 
     public void setImagensDestaque(List<String> imagensDestaque) {
         this.imagensDestaque = imagensDestaque;
+    }
+
+    public String getRef() {
+        return ref;
+    }
+
+    public void setRef(String ref) {
+        this.ref = ref;
     }
 }

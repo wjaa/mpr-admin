@@ -21,8 +21,7 @@
 
                         <div class="col-md-12">
                             <div class="form-group col-md-12">
-                                <label for="idCliente">ID CLIENTE</label>
-                                <input type="text" class="form-control" id="idCliente" name="idCliente" required value="${idCliente}">
+                                <label for="idCliente">Olá ${sessionScope.auth.username}</label>
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="idProduto">PRODUTO</label>
@@ -81,7 +80,7 @@
                                             </div>
                                             <div>
                                                 <span class="text-muted">R$ <fmt:formatNumber value="${i.produto.preco}" pattern="#,##0.00" /></span>
-                                                <h4><a href="#" id-item="${i.id}" id-cliente="${carrinho.idCliente}" class="btn-remover"><i class="far fa-trash-alt"></i></a></h4>
+                                                <h4><a href="#" id-item="${i.id}" class="btn-remover"><i class="far fa-trash-alt"></i></a></h4>
                                             </div>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-between lh-condensed">
@@ -178,7 +177,7 @@
 
     </div>
     <wjaa:footer readOnly="${readOnly}"/>
-    <script src="/static/js/checkout/carrinho.js?v=4"></script>
+    <script src="/static/js/checkout/carrinho.js?v=5"></script>
 </body>
 
 </html>

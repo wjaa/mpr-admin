@@ -1,7 +1,5 @@
 package br.com.mpr.admin.vo;
 
-import org.springframework.beans.BeanUtils;
-
 import java.util.List;
 
 /**
