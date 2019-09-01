@@ -46,17 +46,22 @@
         </div>
 
         <div class="form-row">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-5">
                 <label for="id" class="label-primary">DESCRIÇÃO</label>
                 <input type="text" class="form-control" name="descricao" id="descricao"
                        placeholder="DESCRIÇÃO DO PRODUTO" value="${vo.descricao}" maxlength="80">
             </div>
             <div class="form-group col-md-3">
+                <label for="peso">QTDE DE FOTOS</label>
+                <input type="text" class="form-control" name="qtdeFotos" id="qtdeFotos"
+                        value="${vo.qtdeFotos}" maxlength="10"/>
+            </div>
+            <div class="form-group col-md-2">
                 <label for="peso">ESTOQUE MÍNIMO</label>
                 <input type="text" class="form-control" name="estoqueMinimo" id="estoqueMinimo"
                         value="${vo.estoqueMinimo}" maxlength="10"/>
             </div>
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-2">
                 <label for="peso">PREÇO</label>
                 <input type="text" class="form-control money" name="preco" id="preco"
                         <c:if test="${vo.id > 0}"> readOnly="readOnly" </c:if>
