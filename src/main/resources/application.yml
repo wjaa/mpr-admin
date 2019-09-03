@@ -14,7 +14,7 @@ spring:
       max-request-size: 50MB
 
 mpr:
-  wsApi: http://api.meuportaretrato.com
+  wsApi: https://api.meuportaretrato.com
   wsUser: cliente.admin@meuportaretrato.com
   wsPass: admin@*753951*
 
