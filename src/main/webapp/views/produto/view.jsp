@@ -135,10 +135,10 @@
         </div>
 
         <div class="form-row">
-            <div class="form-group col col-md-6">
+            <div class="form-group col col-md-4">
                 <div class="alert alert-success">
                     <div class="col-xs-12 form-group"  >
-                        <label  class="col-lg-12 control-label font12">Imagem de destaque (imagem apresentada na escolha de um porta retrato no app).</label>
+                        <label  class="col-lg-12 control-label font12">FOTO DESTAQUE PRODUTO (Usado no módulo de operações)</label>
                         <div class="col-xs-12"  >
                             <div  class="img-thumbnail text-center">
                                 <img src="http://stc.meuportaretrato.com/images/d/${vo.imgDestaque}" class="img-thumbnail" onerror="this.src='/static/img/notfound.png';" style="height: 200px!important;">
@@ -148,7 +148,7 @@
 
                     <div class="form-group col-md-12">
                         <div id="divBtnImagem" class="col-xs-6 form-group text-center">
-                             <label for="destaque" class="col-lg-12 control-label ">Escolha uma imagem de destaque <font color="red">*</font> :</label>
+                             <label for="destaque" class="col-lg-12 control-label ">Escolha uma imagem<font color="red">*</font> :</label>
                              <div class="col-xs-12">
                                 <input id="destaque" class="file-loading " type="file" name="destaque" accept="image/*"  >
                              </div>
@@ -157,10 +157,10 @@
 
                 </div>
             </div>
-            <div class="form-group col col-md-6">
+            <div class="form-group col col-md-4">
                 <div class="alert alert-secondary">
                     <div class="col-xs-12 form-group "  >
-                        <label  class="col-lg-12 control-label font12">Imagem de preview (imagem apresentada quando cliente escolhe foto e PR).</label>
+                        <label  class="col-lg-12 control-label font12">IMAGEM PREVIEW RETRATO (Usada para gerar preview do cliente)</label>
                         <div class="col-xs-12"  >
                             <div  class="img-thumbnail text-center">
                                 <img src="http://stc.meuportaretrato.com/images/p/${vo.imgPreview}" onerror="this.src='/static/img/notfound.png';" class="img-thumbnail" style="height: 200px!important;">
@@ -169,9 +169,29 @@
                     </div>
                     <div class="form-group col-md-12">
                         <div id="divBtnImagem" class="col-xs-6 form-group text-center">
-                             <label for="preview" class="col-lg-12 control-label">Escolha uma imagem de preview <font color="red">*</font> :</label>
+                             <label for="preview" class="col-lg-12 control-label">Escolha uma imagem:<font color="red">*</font> :</label>
                              <div class="col-xs-12">
                                 <input id="preview" class="file-loading " type="file" name="preview" accept="image/*"  >
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col col-md-4">
+                <div class="alert alert-secondary">
+                    <div class="col-xs-12 form-group "  >
+                        <label  class="col-lg-12 control-label font12">IMAGEM PREVIEW PAISAGEM (Usada para gerar preview do cliente)</label>
+                        <div class="col-xs-12"  >
+                            <div  class="img-thumbnail text-center">
+                                <img src="http://stc.meuportaretrato.com/images/p/${vo.imgPreviewPaisagem}" onerror="this.src='/static/img/notfound.png';" class="img-thumbnail" style="height: 200px!important;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <div id="divBtnImagem" class="col-xs-6 form-group text-center">
+                             <label for="preview" class="col-lg-12 control-label">Escolha uma imagem:<font color="red">*</font> :</label>
+                             <div class="col-xs-12">
+                                <input id="preview" class="file-loading " type="file" name="previewPaisagem" accept="image/*"  >
                              </div>
                         </div>
                     </div>

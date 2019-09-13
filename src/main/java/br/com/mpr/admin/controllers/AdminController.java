@@ -166,6 +166,10 @@ public class AdminController extends BaseController {
                 produtoVo.setByteImgPreview(produtoVo.getPreview().getBytes());
                 produtoVo.setNameImgPreview(produtoVo.getPreview().getOriginalFilename());
             }
+            if (produtoVo.getPreviewPaisagem() != null && !produtoVo.getPreviewPaisagem().isEmpty()){
+                produtoVo.setByteImgPreviewPaisagem(produtoVo.getPreviewPaisagem().getBytes());
+                produtoVo.setNameImgPreviewPaisagem(produtoVo.getPreviewPaisagem().getOriginalFilename());
+            }
             if (produtoVo.getListDestaque() != null && produtoVo.getListDestaque().length > 0){
                 if (produtoVo.getListImgDestaque() == null) {
                     produtoVo.setListImgDestaque(new ArrayList<>());

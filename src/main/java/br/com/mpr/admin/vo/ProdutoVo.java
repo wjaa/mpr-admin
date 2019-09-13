@@ -25,14 +25,21 @@ public class ProdutoVo implements Serializable {
     private String imgDestaque;
     @IgnoreCopy
     private String imgPreview;
+    @IgnoreCopy
+    private String imgPreviewPaisagem;
     private byte [] byteImgDestaque;
     private String nameImgDestaque;
     private byte [] byteImgPreview;
     private String nameImgPreview;
+    private byte [] byteImgPreviewPaisagem;
+    private String nameImgPreviewPaisagem;
     @JsonIgnore
     private MultipartFile destaque;
     @JsonIgnore
     private MultipartFile preview;
+
+    @JsonIgnore
+    private MultipartFile previewPaisagem;
     private String nomeCor;
     private String hexaCor;
     private Double preco;
@@ -300,5 +307,37 @@ public class ProdutoVo implements Serializable {
 
     public void setQtdeFotos(Integer qtdeFotos) {
         this.qtdeFotos = qtdeFotos;
+    }
+
+    public String getImgPreviewPaisagem() {
+        return imgPreviewPaisagem;
+    }
+
+    public void setImgPreviewPaisagem(String imgPreviewPaisagem) {
+        this.imgPreviewPaisagem = imgPreviewPaisagem;
+    }
+
+    public byte[] getByteImgPreviewPaisagem() {
+        return byteImgPreviewPaisagem;
+    }
+
+    public void setByteImgPreviewPaisagem(byte[] byteImgPreviewPaisagem) {
+        this.byteImgPreviewPaisagem = byteImgPreviewPaisagem;
+    }
+
+    public String getNameImgPreviewPaisagem() {
+        return nameImgPreviewPaisagem;
+    }
+
+    public void setNameImgPreviewPaisagem(String nameImgPreviewPaisagem) {
+        this.nameImgPreviewPaisagem = nameImgPreviewPaisagem;
+    }
+
+    public MultipartFile getPreviewPaisagem() {
+        return previewPaisagem;
+    }
+
+    public void setPreviewPaisagem(MultipartFile previewPaisagem) {
+        this.previewPaisagem = previewPaisagem;
     }
 }
